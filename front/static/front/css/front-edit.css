@@ -1,0 +1,9 @@
+.editable:hover {
+    background-color: #eef;
+}
+.editable.editing > textarea {
+    width: 100%;
+    height: auto;
+    font-family: Monaco, "Liberation Mono", Courier, monospace;
+    font-size:12px;
+}

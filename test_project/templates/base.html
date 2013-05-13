@@ -1,0 +1,33 @@
+<!doctype html>{% load sekizai_tags compress i18n front_tags %}
+{% load url from future %}
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="author" content="" />
+  <meta name="description" content="" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=0.75, maximum-scale=1.66" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+  {% block extra_head_meta %}{% endblock extra_head_meta %}
+
+  <title>{% block headtitle %}{% endblock headtitle %}</title>
+
+  {% render_block "css" %}
+  <link rel="stylesheet" type="text/css" href="{{STATIC_URL}}front/css/front-edit.css">
+  {% block extrahead %}{% endblock %}
+</head>
+
+<body>
+
+  {% front_edit "myname" request.path request.LANGUAGE_CODE %}
+    {{LANGUAGE_CODE}}
+  {% end_front_edit  %}
+
+  {% front_edit "global" 'asd' %}aaa{% end_front_edit  %}
+
+
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  {% front_edit_scripts %}
+  {% render_block "js" %}
+</body>
+</html>

@@ -1,0 +1,12 @@
+{% load sekizai_tags compress i18n %}
+<nav class="nav_layer layer" id="nav_layer">
+  <div class="site_wrap wrap">
+    {% get_available_languages as LANGUAGES %}
+
+    <ul class="lang_sel">
+      {% for lang_code,lang_name in LANGUAGES  %}{% language lang_code %}
+        <li><a href="{% url 'home' %}">{{lang_name}}</a></li>
+      {% endlanguage %}{% endfor %}
+    </ul>
+  </div>
+</nav>
