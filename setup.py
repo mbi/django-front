@@ -4,7 +4,7 @@ setup(
     version='0.1',
     description='A Django application to allow front-end editing',
     author='Marco Bonetti',
-    author_email='marco@cruncher.ch',
+    author_email='mbonetti@gmail.com',
     #url='https://github.com/mbi/django-rosetta',
     license='MIT',
     packages=find_packages(),
