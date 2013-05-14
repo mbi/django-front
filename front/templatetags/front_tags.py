@@ -22,8 +22,6 @@ class FrontEditTag(Tag):
     )
 
     def render_tag(self, context, name, extra_bits, nodelist=None):
-        #print name, extra_bits, nodelist
-
         hash_val = hashlib.new('sha1', name + ''.join([unicode(token) for token in extra_bits])).hexdigest()
         cache_key = "front-edit-%s" % hash_val
 
@@ -55,7 +53,8 @@ class FrontEditJS(Tag):
         user = context.get('request', None) and context.get('request').user
         token = unicode(context.get('csrf_token'))
         plugin = editor.get('editor').lower() if editor.get('editor') and editor.get('editor').lower() in ['ace'] else ''
-        if user.is_staff:
+
+        if django_front_settings.DJANGO_FRONT_PERMISSION(user):
             return """
 <link rel="stylesheet" href="%s/front/css/front-edit.css" />
 <script>

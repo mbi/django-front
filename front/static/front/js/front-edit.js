@@ -33,6 +33,7 @@ jQuery(document).ready(function($) {
                     editor.setTheme("ace/theme/monokai");
                     editor.setValue(html);
                     editor.getSession().setMode("ace/mode/html");
+                    editor.getSession().setUseWrapMode(true);
                 });
                 break;
             default:
