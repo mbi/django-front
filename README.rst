@@ -1,7 +1,7 @@
 Django-Front
 *********************
 
-Django-front is a front-end editing application.
+Django-front is a front-end editing application: placeholders can be defined in Django templates, which can then be edited in the front-end (in place) by the site administrators.
 
 Installation
 ++++++++++++
