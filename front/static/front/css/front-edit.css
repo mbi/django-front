@@ -1,7 +1,7 @@
 .editable:hover {
-    background-color: #eef;
+    background-color: rgb(240, 240, 255);
 }
-.editable.editing:hover {background-color: white}
+.editing:hover{background-color: white !important}
 
 .editable.editing > textarea {
     width: 100%;

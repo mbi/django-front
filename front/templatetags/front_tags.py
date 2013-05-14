@@ -1,6 +1,6 @@
 from django import template
 from classytags.core import Tag, Options
-from classytags.arguments import Argument, MultiValueArgument
+from classytags.arguments import Argument, MultiValueArgument, KeywordArgument
 from django.core.cache import cache
 from django.core.urlresolvers import reverse
 from ..models import Placeholder
@@ -46,14 +46,14 @@ class FrontEditTag(Tag):
 class FrontEditJS(Tag):
     name = 'front_edit_scripts'
     options = Options(
-        MultiValueArgument('extra_bits', required=False, resolve=False),
+        KeywordArgument('editor', resolve=False, required=False, defaultkey='editor')
     )
 
-    def render_tag(self, context, extra_bits=[]):
+    def render_tag(self, context, editor=''):
         static_url = context.get('STATIC_URL', '/static/')
         user = context.get('request', None) and context.get('request').user
         token = unicode(context.get('csrf_token'))
-        plugin = 'ace' if 'ACE' in extra_bits else ''
+        plugin = editor.get('editor').lower() if editor.get('editor') and editor.get('editor').lower() in ['ace'] else ''
         if user.is_staff:
             return """
 <link rel="stylesheet" href="%s/front/css/front-edit.css" />
