@@ -1,4 +1,4 @@
-.venv
+.venv*
 *.pyc
 test_project
 dist
