@@ -19,38 +19,47 @@ Installation
 Usage
 +++++
 
-
 In your main template
 ---------------------
 
 At the top of your base template::
 
     {% load front_tags %}
-    
+
+
 Then include jQuery, followed by front-editing scripts e.g.::
 
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
     {% front_edit_scripts %}
 
-or, if you would like to use the `ACE <http://ace.ajax.org/>`_ editor::
+The default editor just uses a plain ``<textarea>`` to edit the code.
+
+* If you would like to use the `Ace <http://ace.ajax.org/>`_ editor::
 
     {% front_edit_scripts editor="ace" %}
 
-or, if you would like to use WYMeditor::
+Ace is loaded from a CDN, no extra installation is required.
+
+
+* If you would like to use WYMeditor::
 
     {% front_edit_scripts editor="wymeditor" %}
 
 To use WYMeditor, you'll have to install ``django-wymeditor``: ``pip install django-wymeditor``, then add ``wymeditor`` to your ``INSTALLED_APPS``.
 
 
-In any template
----------------
 
-In any (other) template, where you want to define your placeholder blocks::
+Defining placeholders in your templates
+---------------------------------------
+
+Once the ``front_edit_scripts`` scripts are injected (they are only rendered to users who can actually edit the content), you can start adding placeholders to your templates.
+
+First load the tag library::
 
     {% load front_tags %}
 
-    ...
+
+Then define a placeholder::
 
     {% front_edit "placeholder_name" request.path request.LANGUAGE_CODE %}
         <p>Default when empty</p>
@@ -58,7 +67,7 @@ In any (other) template, where you want to define your placeholder blocks::
 
 Any variable passed after the name will be evaluauted. The full identifier (i.e. name and variables) will be hashed and will define the main identifier for this placeholder.
 
-The content block in the previous example will be rendered only on the page at the current URL, and the current language.
+The scope (visibility) of the rendered content block is defined by the variable names used in the block definition: the content block in the previous example will be rendered only on the page at the current URL, and the current language.
 
 The following example, on the other hand, would be rendered on every page using the template having this tag, regardless of the language and the URL::
 
@@ -71,15 +80,15 @@ The following example, on the other hand, would be rendered on every page using 
 Settings
 ++++++++
 
-You can define these in your settings:
+These settings are defined, and can be overridden in your project settings
 
-* ``DJANGO_FRONT_PERMISSION``: a callable that gets passed a user object, and returns a Boolean specifying whether or not the user can do front-end editing. Defaults to ``lambda u: u and u.is_staff``
+* ``DJANGO_FRONT_PERMISSION``: a callable that gets passed a user object, and returns a boolean specifying whether or not the user can do front-end editing. Defaults to ``lambda u: u and u.is_staff``
 
 
 Performance
 ++++++++++++
 
-The content of each block is both persisted in the database and cached via Django's cache framework
+The rendered content of each block is both persisted in the database and cached via Django's cache framework.
 
 Requirements
 ++++++++++++
