@@ -45,23 +45,28 @@ class FrontEditTag(Tag):
 
 class FrontEditJS(Tag):
     name = 'front_edit_scripts'
-    options = Options()
+    options = Options(
+        MultiValueArgument('extra_bits', required=False, resolve=False),
+    )
 
-    def render_tag(self, context):
+    def render_tag(self, context, extra_bits=[]):
         static_url = context.get('STATIC_URL', '/static/')
         user = context.get('request', None) and context.get('request').user
         token = unicode(context.get('csrf_token'))
+        plugin = 'ace' if 'ACE' in extra_bits else ''
         if user.is_staff:
             return """
 <script>
     document._front_edit = {
         save_url: '%s',
-        csrf_token: '%s'
+        csrf_token: '%s',
+        plugin: '%s'
     };
 </script>
 <script src="%sfront/js/front-edit.js"></script>""".strip() % (
                 reverse('front-placeholder-save'),
                 token,
+                plugin,
                 static_url
             )
         else:

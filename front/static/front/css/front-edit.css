@@ -1,9 +1,17 @@
 .editable:hover {
     background-color: #eef;
 }
+.editable.editing:hover {background-color: white}
+
 .editable.editing > textarea {
     width: 100%;
     height: auto;
     font-family: Monaco, "Liberation Mono", Courier, monospace;
     font-size:12px;
+}
+
+.front-edit-ace > .front-edit-container {
+    position: relative;
+    width: 100%;
+    height: 300px;
 }
