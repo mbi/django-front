@@ -6,7 +6,7 @@ Django-front is a front-end editing application.
 Installation
 ++++++++++++
 
-* ``pip install -e git+https://github.com/mbi/django-front.git#egg=django-front-dev``
+* ``pip install django-front``
 * Add ``front`` to your ``INSTALLED_APPS``
 * Add a line to urlconf::
 
