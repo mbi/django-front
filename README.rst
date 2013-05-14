@@ -32,7 +32,7 @@ Then include jQuery, followed by front-editing scripts e.g.::
 
 or, if you would like to use the `ACE <http://ace.ajax.org/>`_ editor::
 
-    {% front_edit_scripts ACE %}
+    {% front_edit_scripts editor="ace" %}
 
 
 
