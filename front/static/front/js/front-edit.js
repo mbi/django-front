@@ -8,7 +8,8 @@ jQuery(document).ready(function($) {
             html = el.html(),
             el_id = el.attr('id'),
             tag = 'textarea',
-            container;
+            container,
+            editor;
 
         if (document._front_edit.plugin == 'ace') {
             tag = 'div';
@@ -26,12 +27,13 @@ jQuery(document).ready(function($) {
 
         switch(document._front_edit.plugin) {
             case 'ace':
-                $.getScript('http://d1n0x3qji82z53.cloudfront.net/src-min-noconflict/ace.js');
-                el.addClass('front-edit-ace');
-                var editor = ace.edit("edit-" + el_id);
-                editor.setTheme("ace/theme/monokai");
-                editor.setValue(html);
-                editor.getSession().setMode("ace/mode/html");
+                $.getScript('http://d1n0x3qji82z53.cloudfront.net/src-min-noconflict/ace.js', function(){
+                    el.addClass('front-edit-ace');
+                    editor = ace.edit("edit-" + el_id);
+                    editor.setTheme("ace/theme/monokai");
+                    editor.setValue(html);
+                    editor.getSession().setMode("ace/mode/html");
+                });
                 break;
             default:
                 el.find('.front-edit-container').html(html);

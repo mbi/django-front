@@ -56,6 +56,7 @@ class FrontEditJS(Tag):
         plugin = 'ace' if 'ACE' in extra_bits else ''
         if user.is_staff:
             return """
+<link rel="stylesheet" href="%s/front/css/front-edit.css" />
 <script>
     document._front_edit = {
         save_url: '%s',
@@ -64,6 +65,7 @@ class FrontEditJS(Tag):
     };
 </script>
 <script src="%sfront/js/front-edit.js"></script>""".strip() % (
+                static_url,
                 reverse('front-placeholder-save'),
                 token,
                 plugin,
