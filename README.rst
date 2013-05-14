@@ -14,17 +14,23 @@ Usage
 +++++
 
 
-* In your main template::
+In your main template::
 
     {% load front_tags %}
 
 
-    include jQuery, followed by front-editing scripts e.g.:
+Then include jQuery, followed by front-editing scripts e.g.::
 
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
     {% front_edit_scripts %}
 
-* In any template::
+or, if you would like to use the `ACE <http://ace.ajax.org/>`_ editor::
+    
+    {% front_edit_scripts ACE %}
+
+
+
+In any template::
 
     {% load front_tags %}
 
