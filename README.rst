@@ -8,6 +8,12 @@ Installation
 
 * ``pip install -e git+https://github.com/mbi/django-front.git#egg=django-front-dev``
 * Add ``front`` to your ``INSTALLED_APPS``
+* Add a line to urlconf::
+
+    urlpatterns += patterns('',
+        url(r'^front-edit/', include('front.urls')),
+    )
+
 * ``python manage.py migrate`` (or syncdb if that's your dope)
 
 Usage
