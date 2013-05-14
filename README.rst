@@ -69,7 +69,7 @@ You can define these in your settings:
 Performance
 ++++++++++++
 
-The content of each block is both persisted in the database and cached via Django's cache framework (the obviously hit first)
+The content of each block is both persisted in the database and cached via Django's cache framework
 
 Requirements
 ++++++++++++
