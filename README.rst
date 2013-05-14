@@ -52,6 +52,8 @@ This would be rendered on every page including this tag, in every language::
     {% end_front_edit  %}
 
 
+To start editing a block you need to be authenticated (staff). When you are logged in, simply double-click a block to start editing it. 
+
 Performance
 ++++++++++++
 
