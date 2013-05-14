@@ -8,10 +8,12 @@ jQuery(document).ready(function($) {
             html = el.html(),
             el_id = el.attr('id'),
             tag = 'textarea',
+            plugin = document._front_edit.plugin,
             container,
             editor;
 
-        if (document._front_edit.plugin == 'ace') {
+
+        if (plugin == 'ace') {
             tag = 'div';
         }
 
@@ -25,7 +27,7 @@ jQuery(document).ready(function($) {
 
         el.html(container);
 
-        switch(document._front_edit.plugin) {
+        switch(plugin) {
             case 'ace':
                 $.getScript('http://d1n0x3qji82z53.cloudfront.net/src-min-noconflict/ace.js', function(){
                     el.addClass('front-edit-ace');
@@ -35,6 +37,31 @@ jQuery(document).ready(function($) {
                     editor.getSession().setMode("ace/mode/html");
                     editor.getSession().setUseWrapMode(true);
                 });
+                break;
+            case 'wymeditor':
+                el.find('.front-edit-container').html(html);
+                $.getScript('/static/wymeditor/jquery.wymeditor.min.js', function(){
+                    el.addClass('front-edit-wym');
+                    var base_path = '/static/wymeditor/';
+                    $('#edit-' + el_id).wymeditor({
+                        updateSelector: "input:submit",
+                        updateEvent: "click",
+                        logoHtml: '',
+                        skin: 'twopanels',
+                        classesItems: [
+                            {'name': 'image', 'title': 'DIV: Image w/ Caption', 'expr': 'div'},
+                            {'name': 'caption', 'title': 'P: Caption', 'expr': 'p'},
+                            {'name': 'align-left', 'title': 'Float: Left', 'expr': 'p, div, img'},
+                            {'name': 'align-right', 'title': 'Float: Right', 'expr': 'p, div, img'}
+                        ],
+                        basePath: base_path,
+                        wymPath: base_path + 'jquery.wymeditor.min.js',
+                        skinPath: base_path + 'skins/twopanels/'
+
+                    });
+                });
+
+
                 break;
             default:
                 el.find('.front-edit-container').html(html);
@@ -49,9 +76,12 @@ jQuery(document).ready(function($) {
         el.find('.save').on('click', function(event) {
             var new_html, key = el_id;
 
-            switch(document._front_edit.plugin) {
+            switch(plugin) {
                 case 'ace':
                     new_html = editor.getValue();
+                    break;
+                case 'wymeditor':
+                    new_html = $.wymeditors(0).xhtml();
                     break;
                 default:
                     new_html = el.find('.front-edit-container').val();

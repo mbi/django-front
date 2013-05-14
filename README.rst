@@ -34,6 +34,12 @@ or, if you would like to use the `ACE <http://ace.ajax.org/>`_ editor::
 
     {% front_edit_scripts editor="ace" %}
 
+or, if you would like to use WYMeditor::
+
+    {% front_edit_scripts editor="wymeditor" %}
+
+To use WYMeditor, you'll have to install ``django-wymeditor``: ``pip install django-wymeditor``, then add ``wymeditor`` to your ``INSTALLED_APPS``.
+
 
 In any template::
 

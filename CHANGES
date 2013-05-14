@@ -1,8 +1,11 @@
+Version 0.1.2
+-------------
+* Support for WYMeditor (see note in README about installing django-wymeditor)
+
 Version 0.1.1
 -------------
 * Settings (permissions)
 * Cleanups
-
 
 Version 0.1
 -----------
