@@ -5,7 +5,7 @@ setup(
     description='A Django application to allow front-end editing',
     author='Marco Bonetti',
     author_email='mbonetti@gmail.com',
-    #url='https://github.com/mbi/django-rosetta',
+    url='https://github.com/mbi/django-front',
     license='MIT',
     packages=find_packages(),
     classifiers=[
