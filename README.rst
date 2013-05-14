@@ -35,7 +35,6 @@ or, if you would like to use the `ACE <http://ace.ajax.org/>`_ editor::
     {% front_edit_scripts editor="ace" %}
 
 
-
 In any template::
 
     {% load front_tags %}
@@ -48,12 +47,12 @@ In any template::
 
 Any variable passed after the name will be evaluauted. The full identifier (i.e. name and variables) will be hashed and will define the main identifier for this placeholder.
 
-So the content block in the above example will be rendered only at the page at this URL and the current language.
+The content block in the previous example will be rendered only on the page at the current URL, and the current language.
 
-This would be rendered on every page including this tag, in every language::
+The following example, on the other hand, would be rendered on every page using the template having this tag, regardless of the language and the URL::
 
 
-    {% front_edit "look ma, no hands" %}
+    {% front_edit "look ma, Im global!" %}
         <p>Default when empty</p>
     {% end_front_edit  %}
 
