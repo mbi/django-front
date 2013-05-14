@@ -20,14 +20,16 @@ Usage
 +++++
 
 
-In your main template::
+In your main template
+---------------------
+
+At the top of your base template::
 
     {% load front_tags %}
-
-
+    
 Then include jQuery, followed by front-editing scripts e.g.::
 
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
     {% front_edit_scripts %}
 
 or, if you would like to use the `ACE <http://ace.ajax.org/>`_ editor::
@@ -41,7 +43,10 @@ or, if you would like to use WYMeditor::
 To use WYMeditor, you'll have to install ``django-wymeditor``: ``pip install django-wymeditor``, then add ``wymeditor`` to your ``INSTALLED_APPS``.
 
 
-In any template::
+In any template
+---------------
+
+In any (other) template, where you want to define your placeholder blocks::
 
     {% load front_tags %}
 
