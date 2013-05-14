@@ -4,6 +4,7 @@ from classytags.arguments import Argument, MultiValueArgument, KeywordArgument
 from django.core.cache import cache
 from django.core.urlresolvers import reverse
 from ..models import Placeholder
+from ..conf import settings as django_front_settings
 import hashlib
 
 
@@ -38,7 +39,7 @@ class FrontEditTag(Tag):
             val = nodelist.render(context)
 
         user = context.get('request', None) and context.get('request').user
-        if user.is_staff:
+        if django_front_settings.DJANGO_FRONT_PERMISSION(user):
             return '<div class="editable" id="%s">%s</div>' % (hash_val, unicode(val).strip())
         return val or ''
 

@@ -31,7 +31,7 @@ Then include jQuery, followed by front-editing scripts e.g.::
     {% front_edit_scripts %}
 
 or, if you would like to use the `ACE <http://ace.ajax.org/>`_ editor::
-    
+
     {% front_edit_scripts ACE %}
 
 
@@ -58,7 +58,13 @@ This would be rendered on every page including this tag, in every language::
     {% end_front_edit  %}
 
 
-To start editing a block you need to be authenticated (staff). When you are logged in, simply double-click a block to start editing it. 
+Settings
+++++++++
+
+You can define these in your settings:
+
+* ``DJANGO_FRONT_PERMISSION``: a callable that gets passed a user object, and returns a Boolean specifying whether or not the user can do front-end editing. Defaults to ``lambda u: u and u.is_staff``
+
 
 Performance
 ++++++++++++
