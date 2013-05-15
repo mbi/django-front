@@ -61,7 +61,8 @@ class FrontEditJS(Tag):
     document._front_edit = {
         save_url: '%s',
         csrf_token: '%s',
-        plugin: '%s'
+        plugin: '%s',
+        static_root: '%s'
     };
 </script>
 <script src="%sfront/js/front-edit.js"></script>""".strip() % (
@@ -69,6 +70,7 @@ class FrontEditJS(Tag):
                 reverse('front-placeholder-save'),
                 token,
                 plugin,
+                static_url,
                 static_url
             )
         else:

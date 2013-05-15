@@ -40,9 +40,9 @@ jQuery(document).ready(function($) {
                 break;
             case 'wymeditor':
                 el.find('.front-edit-container').html(html);
-                $.getScript('/static/wymeditor/jquery.wymeditor.min.js', function(){
+                $.getScript(document._front_edit.static_root+'wymeditor/jquery.wymeditor.min.js', function(){
                     el.addClass('front-edit-wym');
-                    var base_path = '/static/wymeditor/';
+                    var base_path = document._front_edit.static_root+'wymeditor/';
                     $('#edit-' + el_id).wymeditor({
                         updateSelector: "input:submit",
                         updateEvent: "click",
@@ -56,7 +56,7 @@ jQuery(document).ready(function($) {
                         ],
                         basePath: base_path,
                         wymPath: base_path + 'jquery.wymeditor.min.js',
-                        skinPath: '/static/wym/django/'
+                        skinPath: document._front_edit.static_root + 'wym/django/'
 
                     });
                 });
