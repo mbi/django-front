@@ -47,7 +47,7 @@ jQuery(document).ready(function($) {
                         updateSelector: "input:submit",
                         updateEvent: "click",
                         logoHtml: '',
-                        skin: 'twopanels',
+                        skin: 'django',
                         classesItems: [
                             {'name': 'image', 'title': 'DIV: Image w/ Caption', 'expr': 'div'},
                             {'name': 'caption', 'title': 'P: Caption', 'expr': 'p'},
@@ -56,7 +56,7 @@ jQuery(document).ready(function($) {
                         ],
                         basePath: base_path,
                         wymPath: base_path + 'jquery.wymeditor.min.js',
-                        skinPath: base_path + 'skins/twopanels/'
+                        skinPath: '/static/wym/django/'
 
                     });
                 });
