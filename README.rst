@@ -8,7 +8,7 @@ Installation
 
 * ``pip install django-front``
 * Add ``front`` to your ``INSTALLED_APPS``
-* Add a line to urlconf::
+* Add a line to your ``urls.py``::
 
     urlpatterns += patterns('',
         url(r'^front-edit/', include('front.urls')),
@@ -65,7 +65,7 @@ Then define a placeholder::
         <p>Default when empty</p>
     {% end_front_edit  %}
 
-Any variable passed after the name will be evaluauted. The full identifier (i.e. name and variables) will be hashed and will define the main identifier for this placeholder.
+Any variable passed after the name will be evaluated. The full identifier (i.e. name and variables) will be hashed and will define the main identifier for this placeholder.
 
 The scope (visibility) of the rendered content block is defined by the variable names used in the block definition: the content block in the previous example will be rendered only on the page at the current URL, and the current language.
 
