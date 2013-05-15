@@ -96,3 +96,4 @@ Requirements
 * Django 1.4+
 * django-classy-tags
 
+* jQuery is required in your template (see the "In your main template" above). If your website already uses jQuery you can use that instead. Please note that some versions of the WYMeditor don't work with recent versions of jQuery. 
