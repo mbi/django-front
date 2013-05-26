@@ -63,6 +63,9 @@ jQuery(document).ready(function($) {
 
 
                 break;
+            case 'redactor':
+                el.find('.front-edit-container').html(html).redactor();
+                break;
             default:
                 el.find('.front-edit-container').html(html);
                 break;
@@ -82,6 +85,9 @@ jQuery(document).ready(function($) {
                     break;
                 case 'wymeditor':
                     new_html = $.wymeditors(0).xhtml();
+                    break;
+                case 'redactor':
+                    new_html = el.find('.front-edit-container').getCode();
                     break;
                 default:
                     new_html = el.find('.front-edit-container').val();

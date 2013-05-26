@@ -47,6 +47,20 @@ Ace is loaded from a CDN, no extra installation is required.
 
 To use WYMeditor, you'll have to install ``django-wymeditor``: ``pip install django-wymeditor``, then add ``wymeditor`` to your ``INSTALLED_APPS``.
 
+* If you would like to use the `Redactor <http://imperavi.com/redactor/>`_ editor::
+
+    {% front_edit_scripts editor="redactor" %}
+
+Redactor being closed-source, it is not distributed with with django-front: you'll have to `download <http://imperavi.com/redactor/download/>`_ and install it in your project:
+
+* Copy ``redactor8xx`` into a directory being served as static file
+* In the ``head`` of your master template, include the Redactor stylesheet::
+
+    <link rel="stylesheet" type="text/css" href="{{STATIC_URL}}redactor8xx/redactor/redactor.css">
+
+* In your master template, after the jQuery inclusion and begore your ``{% front_edit_scripts editor="redactor" %}`` tag, include the Redactor JavaSript file::
+
+    <script type="text/javascript" src="{{STATIC_URL}}redactor8xx/redactor/redactor.min.js"></script>
 
 
 Defining placeholders in your templates
@@ -96,4 +110,4 @@ Requirements
 * Django 1.4+
 * django-classy-tags
 
-* jQuery is required in your template (see the "In your main template" above). If your website already uses jQuery you can use that instead. Please note that some versions of the WYMeditor don't work with recent versions of jQuery. 
+* jQuery is required in your template (see the "In your main template" above). If your website already uses jQuery you can use that instead. Please note that some versions of the WYMeditor don't work with recent versions of jQuery.

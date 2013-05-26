@@ -52,7 +52,7 @@ class FrontEditJS(Tag):
         static_url = context.get('STATIC_URL', '/static/')
         user = context.get('request', None) and context.get('request').user
         token = unicode(context.get('csrf_token'))
-        plugin = editor.get('editor').lower() if editor.get('editor') and editor.get('editor').lower() in ['ace', 'wymeditor'] else ''
+        plugin = editor.get('editor').lower() if editor.get('editor') and editor.get('editor').lower() in ['ace', 'wymeditor', 'redactor'] else ''
 
         if django_front_settings.DJANGO_FRONT_PERMISSION(user):
             return """

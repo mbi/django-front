@@ -1,3 +1,7 @@
+Version 0.1.5
+-------------
+* Support for the Redactor editor
+
 Version 0.1.4
 -------------
 * Include the Django Wymeditor theme, because django-wymeditor doesnt by default
