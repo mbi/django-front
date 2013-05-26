@@ -58,7 +58,7 @@ Redactor being closed-source, it is not distributed with django-front: you'll ha
 
     <link rel="stylesheet" type="text/css" href="{{STATIC_URL}}redactor8xx/redactor/redactor.css">
 
-* In your master template, after the jQuery inclusion and begore your ``{% front_edit_scripts editor="redactor" %}`` tag, include the Redactor JavaSript file::
+* In your master template, after the jQuery inclusion and before your ``{% front_edit_scripts editor="redactor" %}`` tag, include the Redactor JavaSript file::
 
     <script type="text/javascript" src="{{STATIC_URL}}redactor8xx/redactor/redactor.min.js"></script>
 
