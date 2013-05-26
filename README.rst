@@ -51,7 +51,7 @@ To use WYMeditor, you'll have to install ``django-wymeditor``: ``pip install dja
 
     {% front_edit_scripts editor="redactor" %}
 
-Redactor being closed-source, it is not distributed with with django-front: you'll have to `download <http://imperavi.com/redactor/download/>`_ and install it in your project:
+Redactor being closed-source, it is not distributed with django-front: you'll have to `download <http://imperavi.com/redactor/download/>`_ and install it in your project:
 
 * Copy ``redactor8xx`` into a directory being served as static file
 * In the ``head`` of your master template, include the Redactor stylesheet::
