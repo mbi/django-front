@@ -87,7 +87,14 @@ jQuery(document).ready(function($) {
                     new_html = $.wymeditors(0).xhtml();
                     break;
                 case 'redactor':
-                    new_html = el.find('.front-edit-container').getCode();
+                    try {
+                        // redactor 0.8+
+                        new_html = el.find('.front-edit-container').getCode();
+                    } catch(err) {
+                        // redactor 0.9+
+                        new_html = el.find('.front-edit-container').redactor('get');
+                    }
+
                     break;
                 default:
                     new_html = el.find('.front-edit-container').val();
