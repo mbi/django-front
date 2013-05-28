@@ -20,7 +20,7 @@ jQuery(document).ready(function($) {
         }
 
         // this will contain the actual editor block
-        container = $('<'+tag+' class="front-edit-container" id="edit-'+el_id+'"></'+tag+'><p><button class="cancel">cancel</button><button class="save">save</button></p>');
+        container = $('<'+tag+' class="front-edit-container" id="edit-'+el_id+'"></'+tag+'><p class="front-edit-buttons"><button class="cancel">cancel</button><button class="save">save</button></p>');
 
         if(body.is('.front-editing')) {
             return;
@@ -35,7 +35,7 @@ jQuery(document).ready(function($) {
                 break;
 
             case 'lightbox':
-                $('<div id="front-edit-lightbox-container" class="active dialog_layer layer"><div id="front-edit-lightbox" class="dialog"></div></div>').appendTo($('body'));
+                $('<div id="front-edit-lightbox-container" class="active front-edit-dialog_layer front-edit-layer"><div id="front-edit-lightbox" class="front-edit-dialog"></div></div>').appendTo($('body'));
                 var lightbox = $('#front-edit-lightbox');
                 lightbox.html(container);
                 target = lightbox;

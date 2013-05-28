@@ -16,9 +16,26 @@
               box-shadow: 0 0 1px 2px #659DCB, inset 0 0 1px 1px #659DCB;
 }
 
-.editable.editing > textarea {
+.front-editing .editable,
+.front-editing .editable:hover {
+    outline: none;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+}
+
+.front-edit-buttons {
+    text-align: right;
+}
+.front-edit-buttons button {
+  margin: 3px 0 3px 3px;
+}
+
+.front-editing .editable > textarea,
+#front-edit-lightbox textarea {
     width: 100%;
     height: auto;
+    min-height: 300px;
     font-family: Monaco, "Liberation Mono", Courier, monospace;
     font-size:12px;
 }
@@ -42,7 +59,7 @@
 /* layer classes from Bolt */
 
 /* .layer */
-.layer {
+.front-edit-layer {
     /* Permit possible scrollbars. */
     overflow: auto;
 
@@ -70,7 +87,7 @@
 }
 
 
-.dialog_layer {
+.front-edit-dialog_layer {
     position: fixed;
 
     /* Center inline-block contents horizontally */
@@ -83,7 +100,7 @@
     z-index: 10;
 }
 
-.dialog_layer:before {
+.front-edit-dialog_layer:before {
     /* Center inline-block contents vertically */
     display: inline-block;
     content: '';
@@ -92,14 +109,14 @@
     vertical-align: middle;
 }
 
-.dialog_layer > * {
+.front-edit-dialog_layer > * {
     text-align: left;
 }
 
 
 /* .dialog */
 
-.dialog {
+.front-edit-dialog {
     /* Act as position parent */
     position: relative;
 
@@ -131,34 +148,21 @@
             box-shadow: 0 2px 24px rgba(0,0,0,0.6);
 }
 
-.dialog > img,
-.dialog > svg,
-.dialog > video,
-.dialog > canvas,
-.dialog > object,
-.dialog > embed,
-.dialog > iframe {
+.front-edit-dialog > img,
+.front-edit-dialog > svg,
+.front-edit-dialog > video,
+.front-edit-dialog > canvas,
+.front-edit-dialog > object,
+.front-edit-dialog > embed,
+.front-edit-dialog > iframe {
     /* Don't allow media to break out of container bounds. */
     max-width: 100%;
 }
 
-.dialog > img,
-.dialog > svg,
-.dialog > video,
-.dialog > canvas {
+.front-edit-dialog > img,
+.front-edit-dialog > svg,
+.front-edit-dialog > video,
+.front-edit-dialog > canvas {
     /* Allow images to rescale freely. */
     height: auto;
-}
-
-.dialog > .close_button,
-.dialog > .close_thumb {
-    position: absolute;
-    top: -16px;
-    top: -1rem;
-    right: -16px;
-    right: -1rem;
-
-    -webkit-box-shadow: 0 0 24px rgba(0,0,0,0.6);
-       -moz-box-shadow: 0 0 24px rgba(0,0,0,0.6);
-            box-shadow: 0 0 24px rgba(0,0,0,0.6);
 }
