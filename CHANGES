@@ -1,3 +1,7 @@
+Version 0.1.8
+-------------
+* Namespaced the layer and dialog CSS classes
+
 Version 0.1.7
 -------------
 * Editing mode (lightbox or inline)
