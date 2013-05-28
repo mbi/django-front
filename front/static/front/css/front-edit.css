@@ -1,7 +1,20 @@
 .editable:hover {
-    background-color: rgb(240, 240, 255);
+      opacity: 1;
+      /* In Webkit, outline doesn't fit the border curves, and in FF outline
+         is ugly. Lets recreate it with box-shadow */
+      outline: none;
+
+      /* \9 hack for IE8 and below. */
+      outline: 2px solid #639ACA\9;
+
+      /* Old Safari doesn't do blur radius */
+      -webkit-box-shadow: 0 0 12px #659DCB;
+      /* but Chrome does... */
+      -webkit-box-shadow: 0 0 1px 2px #659DCB, inset 0 0 1px 1px #659DCB;
+      /* Create webkit-like outlines for FF */
+         -moz-box-shadow: 0 0 1px 2px #659DCB, inset 0 0 1px 1px #659DCB;
+              box-shadow: 0 0 1px 2px #659DCB, inset 0 0 1px 1px #659DCB;
 }
-.editing:hover{background-color: white !important}
 
 .editable.editing > textarea {
     width: 100%;
@@ -13,10 +26,139 @@
 .front-edit-ace > .front-edit-container {
     position: relative;
     width: 100%;
-    height: 300px;
+    height: 400px;
 }
 
 .front-edit-wym > .front-edit-container {
     width: 100%;
     display: block;
+}
+
+#front-edit-lightbox {
+    width: 92%;
+    max-width: 92%;
+}
+
+/* layer classes from Bolt */
+
+/* .layer */
+.layer {
+    /* Permit possible scrollbars. */
+    overflow: auto;
+
+    /* Make layer occupy the whole of the area in its position parent. */
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+
+    /* Height and width override the top, right, bottom, left declaration.
+       To use height and width we must change the box model to make sure
+       padding and border do not make the layer bigger than its container.
+       The technique above does not work for iframes and can break as soon
+       as height or width are declared, but the technique below will not
+       work in IE7, where the box model can't be changed. */
+    width: 100%;
+    height: 100%;
+
+    /* Make the corners of layers the same as their parents', allowing you
+       to use layers as screens over specific elements. */
+    -webkit-border-radius: inherit;
+       -moz-border-radius: inherit;
+            border-radius: inherit;
+}
+
+
+.dialog_layer {
+    position: fixed;
+
+    /* Center inline-block contents horizontally */
+    text-align: center;
+
+    background-image: none;
+    background-color: rgba(31, 32, 33, 0.746094);
+
+    /* Set this to be sure it's the uppermost thing on the page. */
+    z-index: 10;
+}
+
+.dialog_layer:before {
+    /* Center inline-block contents vertically */
+    display: inline-block;
+    content: '';
+    height: 100%;
+    width: 0;
+    vertical-align: middle;
+}
+
+.dialog_layer > * {
+    text-align: left;
+}
+
+
+/* .dialog */
+
+.dialog {
+    /* Act as position parent */
+    position: relative;
+
+    /* Use inline-block to make dialog collapse
+       to the width of its contents. */
+    display: inline-block;
+
+    /* Center the dialog vertically, working in tandem
+       with the :before rule of .dialog_layer. */
+    vertical-align: middle;
+
+    /* But let's make sure it doesn't touch the top or
+       bottom. Mainly for IE7. */
+    margin-top: 1.75em;
+    margin-bottom: 1.75em;
+
+    padding: 0.8333em;
+    margin: 0;
+    max-width: 92%;
+
+    background-color: white;
+
+    -webkit-border-radius: 0.3333em;
+       -moz-border-radius: 0.3333em;
+            border-radius: 0.3333em;
+
+    -webkit-box-shadow: 0 2px 24px rgba(0,0,0,0.6);
+       -moz-box-shadow: 0 2px 24px rgba(0,0,0,0.6);
+            box-shadow: 0 2px 24px rgba(0,0,0,0.6);
+}
+
+.dialog > img,
+.dialog > svg,
+.dialog > video,
+.dialog > canvas,
+.dialog > object,
+.dialog > embed,
+.dialog > iframe {
+    /* Don't allow media to break out of container bounds. */
+    max-width: 100%;
+}
+
+.dialog > img,
+.dialog > svg,
+.dialog > video,
+.dialog > canvas {
+    /* Allow images to rescale freely. */
+    height: auto;
+}
+
+.dialog > .close_button,
+.dialog > .close_thumb {
+    position: absolute;
+    top: -16px;
+    top: -1rem;
+    right: -16px;
+    right: -1rem;
+
+    -webkit-box-shadow: 0 0 24px rgba(0,0,0,0.6);
+       -moz-box-shadow: 0 0 24px rgba(0,0,0,0.6);
+            box-shadow: 0 0 24px rgba(0,0,0,0.6);
 }

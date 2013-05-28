@@ -10,27 +10,42 @@ jQuery(document).ready(function($) {
             tag = 'textarea',
             plugin = document._front_edit.plugin,
             container,
-            editor;
+            editor,
+            target;
 
 
         if (plugin == 'ace') {
             tag = 'div';
         }
 
+        // this will contain the actual editor block
         container = $('<'+tag+' class="front-edit-container" id="edit-'+el_id+'"></'+tag+'><p><button class="cancel">cancel</button><button class="save">save</button></p>');
 
         if(el.is('.editing')) {
             return;
-        } else {
-            el.addClass('editing');
+        }
+        el.addClass('editing');
+
+
+        switch(document._front_edit.edit_mode) {
+            case 'inline':
+                el.html(container);
+                target = el;
+                break;
+
+            case 'lightbox':
+                $('<div id="front-edit-lightbox-container" class="active dialog_layer layer"><div id="front-edit-lightbox" class="dialog"></div></div>').appendTo($('body'));
+                var lightbox = $('#front-edit-lightbox');
+                lightbox.html(container);
+                target = lightbox;
+                break;
         }
 
-        el.html(container);
 
         switch(plugin) {
             case 'ace':
                 $.getScript('http://d1n0x3qji82z53.cloudfront.net/src-min-noconflict/ace.js', function(){
-                    el.addClass('front-edit-ace');
+                    target.addClass('front-edit-ace');
                     editor = ace.edit("edit-" + el_id);
                     editor.setTheme("ace/theme/monokai");
                     editor.setValue(html);
@@ -39,9 +54,9 @@ jQuery(document).ready(function($) {
                 });
                 break;
             case 'wymeditor':
-                el.find('.front-edit-container').html(html);
+                target.find('.front-edit-container').html(html);
                 $.getScript(document._front_edit.static_root+'wymeditor/jquery.wymeditor.min.js', function(){
-                    el.addClass('front-edit-wym');
+                    target.addClass('front-edit-wym');
                     var base_path = document._front_edit.static_root+'wymeditor/';
                     $('#edit-' + el_id).wymeditor({
                         updateSelector: "input:submit",
@@ -64,19 +79,20 @@ jQuery(document).ready(function($) {
 
                 break;
             case 'redactor':
-                el.find('.front-edit-container').html(html).redactor();
+                target.find('.front-edit-container').html(html).redactor();
                 break;
             default:
-                el.find('.front-edit-container').html(html);
+                target.find('.front-edit-container').html(html);
                 break;
         }
 
-        el.find('.cancel').on('click', function(event) {
+        target.find('.cancel').on('click', function(event) {
             el.html(html);
             el.removeClass('editing');
+            $('#front-edit-lightbox-container').remove();
         });
 
-        el.find('.save').on('click', function(event) {
+        target.find('.save').on('click', function(event) {
             var new_html, key = el_id;
 
             switch(plugin) {
@@ -89,15 +105,15 @@ jQuery(document).ready(function($) {
                 case 'redactor':
                     try {
                         // redactor 0.8+
-                        new_html = el.find('.front-edit-container').getCode();
+                        new_html = target.find('.front-edit-container').getCode();
                     } catch(err) {
                         // redactor 0.9+
-                        new_html = el.find('.front-edit-container').redactor('get');
+                        new_html = target.find('.front-edit-container').redactor('get');
                     }
 
                     break;
                 default:
-                    new_html = el.find('.front-edit-container').val();
+                    new_html = target.find('.front-edit-container').val();
                     break;
             }
 
@@ -110,6 +126,7 @@ jQuery(document).ready(function($) {
             });
             el.removeClass('editing');
             el.html(new_html);
+            $('#front-edit-lightbox-container').remove();
         });
     });
 });

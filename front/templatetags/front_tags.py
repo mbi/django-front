@@ -52,7 +52,11 @@ class FrontEditJS(Tag):
         static_url = context.get('STATIC_URL', '/static/')
         user = context.get('request', None) and context.get('request').user
         token = unicode(context.get('csrf_token'))
-        plugin = editor.get('editor').lower() if editor.get('editor') and editor.get('editor').lower() in ['ace', 'wymeditor', 'redactor'] else ''
+        plugin = editor.get('editor').lower() if \
+            editor.get('editor') and editor.get('editor').lower() \
+            in ['ace', 'wymeditor', 'redactor'] else ''
+        edit_mode = django_front_settings.DJANGO_FRONT_EDIT_MODE if \
+            django_front_settings.DJANGO_FRONT_EDIT_MODE in ('lightbox', 'inline') else 'lightbox'
 
         if django_front_settings.DJANGO_FRONT_PERMISSION(user):
             return """
@@ -62,7 +66,8 @@ class FrontEditJS(Tag):
         save_url: '%s',
         csrf_token: '%s',
         plugin: '%s',
-        static_root: '%s'
+        static_root: '%s',
+        edit_mode: '%s'
     };
 </script>
 <script src="%sfront/js/front-edit.js"></script>""".strip() % (
@@ -71,6 +76,7 @@ class FrontEditJS(Tag):
                 token,
                 plugin,
                 static_url,
+                edit_mode,
                 static_url
             )
         else:
