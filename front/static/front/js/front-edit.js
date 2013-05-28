@@ -5,6 +5,7 @@ jQuery(document).ready(function($) {
         event.preventDefault();
 
         var el = $(this),
+            body = $('body'),
             html = el.html(),
             el_id = el.attr('id'),
             tag = 'textarea',
@@ -21,10 +22,10 @@ jQuery(document).ready(function($) {
         // this will contain the actual editor block
         container = $('<'+tag+' class="front-edit-container" id="edit-'+el_id+'"></'+tag+'><p><button class="cancel">cancel</button><button class="save">save</button></p>');
 
-        if(el.is('.editing')) {
+        if(body.is('.front-editing')) {
             return;
         }
-        el.addClass('editing');
+        body.addClass('front-editing');
 
 
         switch(document._front_edit.edit_mode) {
@@ -88,7 +89,7 @@ jQuery(document).ready(function($) {
 
         target.find('.cancel').on('click', function(event) {
             el.html(html);
-            el.removeClass('editing');
+            body.removeClass('front-editing');
             $('#front-edit-lightbox-container').remove();
         });
 
@@ -124,7 +125,7 @@ jQuery(document).ready(function($) {
             }, function(data, textStatus, xhr) {
                 // todo: return val
             });
-            el.removeClass('editing');
+            body.removeClass('front-editing');
             el.html(new_html);
             $('#front-edit-lightbox-container').remove();
         });

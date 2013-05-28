@@ -60,7 +60,7 @@ class FrontEditJS(Tag):
 
         if django_front_settings.DJANGO_FRONT_PERMISSION(user):
             return """
-<link rel="stylesheet" href="%s/front/css/front-edit.css" />
+<link rel="stylesheet" href="%sfront/css/front-edit.css" />
 <script>
     document._front_edit = {
         save_url: '%s',
