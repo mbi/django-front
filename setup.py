@@ -1,8 +1,8 @@
 from setuptools import setup, find_packages
 setup(
     name='django-front',
-    version='0.1.6',
-    description='A Django application to allow front-end editing',
+    version='0.1.7',
+    description='A Django application to allow of front-end editing',
     author='Marco Bonetti',
     author_email='mbonetti@gmail.com',
     url='https://github.com/mbi/django-front',

@@ -97,6 +97,7 @@ Settings
 These settings are defined, and can be overridden in your project settings
 
 * ``DJANGO_FRONT_PERMISSION``: a callable that gets passed a user object, and returns a boolean specifying whether or not the user can do front-end editing. Defaults to ``lambda u: u and u.is_staff``
+* ``DJANGO_FRONT_EDIT_MODE``: specifies whether the editor should be opened in a lightbox (default) or inline (over the edited element). Valid values are ``'inline'`` and ``'lightbox'``.
 
 
 Performance
