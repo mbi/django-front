@@ -38,7 +38,9 @@ deactivate
 . .venv_15/bin/activate
 cd test_project
 python manage.py --version
-python manage.py test front
+coverage run --rcfile=.coveragerc manage.py test --failfast front
+coverage xml
+coverage html
 cd ..
 deactivate
 
