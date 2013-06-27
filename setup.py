@@ -1,7 +1,7 @@
 from setuptools import setup, find_packages
 setup(
     name='django-front',
-    version='0.1.8',
+    version='0.1.9',
     description='A Django application to allow of front-end editing',
     author='Marco Bonetti',
     author_email='mbonetti@gmail.com',
@@ -16,11 +16,15 @@ setup(
         'Operating System :: OS Independent',
         'Programming Language :: Python',
         'Framework :: Django',
+        'Programming Language :: Python :: 2.6',
+        'Programming Language :: Python :: 2.7',
+        'Programming Language :: Python :: 3.3',
     ],
     include_package_data=True,
     zip_safe=False,
     install_requires=[
         'django-classy-tags >= 0.4',
-        'Django >= 1.4'
+        'Django >= 1.4',
+        'six'
     ]
 )

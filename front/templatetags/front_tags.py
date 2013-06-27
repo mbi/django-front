@@ -6,6 +6,7 @@ from django.core.urlresolvers import reverse
 from ..models import Placeholder
 from ..conf import settings as django_front_settings
 import hashlib
+import six
 
 
 register = template.Library()
@@ -22,7 +23,7 @@ class FrontEditTag(Tag):
     )
 
     def render_tag(self, context, name, extra_bits, nodelist=None):
-        hash_val = hashlib.new('sha1', name + ''.join([unicode(token) for token in extra_bits])).hexdigest()
+        hash_val = hashlib.new('sha1', six.text_type(name + ''.join([six.text_type(token) for token in extra_bits])).encode('utf8')).hexdigest()
         cache_key = "front-edit-%s" % hash_val
 
         val = cache.get(cache_key)
@@ -38,7 +39,7 @@ class FrontEditTag(Tag):
 
         user = context.get('request', None) and context.get('request').user
         if django_front_settings.DJANGO_FRONT_PERMISSION(user):
-            return '<div class="editable" id="%s">%s</div>' % (hash_val, unicode(val).strip())
+            return '<div class="editable" id="%s">%s</div>' % (hash_val, six.text_type(val).strip())
         return val or ''
 
 
@@ -51,7 +52,7 @@ class FrontEditJS(Tag):
     def render_tag(self, context, editor=''):
         static_url = context.get('STATIC_URL', '/static/')
         user = context.get('request', None) and context.get('request').user
-        token = unicode(context.get('csrf_token'))
+        token = six.text_type(context.get('csrf_token'))
         plugin = editor.get('editor').lower() if \
             editor.get('editor') and editor.get('editor').lower() \
             in ['ace', 'wymeditor', 'redactor'] else ''
