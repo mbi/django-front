@@ -1,3 +1,7 @@
+Version 0.2.0
+-------------
+* Test against Django 1.6b1
+
 Version 0.1.9
 -------------
 * Python 3.3 support on Django 1.5+
