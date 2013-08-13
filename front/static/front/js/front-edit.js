@@ -83,6 +83,39 @@ jQuery(document).ready(function($) {
                 target.find('.front-edit-container').html(html).redactor();
                 break;
             case 'epiceditor':
+                $.getScript(document._front_edit.static_root+'epiceditor/js/epiceditor.min.js', function(){
+                    target.attr('id', 'epiceditor');
+                    var opts = {
+                      container: 'epiceditor',
+                      textarea: null,
+                      basePath: document._front_edit.static_root+'epiceditor',
+                      clientSideStorage: true,
+                      localStorageName: 'epiceditor',
+                      useNativeFullscreen: true,
+                      parser: marked,
+                      file: {
+                        name: 'epiceditor',
+                        defaultContent: '',
+                        autoSave: 100
+                      },
+                      button: {
+                        preview: true,
+                        fullscreen: true
+                      },
+                      focusOnLoad: false,
+                      shortcut: {
+                        modifier: 18,
+                        fullscreen: 70,
+                        preview: 80
+                      },
+                      string: {
+                        togglePreview: 'Toggle Preview Mode',
+                        toggleEdit: 'Toggle Edit Mode',
+                        toggleFullscreen: 'Enter Fullscreen'
+                      }
+                    };
+                    var editor = new EpicEditor(opts).load();
+                });
                 break;
             default:
                 target.find('.front-edit-container').html(html);
@@ -113,9 +146,9 @@ jQuery(document).ready(function($) {
                         // redactor 0.9+
                         new_html = target.find('.front-edit-container').redactor('get');
                     }
-
                     break;
                 case 'epiceditor':
+
                     break;
 
                 default:
