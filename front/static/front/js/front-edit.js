@@ -82,6 +82,8 @@ jQuery(document).ready(function($) {
             case 'redactor':
                 target.find('.front-edit-container').html(html).redactor();
                 break;
+            case 'epiceditor':
+                break;
             default:
                 target.find('.front-edit-container').html(html);
                 break;
@@ -113,6 +115,9 @@ jQuery(document).ready(function($) {
                     }
 
                     break;
+                case 'epiceditor':
+                    break;
+
                 default:
                     new_html = target.find('.front-edit-container').val();
                     break;
