@@ -129,7 +129,6 @@ jQuery(document).ready(function($) {
 
         target.find('.save').on('click', function(event) {
             var new_html, key = el_id;
-            console.log('save');
             switch(plugin) {
                 case 'ace':
                     new_html = editor.getValue();
@@ -148,7 +147,6 @@ jQuery(document).ready(function($) {
                     break;
                 case 'epiceditor':
                     new_html = editor.exportFile('','html');
-                    console.log(new_html);
                     break;
 
                 default:
