@@ -1,0 +1,37 @@
+<!doctype html>{% load sekizai_tags i18n front_tags %}
+{% load url from future %}
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="author" content="" />
+  <meta name="description" content="" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=0.75, maximum-scale=1.66" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <link href='http://fonts.googleapis.com/css?family=Muli:100,300' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" type="text/css" href="{{STATIC_URL}}redactor900beta3/redactor/redactor.css">
+  <style type="text/css">
+    body {
+        font-family: 'Muli', sans-serif;
+        background-color: #efefef;
+        color: #445;
+        font-size: 14px;
+        padding: 2em ;
+    }
+    hr {border:1px solid #ddd; height:1px;}
+    #container { background: white; border: 1px solid #ccc; padding: 2em 1em;}
+    h1 { margin:0 0 0.2em 0; text-transform: uppercase; font-weight: 100;}
+    p {text-align: justify;}
+  </style>
+</head>
+
+<body>
+  <div id="container">
+    {% front_edit "global" LANGUAGE_CODE %}aaa{% end_front_edit  %}
+  </div>
+
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+  <script type="text/javascript" src="{{STATIC_URL}}redactor900beta3/redactor/redactor.min.js"></script>
+  {% front_edit_scripts editor="ace" %}
+  {% render_block "js"  %}
+</body>
+</html>

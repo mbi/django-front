@@ -1,0 +1,9 @@
+[run]
+branch = True
+source =
+    front
+omit =
+    ../*migrations*
+    ../*tests*
+[report]
+precision = 2

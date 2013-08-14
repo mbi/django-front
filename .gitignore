@@ -1,5 +1,6 @@
 .venv*
 *.pyc
+test_project_*
 dist
 django_front.egg-info
 

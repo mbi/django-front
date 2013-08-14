@@ -5,3 +5,5 @@ recursive-include front/static *
 exclude *.pyc
 exclude *.sh
 prune test_project
+prune test_project_2
+

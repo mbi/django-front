@@ -33,6 +33,8 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     'django.core.context_processors.request'  # needed for tests
 )
 
+STATIC_URL = '/static/'
+
 ROOT_URLCONF = 'test_project.urls'
 
 # Python dotted path to the WSGI application used by Django's runserver.
