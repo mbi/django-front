@@ -21,7 +21,9 @@ jQuery(document).ready(function($) {
 
         // this will contain the actual editor block
         container = $('<'+tag+' class="front-edit-container" id="edit-'+el_id+'"></'+tag+'><p class="front-edit-buttons"><button class="cancel">cancel</button><button class="save">save</button></p>');
-
+        if ( plugin === 'epiceditor') {
+            container = $('<div id="epiceditor"></div><p class="front-edit-buttons"><button class="cancel">cancel</button><button class="save">save</button></p>');
+        }
         if(body.is('.front-editing')) {
             return;
         }
@@ -76,15 +78,12 @@ jQuery(document).ready(function($) {
 
                     });
                 });
-
-
                 break;
             case 'redactor':
                 target.find('.front-edit-container').html(html).redactor();
                 break;
             case 'epiceditor':
                 $.getScript(document._front_edit.static_root+'epiceditor/js/epiceditor.min.js', function(){
-                    target.attr('id', 'epiceditor');
                     var opts = {
                       container: 'epiceditor',
                       textarea: null,
@@ -114,7 +113,7 @@ jQuery(document).ready(function($) {
                         toggleFullscreen: 'Enter Fullscreen'
                       }
                     };
-                    var editor = new EpicEditor(opts).load();
+                    editor = new EpicEditor(opts).load();
                 });
                 break;
             default:
@@ -130,7 +129,7 @@ jQuery(document).ready(function($) {
 
         target.find('.save').on('click', function(event) {
             var new_html, key = el_id;
-
+            console.log('save');
             switch(plugin) {
                 case 'ace':
                     new_html = editor.getValue();
@@ -148,7 +147,8 @@ jQuery(document).ready(function($) {
                     }
                     break;
                 case 'epiceditor':
-
+                    new_html = editor.exportFile('','html');
+                    console.log(new_html);
                     break;
 
                 default:
