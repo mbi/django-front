@@ -64,6 +64,9 @@ Redactor being closed-source, it is not distributed with django-front: you'll ha
 
     <script type="text/javascript" src="{{STATIC_URL}}redactor8xx/redactor/redactor.min.js"></script>
 
+* If you would like to use EpicEditor
+
+    {% front_edit_scripts editor="epiceditor" %}
 
 Defining placeholders in your templates
 ---------------------------------------
