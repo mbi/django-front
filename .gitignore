@@ -1,6 +1,10 @@
 .venv*
 *.pyc
 test_project_*
+test_project/.coverage
+test_project/coverage.xml
+test_project/htmlcov/
+test_project/static/redactor*
 dist
 django_front.egg-info
 
