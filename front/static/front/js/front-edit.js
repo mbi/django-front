@@ -83,38 +83,45 @@ jQuery(document).ready(function($) {
                 target.find('.front-edit-container').html(html).redactor();
                 break;
             case 'epiceditor':
-                $.getScript(document._front_edit.static_root+'epiceditor/js/epiceditor.min.js', function(){
+                $.when(
+                    $.getScript(document._front_edit.static_root+'epiceditor/js/epiceditor.min.js'),
+                    $.getScript(document._front_edit.static_root+'to-markdown/to-markdown.js'),
+                    $.Deferred(function(deferred) {
+                        $(deferred.resolve);
+                    })
+                ).done(function(){
                     var opts = {
                       container: 'epiceditor',
                       textarea: null,
                       basePath: document._front_edit.static_root+'epiceditor',
-                      clientSideStorage: true,
+                      clientSideStorage: false,
                       localStorageName: 'epiceditor',
                       useNativeFullscreen: true,
                       parser: marked,
                       file: {
                         name: 'epiceditor',
-                        defaultContent: '',
+                        defaultContent: toMarkdown(html),
                         autoSave: 100
-                      },
-                      button: {
+                    },
+                    button: {
                         preview: true,
                         fullscreen: true
-                      },
-                      focusOnLoad: false,
-                      shortcut: {
+                    },
+                    focusOnLoad: false,
+                    shortcut: {
                         modifier: 18,
                         fullscreen: 70,
                         preview: 80
-                      },
-                      string: {
+                    },
+                    string: {
                         togglePreview: 'Toggle Preview Mode',
                         toggleEdit: 'Toggle Edit Mode',
                         toggleFullscreen: 'Enter Fullscreen'
-                      }
-                    };
-                    editor = new EpicEditor(opts).load();
-                });
+                    }
+                };
+                editor = new EpicEditor(opts).load();
+            });
+
                 break;
             default:
                 target.find('.front-edit-container').html(html);
@@ -146,7 +153,8 @@ jQuery(document).ready(function($) {
                     }
                     break;
                 case 'epiceditor':
-                    new_html = editor.exportFile('','html');
+                    isMarkdown = true;
+                    new_html = editor.exportFile('', 'html');
                     break;
 
                 default:
