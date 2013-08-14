@@ -21,7 +21,9 @@ jQuery(document).ready(function($) {
 
         // this will contain the actual editor block
         container = $('<'+tag+' class="front-edit-container" id="edit-'+el_id+'"></'+tag+'><p class="front-edit-buttons"><button class="cancel">cancel</button><button class="save">save</button></p>');
-
+        if ( plugin === 'epiceditor') {
+            container = $('<div id="epiceditor"></div><p class="front-edit-buttons"><button class="cancel">cancel</button><button class="save">save</button></p>');
+        }
         if(body.is('.front-editing')) {
             return;
         }
@@ -76,11 +78,50 @@ jQuery(document).ready(function($) {
 
                     });
                 });
-
-
                 break;
             case 'redactor':
                 target.find('.front-edit-container').html(html).redactor();
+                break;
+            case 'epiceditor':
+                $.when(
+                    $.getScript(document._front_edit.static_root+'epiceditor/js/epiceditor.min.js'),
+                    $.getScript(document._front_edit.static_root+'to-markdown/to-markdown.js'),
+                    $.Deferred(function(deferred) {
+                        $(deferred.resolve);
+                    })
+                ).done(function(){
+                    var opts = {
+                      container: 'epiceditor',
+                      textarea: null,
+                      basePath: document._front_edit.static_root+'epiceditor',
+                      clientSideStorage: false,
+                      localStorageName: 'epiceditor',
+                      useNativeFullscreen: true,
+                      parser: marked,
+                      file: {
+                        name: 'epiceditor',
+                        defaultContent: toMarkdown(html),
+                        autoSave: 100
+                    },
+                    button: {
+                        preview: true,
+                        fullscreen: true
+                    },
+                    focusOnLoad: false,
+                    shortcut: {
+                        modifier: 18,
+                        fullscreen: 70,
+                        preview: 80
+                    },
+                    string: {
+                        togglePreview: 'Toggle Preview Mode',
+                        toggleEdit: 'Toggle Edit Mode',
+                        toggleFullscreen: 'Enter Fullscreen'
+                    }
+                };
+                editor = new EpicEditor(opts).load();
+            });
+
                 break;
             default:
                 target.find('.front-edit-container').html(html);
@@ -95,7 +136,6 @@ jQuery(document).ready(function($) {
 
         target.find('.save').on('click', function(event) {
             var new_html, key = el_id;
-
             switch(plugin) {
                 case 'ace':
                     new_html = editor.getValue();
@@ -111,8 +151,12 @@ jQuery(document).ready(function($) {
                         // redactor 0.9+
                         new_html = target.find('.front-edit-container').redactor('get');
                     }
-
                     break;
+                case 'epiceditor':
+                    isMarkdown = true;
+                    new_html = editor.exportFile('', 'html');
+                    break;
+
                 default:
                     new_html = target.find('.front-edit-container').val();
                     break;
