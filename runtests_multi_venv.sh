@@ -25,7 +25,7 @@ if [ ! -d .venv_16 ]
 then
     virtualenv --no-site-packages --distribute --python=python2 .venv_16
     . .venv_16/bin/activate
-    pip install https://github.com/django/django/archive/1.6b1.zip
+    pip install https://github.com/django/django/archive/1.6b2.zip
     pip install python-memcached six django-classy-tags south django-wymeditor django-sekizai
     deactivate
 fi
@@ -33,7 +33,7 @@ if [ ! -d .venv_16_p3 ]
 then
     virtualenv --no-site-packages --distribute --python=python3 .venv_16_p3
     . .venv_16_p3/bin/activate
-    pip install https://github.com/django/django/archive/1.6b1.zip
+    pip install https://github.com/django/django/archive/1.6b2.zip
     pip install python3-memcached six django-classy-tags south django-wymeditor django-sekizai
     deactivate
 fi
