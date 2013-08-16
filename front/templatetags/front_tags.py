@@ -2,7 +2,8 @@ from django import template
 from classytags.core import Tag, Options
 from classytags.arguments import Argument, MultiValueArgument, KeywordArgument
 from django.core.cache import cache
-from django.core.urlresolvers import reverse
+from django.core.urlresolvers import reverse, NoReverseMatch
+from django.core.exceptions import ImproperlyConfigured
 from ..models import Placeholder
 from ..conf import settings as django_front_settings
 import hashlib
@@ -50,6 +51,11 @@ class FrontEditJS(Tag):
     )
 
     def render_tag(self, context, editor=''):
+        try:
+            save_url = reverse('front-placeholder-save')
+        except NoReverseMatch:
+            raise ImproperlyConfigured('You must add an urlconf entry for django-front to work, see: https://github.com/mbi/django-front#installation')
+
         static_url = context.get('STATIC_URL', '/static/')
         user = context.get('request', None) and context.get('request').user
         token = six.text_type(context.get('csrf_token'))
@@ -73,7 +79,7 @@ class FrontEditJS(Tag):
 </script>
 <script src="%sfront/js/front-edit.js"></script>""".strip() % (
                 static_url,
-                reverse('front-placeholder-save'),
+                save_url,
                 token,
                 plugin,
                 static_url,

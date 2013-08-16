@@ -3,6 +3,7 @@ from front.models import Placeholder
 from django.core.urlresolvers import reverse
 from django.test import TestCase
 from django.contrib.auth.models import User
+from django.core.exceptions import ImproperlyConfigured
 import re
 import six
 from django.core.cache import cache
@@ -65,3 +66,12 @@ class FrontTestCase(TestCase):
         self.assertTrue('booh!' in six.text_type(resp.content))
         self.assertFalse('english!' in six.text_type(resp.content))
         self.assertFalse('locale base content' not in six.text_type(resp.content))
+
+    def test_6_warn_when_missing_urlconf(self):
+        with self.settings(ROOT_URLCONF='front.tests.urls_no_save'):
+            self.client.login(username='admin_user', password='admin_user')
+            try:
+                resp = self.client.get(reverse('front-test'))
+                self.fail()
+            except ImproperlyConfigured:
+                pass

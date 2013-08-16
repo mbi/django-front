@@ -1,3 +1,8 @@
+Version 0.2.3
+-------------
+* Make sure the urlconf entry was added properly
+* Set a min-height on Redactor
+
 Version 0.2.2
 -------------
 * Added support for the EpicEditor (thanks @daikeren - Issue #2)

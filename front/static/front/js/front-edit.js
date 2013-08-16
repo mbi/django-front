@@ -80,7 +80,8 @@ jQuery(document).ready(function($) {
                 });
                 break;
             case 'redactor':
-                target.find('.front-edit-container').html(html).redactor();
+                target.addClass('front-edit-redactor');
+                target.find('.front-edit-container').html(html).redactor({minHeight:400});
                 break;
             case 'epiceditor':
                 $.when(
