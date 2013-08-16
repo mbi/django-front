@@ -61,7 +61,7 @@ jQuery(document).ready(function($) {
                 $.getScript(document._front_edit.static_root+'wymeditor/jquery.wymeditor.min.js', function(){
                     target.addClass('front-edit-wym');
                     var base_path = document._front_edit.static_root+'wymeditor/';
-                    $('#edit-' + el_id).wymeditor({
+                    var editor_options = $.extend({
                         updateSelector: "input:submit",
                         updateEvent: "click",
                         logoHtml: '',
@@ -76,12 +76,14 @@ jQuery(document).ready(function($) {
                         wymPath: base_path + 'jquery.wymeditor.min.js',
                         skinPath: document._front_edit.static_root + 'wym/django/'
 
-                    });
+                    }, document._front_edit.editor_options);
+                    $('#edit-' + el_id).wymeditor(editor_options);
                 });
                 break;
             case 'redactor':
                 target.addClass('front-edit-redactor');
-                target.find('.front-edit-container').html(html).redactor({minHeight:400});
+                var editor_options = $.extend({minHeight:400}, document._front_edit.editor_options);
+                target.find('.front-edit-container').html(html).redactor(editor_options);
                 break;
             case 'epiceditor':
                 $.when(
@@ -91,35 +93,35 @@ jQuery(document).ready(function($) {
                         $(deferred.resolve);
                     })
                 ).done(function(){
-                    var opts = {
-                      container: 'epiceditor',
-                      textarea: null,
-                      basePath: document._front_edit.static_root+'epiceditor',
-                      clientSideStorage: false,
-                      localStorageName: 'epiceditor',
-                      useNativeFullscreen: true,
-                      parser: marked,
-                      file: {
-                        name: 'epiceditor',
-                        defaultContent: toMarkdown(html),
-                        autoSave: 100
-                    },
-                    button: {
-                        preview: true,
-                        fullscreen: true
-                    },
-                    focusOnLoad: false,
-                    shortcut: {
-                        modifier: 18,
-                        fullscreen: 70,
-                        preview: 80
-                    },
-                    string: {
-                        togglePreview: 'Toggle Preview Mode',
-                        toggleEdit: 'Toggle Edit Mode',
-                        toggleFullscreen: 'Enter Fullscreen'
-                    }
-                };
+                    var opts = $.extend({
+                        container: 'epiceditor',
+                        textarea: null,
+                        basePath: document._front_edit.static_root+'epiceditor',
+                        clientSideStorage: false,
+                        localStorageName: 'epiceditor',
+                        useNativeFullscreen: true,
+                        parser: marked,
+                        file: {
+                            name: 'epiceditor',
+                            defaultContent: toMarkdown(html),
+                            autoSave: 100
+                        },
+                        button: {
+                            preview: true,
+                            fullscreen: true
+                        },
+                        focusOnLoad: false,
+                        shortcut: {
+                            modifier: 18,
+                            fullscreen: 70,
+                            preview: 80
+                        },
+                        string: {
+                            togglePreview: 'Toggle Preview Mode',
+                            toggleEdit: 'Toggle Edit Mode',
+                            toggleFullscreen: 'Enter Fullscreen'
+                        }
+                    }, document._front_edit.editor_options);
                 editor = new EpicEditor(opts).load();
             });
 

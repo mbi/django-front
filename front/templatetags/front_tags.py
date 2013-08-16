@@ -8,6 +8,10 @@ from ..models import Placeholder
 from ..conf import settings as django_front_settings
 import hashlib
 import six
+try:
+    import simplejson as json
+except ImportError:
+    import json
 
 
 register = template.Library()
@@ -74,7 +78,8 @@ class FrontEditJS(Tag):
         csrf_token: '%s',
         plugin: '%s',
         static_root: '%s',
-        edit_mode: '%s'
+        edit_mode: '%s',
+        editor_options: %s
     };
 </script>
 <script src="%sfront/js/front-edit.js"></script>""".strip() % (
@@ -84,6 +89,7 @@ class FrontEditJS(Tag):
                 plugin,
                 static_url,
                 edit_mode,
+                json.dumps(django_front_settings.DJANGO_FRONT_EDITOR_OPTIONS),
                 static_url
             )
         else:

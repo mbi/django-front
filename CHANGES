@@ -2,6 +2,7 @@ Version 0.2.3
 -------------
 * Make sure the urlconf entry was added properly
 * Set a min-height on Redactor
+* New DJANGO_FRONT_EDITOR_OPTIONS settings allows for options to be passed on to the editors (works with WYMeditor, Redactor, EpicEditor)
 
 Version 0.2.2
 -------------
