@@ -5,5 +5,5 @@ python:
   - "3.3"
 install:
   - pip install Django==1.5 python-memcached django-classy-tags south django-wymeditor django-sekizai six --use-mirrors
-script: cd testproject && python manage.py test front
+script: cd test_project && python manage.py test front
 
