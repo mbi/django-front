@@ -1,6 +1,6 @@
 from django import template
 from classytags.core import Tag, Options
-from classytags.arguments import Argument, MultiValueArgument, KeywordArgument
+from classytags.arguments import Argument, MultiValueArgument, KeywordArgument, Flag
 from django.core.cache import cache
 from django.core.urlresolvers import reverse, NoReverseMatch
 from django.core.exceptions import ImproperlyConfigured

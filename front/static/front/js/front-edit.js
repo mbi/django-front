@@ -1,11 +1,7 @@
 jQuery(document).ready(function($) {
-    var editables = $('.editable');
 
-    editables.on('dblclick', function(event) {
-        event.preventDefault();
-
-        var el = $(this),
-            body = $('body'),
+    var triggerEditor = function(el) {
+        var body = $('body'),
             html = el.html(),
             el_id = el.attr('id'),
             tag = 'textarea',
@@ -176,5 +172,11 @@ jQuery(document).ready(function($) {
             el.html(new_html);
             $('#front-edit-lightbox-container').remove();
         });
+    };
+
+    $('.editable').on('dblclick', function(event) {
+        event.preventDefault();
+        var el = jQuery(this);
+        triggerEditor(el);
     });
 });
