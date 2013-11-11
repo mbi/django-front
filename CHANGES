@@ -1,3 +1,8 @@
+Version 0.2.4
+-------------
+* Add an extra class to the container, when the placeholder will be rendered empty
+* Add a min-height on empty placeholders
+
 Version 0.2.3
 -------------
 * Make sure the urlconf entry was added properly
