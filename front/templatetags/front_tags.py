@@ -6,6 +6,7 @@ from django.core.urlresolvers import reverse, NoReverseMatch
 from django.core.exceptions import ImproperlyConfigured
 from ..models import Placeholder
 from ..conf import settings as django_front_settings
+from django.utils.html import strip_tags
 import hashlib
 import six
 try:
@@ -42,9 +43,15 @@ class FrontEditTag(Tag):
         if val is None and nodelist:
             val = nodelist.render(context)
 
+        classes = ['editable']
+
         user = context.get('request', None) and context.get('request').user
         if django_front_settings.DJANGO_FRONT_PERMISSION(user):
-            return '<div class="editable" id="%s">%s</div>' % (hash_val, six.text_type(val).strip())
+            render = six.text_type(val).strip()
+            if not strip_tags(render).strip():
+                classes.append('empty-editable')
+
+            return '<div class="%s" id="%s">%s</div>' % (' '.join(classes), hash_val, render)
         return val or ''
 
 

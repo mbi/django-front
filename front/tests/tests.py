@@ -71,7 +71,28 @@ class FrontTestCase(TestCase):
         with self.settings(ROOT_URLCONF='front.tests.urls_no_save'):
             self.client.login(username='admin_user', password='admin_user')
             try:
-                resp = self.client.get(reverse('front-test'))
+                self.client.get(reverse('front-test'))
                 self.fail()
             except ImproperlyConfigured:
                 pass
+
+    def test_7_empty_content(self):
+        self.client.login(username='admin_user', password='admin_user')
+        resp = self.client.get(reverse('front-test'))
+        self.assertFalse('empty-editable' in six.text_type(resp.content))
+        ids = re.findall(r'<div class="editable" id="([^"]+)">', six.text_type(resp.content))
+
+        resp = self.client.post(reverse('front-placeholder-save'), {'key': ids[0], 'val': ''})
+        self.assertTrue('1' in six.text_type(resp.content))
+        resp = self.client.get(reverse('front-test'))
+        self.assertTrue('empty-editable' in six.text_type(resp.content))
+
+        resp = self.client.post(reverse('front-placeholder-save'), {'key': ids[0], 'val': '<p>    </p>'})
+        self.assertTrue('1' in six.text_type(resp.content))
+        resp = self.client.get(reverse('front-test'))
+        self.assertTrue('empty-editable' in six.text_type(resp.content))
+
+        resp = self.client.post(reverse('front-placeholder-save'), {'key': ids[0], 'val': '<p>booh</p>'})
+        self.assertTrue('1' in six.text_type(resp.content))
+        resp = self.client.get(reverse('front-test'))
+        self.assertFalse('empty-editable' in six.text_type(resp.content))
