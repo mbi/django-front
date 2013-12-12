@@ -72,7 +72,7 @@ class FrontEditJS(Tag):
         token = six.text_type(context.get('csrf_token'))
         plugin = editor.get('editor').lower() if \
             editor.get('editor') and editor.get('editor').lower() \
-            in ['ace', 'wymeditor', 'redactor', 'epiceditor'] else ''
+            in ['ace', 'ace-local', 'wymeditor', 'redactor', 'epiceditor'] else ''
         edit_mode = django_front_settings.DJANGO_FRONT_EDIT_MODE if \
             django_front_settings.DJANGO_FRONT_EDIT_MODE in ('lightbox', 'inline') else 'lightbox'
 

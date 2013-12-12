@@ -40,17 +40,26 @@ jQuery(document).ready(function($) {
                 break;
         }
 
-
         switch(plugin) {
+
             case 'ace':
                 $.getScript('http://d1n0x3qji82z53.cloudfront.net/src-min-noconflict/ace.js', function(){
                     target.addClass('front-edit-ace');
                     editor = ace.edit("edit-" + el_id);
                     editor.setTheme("ace/theme/monokai");
-                    editor.setValue(html);
+                    editor.setValue(html, -1);
                     editor.getSession().setMode("ace/mode/html");
                     editor.getSession().setUseWrapMode(true);
                 });
+                break;
+            case 'ace-local':
+                console.log(html);
+                target.addClass('front-edit-ace');
+                editor = ace.edit("edit-" + el_id);
+                editor.setTheme("ace/theme/monokai");
+                editor.getSession().setValue(html, -1);
+                editor.getSession().setMode("ace/mode/html");
+                editor.getSession().setUseWrapMode(true);
                 break;
             case 'wymeditor':
                 target.find('.front-edit-container').html(html);
