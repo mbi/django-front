@@ -11,7 +11,7 @@ jQuery(document).ready(function($) {
             target;
 
 
-        if (plugin == 'ace') {
+        if (plugin == 'ace' || plugin == 'ace-local') {
             tag = 'div';
         }
 
@@ -53,7 +53,6 @@ jQuery(document).ready(function($) {
                 });
                 break;
             case 'ace-local':
-                console.log(html);
                 target.addClass('front-edit-ace');
                 editor = ace.edit("edit-" + el_id);
                 editor.setTheme("ace/theme/monokai");
@@ -146,6 +145,7 @@ jQuery(document).ready(function($) {
             var new_html, key = el_id;
             switch(plugin) {
                 case 'ace':
+                case 'ace-local':
                     new_html = editor.getValue();
                     break;
                 case 'wymeditor':

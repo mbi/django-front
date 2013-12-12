@@ -1,3 +1,7 @@
+Version 0.2.6
+-------------
+* Added an "ace-local" plugin, for when Ace is served locally
+
 Version 0.2.4
 -------------
 * Add an extra class to the container, when the placeholder will be rendered empty

@@ -46,6 +46,11 @@ The default editor just uses a plain ``<textarea>`` to edit the code.
 
 Ace is loaded from a CDN, no extra installation is required.
 
+Note: if the CDN solution doesn't work for you, serve Ace locally and use the `ace-local` plugin::
+
+    <script src="{{STATIC_URL}}ace/src-min-noconflict/ace.js"></script>
+    {% front_edit_scripts editor="ace-local" %}
+
 
 * If you would like to use WYMeditor::
 
