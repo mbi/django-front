@@ -55,7 +55,7 @@ jQuery(document).ready(function($) {
             case 'ace-local':
                 target.addClass('front-edit-ace');
                 editor = ace.edit("edit-" + el_id);
-                editor.setTheme("ace/theme/monokai");
+                editor.setTheme("ace/theme/tomorrow_night");
                 editor.getSession().setValue(html, -1);
                 editor.getSession().setMode("ace/mode/html");
                 editor.getSession().setUseWrapMode(true);
