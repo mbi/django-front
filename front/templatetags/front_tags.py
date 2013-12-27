@@ -64,6 +64,7 @@ class FrontEditJS(Tag):
     def render_tag(self, context, editor=''):
         try:
             save_url = reverse('front-placeholder-save')
+            history_url = reverse('front-placeholder-history', args=('0000', ))
         except NoReverseMatch:
             raise ImproperlyConfigured('You must add an urlconf entry for django-front to work, see: https://github.com/mbi/django-front#installation')
 
@@ -72,7 +73,7 @@ class FrontEditJS(Tag):
         token = six.text_type(context.get('csrf_token'))
         plugin = editor.get('editor').lower() if \
             editor.get('editor') and editor.get('editor').lower() \
-            in ['ace', 'ace-local', 'wymeditor', 'redactor', 'epiceditor'] else ''
+            in ['ace', 'ace-local', 'wymeditor', 'redactor', 'epiceditor'] else 'default'
         edit_mode = django_front_settings.DJANGO_FRONT_EDIT_MODE if \
             django_front_settings.DJANGO_FRONT_EDIT_MODE in ('lightbox', 'inline') else 'lightbox'
 
@@ -82,6 +83,7 @@ class FrontEditJS(Tag):
 <script>
     document._front_edit = {
         save_url: '%s',
+        history_url_prefix: '%s',
         csrf_token: '%s',
         plugin: '%s',
         static_root: '%s',
@@ -89,15 +91,19 @@ class FrontEditJS(Tag):
         editor_options: %s
     };
 </script>
+<script src="%sfront/js/front-edit.%s.js"></script>
 <script src="%sfront/js/front-edit.js"></script>""".strip() % (
                 static_url,
                 save_url,
+                history_url.replace('0000/', ''),
                 token,
                 plugin,
                 static_url,
                 edit_mode,
                 json.dumps(django_front_settings.DJANGO_FRONT_EDITOR_OPTIONS),
-                static_url
+                static_url,
+                plugin,
+                static_url,
             )
         else:
             return ''

@@ -2,31 +2,23 @@ jQuery(document).ready(function($) {
 
     var triggerEditor = function(el) {
         var body = $('body'),
+            front_edit_options = document._front_edit,
             html = el.html(),
-            el_id = el.attr('id'),
-            tag = 'textarea',
-            plugin = document._front_edit.plugin,
+            element_id = el.attr('id'),
             container,
-            editor,
             target;
 
+        container = $(
+            front_edit_plugin.get_container_html(element_id, front_edit_options) +
+                '<p class="front-edit-buttons"><button class="history">history</button><button class="cancel">cancel</button><button class="save">save</button></p>'
+        );
 
-        if (plugin == 'ace' || plugin == 'ace-local') {
-            tag = 'div';
-        }
-
-        // this will contain the actual editor block
-        container = $('<'+tag+' class="front-edit-container" id="edit-'+el_id+'"></'+tag+'><p class="front-edit-buttons"><button class="cancel">cancel</button><button class="save">save</button></p>');
-        if ( plugin === 'epiceditor') {
-            container = $('<div id="epiceditor"></div><p class="front-edit-buttons"><button class="cancel">cancel</button><button class="save">save</button></p>');
-        }
-        if(body.is('.front-editing')) {
+        if (body.is('.front-editing')) {
             return;
         }
         body.addClass('front-editing');
 
-
-        switch(document._front_edit.edit_mode) {
+        switch(front_edit_options.edit_mode) {
             case 'inline':
                 el.html(container);
                 target = el;
@@ -40,100 +32,7 @@ jQuery(document).ready(function($) {
                 break;
         }
 
-        switch(plugin) {
-
-            case 'ace':
-                $.getScript('http://d1n0x3qji82z53.cloudfront.net/src-min-noconflict/ace.js', function(){
-                    target.addClass('front-edit-ace');
-                    editor = ace.edit("edit-" + el_id);
-                    editor.setTheme("ace/theme/monokai");
-                    editor.setValue(html, -1);
-                    editor.getSession().setMode("ace/mode/html");
-                    editor.getSession().setUseWrapMode(true);
-                });
-                break;
-            case 'ace-local':
-                target.addClass('front-edit-ace');
-                editor = ace.edit("edit-" + el_id);
-                editor.setTheme("ace/theme/tomorrow_night");
-                editor.getSession().setValue(html, -1);
-                editor.getSession().setMode("ace/mode/html");
-                editor.getSession().setUseWrapMode(true);
-                break;
-            case 'wymeditor':
-                target.find('.front-edit-container').html(html);
-                $.getScript(document._front_edit.static_root+'wymeditor/jquery.wymeditor.min.js', function(){
-                    target.addClass('front-edit-wym');
-                    var base_path = document._front_edit.static_root+'wymeditor/';
-                    var editor_options = $.extend({
-                        updateSelector: "input:submit",
-                        updateEvent: "click",
-                        logoHtml: '',
-                        skin: 'django',
-                        classesItems: [
-                            {'name': 'image', 'title': 'DIV: Image w/ Caption', 'expr': 'div'},
-                            {'name': 'caption', 'title': 'P: Caption', 'expr': 'p'},
-                            {'name': 'align-left', 'title': 'Float: Left', 'expr': 'p, div, img'},
-                            {'name': 'align-right', 'title': 'Float: Right', 'expr': 'p, div, img'}
-                        ],
-                        basePath: base_path,
-                        wymPath: base_path + 'jquery.wymeditor.min.js',
-                        skinPath: document._front_edit.static_root + 'wym/django/'
-
-                    }, document._front_edit.editor_options);
-                    $('#edit-' + el_id).wymeditor(editor_options);
-                });
-                break;
-            case 'redactor':
-                target.addClass('front-edit-redactor');
-                var editor_options = $.extend({minHeight:400}, document._front_edit.editor_options);
-                target.find('.front-edit-container').html(html).redactor(editor_options);
-                break;
-            case 'epiceditor':
-                $.when(
-                    $.getScript(document._front_edit.static_root+'epiceditor/js/epiceditor.min.js'),
-                    $.getScript(document._front_edit.static_root+'to-markdown/to-markdown.js'),
-                    $.Deferred(function(deferred) {
-                        $(deferred.resolve);
-                    })
-                ).done(function(){
-                    var opts = $.extend({
-                        container: 'epiceditor',
-                        textarea: null,
-                        basePath: document._front_edit.static_root+'epiceditor',
-                        clientSideStorage: false,
-                        localStorageName: 'epiceditor',
-                        useNativeFullscreen: true,
-                        parser: marked,
-                        file: {
-                            name: 'epiceditor',
-                            defaultContent: toMarkdown(html),
-                            autoSave: 100
-                        },
-                        button: {
-                            preview: true,
-                            fullscreen: true
-                        },
-                        focusOnLoad: false,
-                        shortcut: {
-                            modifier: 18,
-                            fullscreen: 70,
-                            preview: 80
-                        },
-                        string: {
-                            togglePreview: 'Toggle Preview Mode',
-                            toggleEdit: 'Toggle Edit Mode',
-                            toggleFullscreen: 'Enter Fullscreen'
-                        }
-                    }, document._front_edit.editor_options);
-                editor = new EpicEditor(opts).load();
-            });
-
-                break;
-            default:
-                target.find('.front-edit-container').html(html);
-                break;
-        }
+        front_edit_plugin.set_html(target, html, front_edit_options);
 
         target.find('.cancel').on('click', function(event) {
             el.html(html);
@@ -141,39 +40,26 @@ jQuery(document).ready(function($) {
             $('#front-edit-lightbox-container').remove();
         });
 
+        target.find('.history').on('click', function(event) {
+            var btn = $(this);
+            $.getJSON(front_edit_options.history_url_prefix + element_id + '/', {}, function(json, textStatus) {
+                if (json.history) {
+                    btn.replaceWith($('<select class="front-edit-history"></select>'));
+                } else {
+                    btn.replaceWith($('<span>No history</span>'));
+                }
+            });
+        });
+
+
         target.find('.save').on('click', function(event) {
-            var new_html, key = el_id;
-            switch(plugin) {
-                case 'ace':
-                case 'ace-local':
-                    new_html = editor.getValue();
-                    break;
-                case 'wymeditor':
-                    new_html = $.wymeditors(0).xhtml();
-                    break;
-                case 'redactor':
-                    try {
-                        // redactor 0.8+
-                        new_html = target.find('.front-edit-container').getCode();
-                    } catch(err) {
-                        // redactor 0.9+
-                        new_html = target.find('.front-edit-container').redactor('get');
-                    }
-                    break;
-                case 'epiceditor':
-                    isMarkdown = true;
-                    new_html = editor.exportFile('', 'html');
-                    break;
+            var key = element_id
+                new_html = front_edit_plugin.get_html(front_edit_options);
 
-                default:
-                    new_html = target.find('.front-edit-container').val();
-                    break;
-            }
-
-            $.post(document._front_edit.save_url, {
+            $.post(front_edit_options.save_url, {
                 key: key,
                 val: new_html,
-                csrfmiddlewaretoken: document._front_edit.csrf_token
+                csrfmiddlewaretoken: front_edit_options.csrf_token
             }, function(data, textStatus, xhr) {
                 // todo: return val
             });
