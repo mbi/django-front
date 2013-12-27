@@ -25,6 +25,13 @@ var front_edit_plugin = {
     // returns the edited html code
     get_html: function(front_edit_options) {
         return this.editor.getValue();
+    },
+
+    // destroy the editor
+    destroy_editor: function() {
+        self.target = null;
+        self.editor = null;
+        self.element_id = null;
     }
 
 };

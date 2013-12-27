@@ -10,6 +10,8 @@ var front_edit_plugin = {
         return '<div class="front-edit-container" id="edit-'+ this.element_id +'"></div>';
     },
 
+
+
     // initializes the editor on the target element, with the given html code
     set_html: function(target, html, front_edit_options) {
         var this_ = this;
@@ -27,6 +29,13 @@ var front_edit_plugin = {
     // returns the edited html code
     get_html: function(front_edit_options) {
         return this.editor.getValue();
+    },
+
+    // destroy the editor
+    destroy_editor: function() {
+        self.target = null;
+        self.editor = null;
+        self.element_id = null;
     }
 
 };

@@ -57,6 +57,13 @@ var front_edit_plugin = {
     get_html: function(front_edit_options) {
         isMarkdown = true;
         return this.editor.exportFile('', 'html');
+    },
+
+    // destroy the editor
+    destroy_editor: function() {
+        self.target = null;
+        self.editor = null;
+        self.element_id = null;
     }
 
 };

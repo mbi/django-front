@@ -38,6 +38,7 @@ jQuery(document).ready(function($) {
             el.html(html);
             body.removeClass('front-editing');
             $('#front-edit-lightbox-container').remove();
+            front_edit_plugin.destroy_editor();
         });
 
         target.find('.history').on('click', function(event) {
@@ -90,6 +91,8 @@ jQuery(document).ready(function($) {
             body.removeClass('front-editing');
             el.html(new_html);
             $('#front-edit-lightbox-container').remove();
+            // cleanup callback
+            front_edit_plugin.destroy_editor();
         });
     };
 

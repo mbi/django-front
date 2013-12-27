@@ -1,7 +1,6 @@
 var front_edit_plugin = {
 
     target: null,
-    initialized: false,
 
     get_container_html: function(element_id, front_edit_options) {
         return '<textarea class="front-edit-container" id="edit-'+ element_id +'"></textarea>';
@@ -34,6 +33,11 @@ var front_edit_plugin = {
         }
 
         return new_html;
+    },
+
+    // destroy the editor
+    destroy_editor: function() {
+        self.target = null;
     }
 
 };
