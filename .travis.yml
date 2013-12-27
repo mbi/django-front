@@ -1,6 +1,7 @@
 language: python
+services: memcached
 python:
   - "2.7"
-  - "3.3"
-install: pip install Django==1.6 django-classy-tags south django-wymeditor django-sekizai --use-mirrors
+install:
+  - pip install Django==1.6.1 python-memcached django-classy-tags south django-wymeditor django-sekizai six --use-mirrors
 script: cd test_project && python manage.py test front
