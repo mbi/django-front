@@ -44,7 +44,32 @@ jQuery(document).ready(function($) {
             var btn = $(this);
             $.getJSON(front_edit_options.history_url_prefix + element_id + '/', {}, function(json, textStatus) {
                 if (json.history) {
+                    var current_val = front_edit_plugin.get_html(front_edit_options);
+
                     btn.replaceWith($('<select class="front-edit-history"></select>'));
+                    var select = $('.front-edit-history');
+                    select.append(
+                            $('<option value="0">current edit</option>')
+                        );
+
+                    $.each(json.history, function(index, val) {
+                        var dt = Date.UTC(val.saved[0], val.saved[1], val.saved[2], val.saved[3], val.saved[4], val.saved[5]);
+                        select.append(
+                            $('<option value="'+ (index + 1) +'">' + new Date(dt) + '</option>')
+                        );
+                    });
+
+                    select.on('change', function(event) {
+                        var idx = $(this).val();
+                        if (idx == 0) {
+                            var html = current_val;
+                        } else {
+                            var html = json.history[idx - 1].value;
+                        }
+                        front_edit_plugin.set_html(target, html, front_edit_options);
+                    });
+
+
                 } else {
                     btn.replaceWith($('<span>No history</span>'));
                 }

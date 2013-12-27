@@ -25,7 +25,7 @@ class PlaceholderHistory(models.Model):
 
     @property
     def _as_json(self):
-        return {'value': self.value, 'saved': self.saved}
+        return {'value': self.value, 'saved': tuple(self.saved.utctimetuple())[:6]}
 
 
 @receiver(post_save, sender=Placeholder)
