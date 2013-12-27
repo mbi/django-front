@@ -53,9 +53,8 @@ jQuery(document).ready(function($) {
                         );
 
                     $.each(json.history, function(index, val) {
-                        var dt = Date.UTC(val.saved[0], val.saved[1], val.saved[2], val.saved[3], val.saved[4], val.saved[5]);
                         select.append(
-                            $('<option value="'+ (index + 1) +'">' + new Date(dt) + '</option>')
+                            $('<option value="'+ (index + 1) +'">' + new Date(1000 * parseInt(val.saved, 10)) + '</option>')
                         );
                     });
 
