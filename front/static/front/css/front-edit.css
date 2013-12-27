@@ -15,7 +15,12 @@
          -moz-box-shadow: 0 0 1px 2px #659DCB, inset 0 0 1px 1px #659DCB;
               box-shadow: 0 0 1px 2px #659DCB, inset 0 0 1px 1px #659DCB;
 }
-
+.editable {
+  cursor:pointer;
+}
+.editable.empty-editable {
+  min-height:5px;
+}
 .front-editing .editable,
 .front-editing .editable:hover {
     outline: none;

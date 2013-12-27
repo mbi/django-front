@@ -1,11 +1,12 @@
 from django import template
 from classytags.core import Tag, Options
-from classytags.arguments import Argument, MultiValueArgument, KeywordArgument
+from classytags.arguments import Argument, MultiValueArgument, KeywordArgument, Flag
 from django.core.cache import cache
 from django.core.urlresolvers import reverse, NoReverseMatch
 from django.core.exceptions import ImproperlyConfigured
 from ..models import Placeholder
 from ..conf import settings as django_front_settings
+from django.utils.html import strip_tags
 import hashlib
 import six
 try:
@@ -42,9 +43,15 @@ class FrontEditTag(Tag):
         if val is None and nodelist:
             val = nodelist.render(context)
 
+        classes = ['editable']
+
         user = context.get('request', None) and context.get('request').user
         if django_front_settings.DJANGO_FRONT_PERMISSION(user):
-            return '<div class="editable" id="%s">%s</div>' % (hash_val, six.text_type(val).strip())
+            render = six.text_type(val).strip()
+            if not strip_tags(render).strip():
+                classes.append('empty-editable')
+
+            return '<div class="%s" id="%s">%s</div>' % (' '.join(classes), hash_val, render)
         return val or ''
 
 
@@ -65,7 +72,7 @@ class FrontEditJS(Tag):
         token = six.text_type(context.get('csrf_token'))
         plugin = editor.get('editor').lower() if \
             editor.get('editor') and editor.get('editor').lower() \
-            in ['ace', 'wymeditor', 'redactor', 'epiceditor'] else ''
+            in ['ace', 'ace-local', 'wymeditor', 'redactor', 'epiceditor'] else ''
         edit_mode = django_front_settings.DJANGO_FRONT_EDIT_MODE if \
             django_front_settings.DJANGO_FRONT_EDIT_MODE in ('lightbox', 'inline') else 'lightbox'
 

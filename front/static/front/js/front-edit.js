@@ -1,11 +1,7 @@
 jQuery(document).ready(function($) {
-    var editables = $('.editable');
 
-    editables.on('dblclick', function(event) {
-        event.preventDefault();
-
-        var el = $(this),
-            body = $('body'),
+    var triggerEditor = function(el) {
+        var body = $('body'),
             html = el.html(),
             el_id = el.attr('id'),
             tag = 'textarea',
@@ -15,7 +11,7 @@ jQuery(document).ready(function($) {
             target;
 
 
-        if (plugin == 'ace') {
+        if (plugin == 'ace' || plugin == 'ace-local') {
             tag = 'div';
         }
 
@@ -44,17 +40,25 @@ jQuery(document).ready(function($) {
                 break;
         }
 
-
         switch(plugin) {
+
             case 'ace':
                 $.getScript('http://d1n0x3qji82z53.cloudfront.net/src-min-noconflict/ace.js', function(){
                     target.addClass('front-edit-ace');
                     editor = ace.edit("edit-" + el_id);
                     editor.setTheme("ace/theme/monokai");
-                    editor.setValue(html);
+                    editor.setValue(html, -1);
                     editor.getSession().setMode("ace/mode/html");
                     editor.getSession().setUseWrapMode(true);
                 });
+                break;
+            case 'ace-local':
+                target.addClass('front-edit-ace');
+                editor = ace.edit("edit-" + el_id);
+                editor.setTheme("ace/theme/tomorrow_night");
+                editor.getSession().setValue(html, -1);
+                editor.getSession().setMode("ace/mode/html");
+                editor.getSession().setUseWrapMode(true);
                 break;
             case 'wymeditor':
                 target.find('.front-edit-container').html(html);
@@ -141,6 +145,7 @@ jQuery(document).ready(function($) {
             var new_html, key = el_id;
             switch(plugin) {
                 case 'ace':
+                case 'ace-local':
                     new_html = editor.getValue();
                     break;
                 case 'wymeditor':
@@ -176,5 +181,11 @@ jQuery(document).ready(function($) {
             el.html(new_html);
             $('#front-edit-lightbox-container').remove();
         });
+    };
+
+    $('.editable').on('dblclick', function(event) {
+        event.preventDefault();
+        var el = jQuery(this);
+        triggerEditor(el);
     });
 });
