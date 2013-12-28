@@ -31,6 +31,8 @@ class FrontTestCase(TestCase):
         self.client.login(username='admin_user', password='admin_user')
         resp = self.client.get(reverse('front-test'))
         self.assertTrue('document._front_edit' in six.text_type(resp.content))
+        self.assertTrue(six.text_type("plugin: 'ace'") in six.text_type(resp.content.decode('utf8')))
+
 
     def test_3_anonymous_user_cant_post_either(self):
         resp = self.client.post(reverse('front-placeholder-save'), {'key': '123123', 'val': '<p>booh!</p>'})
@@ -161,3 +163,9 @@ class FrontTestCase(TestCase):
 
         resp = self.client.post(reverse('front-placeholder-save'), {'key': key, 'val': '<p>booh</p>'})
         self.assertEqual(3, PlaceholderHistory.objects.filter(placeholder__key=key).count())
+
+    def test_11_invalid_tag(self):
+        self.client.login(username='admin_user', password='admin_user')
+        resp = self.client.get(reverse('front-test_invalid_template_tag'))
+        self.assertTrue(six.text_type(u"plugin: 'default'") in six.text_type(resp.content.decode('utf8')))
+

@@ -5,6 +5,7 @@ except ImportError:
 
 urlpatterns = patterns('',
     url(r'^test/$', 'front.tests.views.test', name='front-test'),
+    url(r'^test-invalid/$', 'front.tests.views.test_invalid_template_tag', name='front-test_invalid_template_tag'),
     url(r'^i18n/', include('django.conf.urls.i18n')),
     url(r'^front-edit/', include('front.urls'))
 )

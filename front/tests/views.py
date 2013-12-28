@@ -21,6 +21,19 @@ TEST_TEMPLATE = r'''
 </html>
 '''
 
+
+TEST_TEMPLATE_INVALID_EDITOR = r'''
+{% load url from future %}
+{% load front_tags %}
+{% front_edit_scripts editor="dummy" %}
+'''
+
+
 def test(request):
     t = loader.get_template_from_string(TEST_TEMPLATE)
+    return HttpResponse(t.render(RequestContext(request, dict())))
+
+
+def test_invalid_template_tag(request):
+    t = loader.get_template_from_string(TEST_TEMPLATE_INVALID_EDITOR)
     return HttpResponse(t.render(RequestContext(request, dict())))

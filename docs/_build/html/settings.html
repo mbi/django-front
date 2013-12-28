@@ -46,7 +46,23 @@
           <div class="body">
             
   <div class="section" id="settings">
-<h1>Settings<a class="headerlink" href="#settings" title="Permalink to this headline">¶</a></h1>
+<span id="settings-section"></span><h1>Settings<a class="headerlink" href="#settings" title="Permalink to this headline">¶</a></h1>
+<p>These settings are defined, and can be overridden in your project settings</p>
+<ul>
+<li><p class="first"><tt class="docutils literal"><span class="pre">DJANGO_FRONT_PERMISSION</span></tt>: a callable that gets passed a user object, and returns a boolean specifying whether or not the user can do front-end editing. Defaults to <tt class="docutils literal"><span class="pre">lambda</span> <span class="pre">u:</span> <span class="pre">u</span> <span class="pre">and</span> <span class="pre">u.is_staff</span></tt></p>
+</li>
+<li><p class="first"><tt class="docutils literal"><span class="pre">DJANGO_FRONT_EDIT_MODE</span></tt>: specifies whether the editor should be opened in a lightbox (default) or inline (over the edited element). Valid values are <tt class="docutils literal"><span class="pre">'inline'</span></tt> and <tt class="docutils literal"><span class="pre">'lightbox'</span></tt>.</p>
+</li>
+<li><p class="first"><tt class="docutils literal"><span class="pre">DJANGO_FRONT_EDITOR_OPTIONS</span></tt>: allows for options to be passed on to the editors (works with WYMeditor, Redactor, EpicEditor). This dictionary will be serialized as JSON and merged with the editor&#8217;s base options. Defaults to <tt class="docutils literal"><span class="pre">{}</span></tt>. Example, to handle <a class="reference external" href="http://imperavi.com/redactor/docs/images/">image uploads in Redactor</a>:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">DJANGO_FRONT_EDITOR_OPTIONS</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s">&#39;imageUpload&#39;</span><span class="p">:</span> <span class="s">&#39;/path/to/image/handling/view/&#39;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</li>
+<li><p class="first"><tt class="docutils literal"><span class="pre">DJANGO_FRONT_ALLOWED_EDITORS</span></tt>: list of allowed editor plugins. Add to this list if you plan on adding a new editor type. Defaults to <tt class="docutils literal"><span class="pre">['ace',</span> <span class="pre">'ace-local',</span> <span class="pre">'wymeditor',</span> <span class="pre">'redactor',</span> <span class="pre">'epiceditor',</span> <span class="pre">'default']</span></tt></p>
+</li>
+</ul>
 </div>
 
 

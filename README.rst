@@ -73,6 +73,7 @@ Redactor being closed-source, it is not distributed with django-front: you'll ha
 
     <script type="text/javascript" src="{{STATIC_URL}}redactor9xx/redactor/redactor.min.js"></script>
 
+
 * If you would like to use `EpicEditor <http://epiceditor.com/>`_ editor for Markdown support::
 
     {% front_edit_scripts editor="epiceditor" %}
