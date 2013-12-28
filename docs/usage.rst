@@ -20,12 +20,14 @@ First, load the `front_tags` module at the top of your base template::
     {% load front_tags %}
 
 
-Then include jQuery, followed by front-editing scripts somewhere towards the end of your `<body>`, e.g.::
+Then include jQuery, followed by front-editing scripts somewhere towards the end of your ``<body>`, e.g.::
 
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
     {% front_edit_scripts %}
 
-NOTE: the Redactor editor needs a fairly recent version of jQuery (1.8+), but Wymeditor will need an older one (<= 1.7). Adapt as needed.
+.. note::
+
+    the Redactor editor needs a fairly recent version of jQuery (1.8+), but Wymeditor will need an older one (<= 1.7). Adapt as needed.
 
 **********************************************
 Defining placeholders in your child templates…
@@ -52,7 +54,6 @@ Any variable passed after the placeholder name will be evaluated. The full ident
 The scope (visibility) of the rendered content block is defined by the variable names used in the block definition: the content block in the previous example will be rendered only on the page at the current URL, and the current language.
 
 The following example, on the other hand, would be rendered on every page using the template having this tag, regardless of the language and the URL::
-
 
     {% front_edit "look ma, Im global!" %}
         <p>Default when empty</p>
