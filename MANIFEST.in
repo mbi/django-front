@@ -1,9 +1,9 @@
 include MANIFEST.in
 include LICENSE
 include README.rst
+include CHANGES
 recursive-include front/static *
 exclude *.pyc
 exclude *.sh
 prune test_project
 prune test_project_2
-
