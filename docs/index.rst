@@ -20,3 +20,5 @@ Contents:
    installation.rst
    usage.rst
    settings.rst
+   changes.rst
+
