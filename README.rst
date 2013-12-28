@@ -25,7 +25,7 @@ Installation
 Usage
 +++++
 
-In your main template
+In your base template
 ---------------------
 
 At the top of your base template::
@@ -64,14 +64,14 @@ To use WYMeditor, you'll have to install ``django-wymeditor``: ``pip install dja
 
 Redactor being closed-source, it is not distributed with django-front: you'll have to `download <http://imperavi.com/redactor/download/>`_ and install it in your project:
 
-* Copy ``redactor8xx`` into a directory being served as static file
+* Copy ``redactor9xx`` into a directory being served as static file
 * In the ``head`` of your master template, include the Redactor stylesheet::
 
-    <link rel="stylesheet" type="text/css" href="{{STATIC_URL}}redactor8xx/redactor/redactor.css">
+    <link rel="stylesheet" type="text/css" href="{{STATIC_URL}}redactor9xx/redactor/redactor.css">
 
 * In your master template, after the jQuery inclusion and before your ``{% front_edit_scripts editor="redactor" %}`` tag, include the Redactor JavaSript file::
 
-    <script type="text/javascript" src="{{STATIC_URL}}redactor8xx/redactor/redactor.min.js"></script>
+    <script type="text/javascript" src="{{STATIC_URL}}redactor9xx/redactor/redactor.min.js"></script>
 
 * If you would like to use `EpicEditor <http://epiceditor.com/>`_ editor for Markdown support::
 
