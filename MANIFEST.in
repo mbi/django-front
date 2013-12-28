@@ -3,7 +3,9 @@ include LICENSE
 include README.rst
 include CHANGES
 recursive-include front/static *
+recursive-include docs *
 exclude *.pyc
 exclude *.sh
 prune test_project
 prune test_project_2
+prune docs/_build
