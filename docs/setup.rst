@@ -134,7 +134,7 @@ Add your own editor
 To add support for a new editor type (say "foo")::
 
 1. Add ``['foo', ]`` to ``DJANGO_FRONT_ALLOWED_EDITORS`` in your settings. See: :ref:`settings-section`
-2. Add a ``/static/front/js/front-edit.foo.js`` file, you'll need to provide the following function prototype (here an example for the default editor, see all the examples in `static/front/js <https://github.com/mbi/django-front/tree/master/front/static/front/js>`_) ::
+2. Add a ``/static/front/js/front-edit.foo.js`` file, you'll need to provide the following function prototype (here as an example for the default editor, see more examples in `static/front/js <https://github.com/mbi/django-front/tree/master/front/static/front/js>`_) ::
 
     var front_edit_plugin = {
 
