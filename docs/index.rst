@@ -8,6 +8,11 @@ Django-Front
 
 Django-front is a front-end editing application for Django
 
+.. figure:: _static/front-edit-usage.gif
+   :alt: using django-front
+
+   Using django-front to edit a placholder with three of the supported editors.
+
 Contents:
 =========
 .. toctree::
