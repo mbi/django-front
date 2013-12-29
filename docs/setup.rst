@@ -45,6 +45,7 @@ Then define a placeholder::
         <p>Default when empty</p>
     {% end_front_edit  %}
 
+When no placeholder content is defined for this placeholder, the default content is displayed instead.
 
 Placeholder scope
 =================
