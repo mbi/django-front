@@ -1,7 +1,9 @@
 Django-Front
 *********************
 
-Django-front is a front-end editing application: placeholders can be defined in Django templates, which can then be edited in the front-end (in place) by the site administrators.
+Django-front is a front-end editing application: placeholders can be defined in Django templates, which can then be edited on the front-end.
+
+Currently supports: `Ace <http://ace.ajax.org/>`_, `EpicEditor <http://epiceditor.com/>`_, `Redactor <http://imperavi.com/redactor/>`_ and `WYMeditor <http://www.wymeditor.org/>`_.
 
 .. image:: https://travis-ci.org/mbi/django-front.png?branch=master
   :target: http://travis-ci.org/mbi/django-front
