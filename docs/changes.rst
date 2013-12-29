@@ -1,11 +1,9 @@
 Version history
 ###############
 
-
-Version 0.3.1
+Version 0.3.2
 =============
 * Shipping with documentation
-
 
 Version 0.3.0
 =============
