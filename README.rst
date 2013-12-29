@@ -7,3 +7,7 @@ Django-front is a front-end editing application: placeholders can be defined in 
   :target: http://travis-ci.org/mbi/django-front
 
 See `docs/ <https://github.com/mbi/django-front/tree/master/docs>`_ for the full documentation, also available online `here <http://django-front.readthedocs.org/>`_.
+
+----
+
+.. image:: http://django-front.readthedocs.org/en/latest/_images/front-edit-usage.gif
