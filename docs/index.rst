@@ -8,9 +8,6 @@ Django-Front
 
 Django-front is a front-end editing application for Django
 
-.. image:: https://travis-ci.org/mbi/django-front.png?branch=master
-  :target: http://travis-ci.org/mbi/django-front
-
 Contents:
 =========
 .. toctree::
@@ -18,6 +15,7 @@ Contents:
 
    introduction.rst
    installation.rst
+   setup.rst
    usage.rst
    settings.rst
    changes.rst

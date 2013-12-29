@@ -33,7 +33,7 @@ Version 0.2.2
 
 Version 0.2.1
 =============
-* Clarfied the installation section of the README (mentionned that django.core.context_processors.request needs to be enabled in TEMPLATE_CONTEXT_PROCESSORS)
+* Clarified the installation section of the README (mentioned that django.core.context_processors.request needs to be enabled in TEMPLATE_CONTEXT_PROCESSORS)
 * Added the test project to the settings, so that it's easier to run tests
 
 Version 0.2.0
@@ -62,7 +62,7 @@ Version 0.1.5
 
 Version 0.1.4
 =============
-* Include the Django Wymeditor theme, because django-wymeditor doesnt by default
+* Include the Django Wymeditor theme, because django-wymeditor doesn't by default
 * Push the STATIC_URL to the JavaScript context so that we don't have to assume it's /static/
 
 Version 0.1.3
