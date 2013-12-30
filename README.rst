@@ -16,3 +16,9 @@ Please see the `online documentation <http://django-front.readthedocs.org/>`_ to
 ----
 
 .. image:: http://django-front.readthedocs.org/en/latest/_images/front-edit-usage.gif
+
+
+.. image:: https://d2weczhvl823v0.cloudfront.net/mbi/django-front/trend.png
+   :alt: Bitdeli badge
+   :target: https://bitdeli.com/free
+
