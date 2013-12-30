@@ -7,9 +7,11 @@ Currently supports: `Ace <http://ace.ajax.org/>`_, `EpicEditor <http://epicedito
 
 .. image:: https://travis-ci.org/mbi/django-front.png?branch=master
   :target: http://travis-ci.org/mbi/django-front
-  
 .. image:: https://d2weczhvl823v0.cloudfront.net/mbi/django-front/trend.png
+   :alt: Bitdeli badge
    :target: https://bitdeli.com/free
+  
+
 
 Please see the `online documentation <http://django-front.readthedocs.org/>`_ to install and get started.
 
@@ -18,7 +20,5 @@ Please see the `online documentation <http://django-front.readthedocs.org/>`_ to
 .. image:: http://django-front.readthedocs.org/en/latest/_images/front-edit-usage.gif
 
 
-.. image:: https://d2weczhvl823v0.cloudfront.net/mbi/django-front/trend.png
-   :alt: Bitdeli badge
-   :target: https://bitdeli.com/free
+
 
