@@ -7,6 +7,9 @@ Currently supports: `Ace <http://ace.ajax.org/>`_, `EpicEditor <http://epicedito
 
 .. image:: https://travis-ci.org/mbi/django-front.png?branch=master
   :target: http://travis-ci.org/mbi/django-front
+  
+.. image:: https://d2weczhvl823v0.cloudfront.net/mbi/django-front/trend.png
+   :target: https://bitdeli.com/free
 
 See `docs/ <https://github.com/mbi/django-front/tree/master/docs>`_ for the full documentation, also available online `here <http://django-front.readthedocs.org/>`_.
 
