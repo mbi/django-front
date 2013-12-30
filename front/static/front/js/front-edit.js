@@ -5,9 +5,13 @@ jQuery(document).ready(function($) {
             front_edit_options = document._front_edit,
             html = el.html(),
             element_id = el.attr('id'),
+            orig_val = el.attr('data-orig'),
             container,
             target;
 
+        if (orig_val) {
+            html = decodeURIComponent(escape(atob(orig_val)));
+        }
         container = $(
             front_edit_plugin.get_container_html(element_id, front_edit_options) +
                 '<p class="front-edit-buttons"><button class="history">history</button><button class="cancel">cancel</button><button class="save">save</button></p>'

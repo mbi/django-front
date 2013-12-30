@@ -1,6 +1,7 @@
 from django import template
 from classytags.core import Tag, Options
 from classytags.arguments import Argument, MultiValueArgument, KeywordArgument, Flag
+from django.template import Template
 from django.core.cache import cache
 from django.core.urlresolvers import reverse, NoReverseMatch
 from django.core.exceptions import ImproperlyConfigured
@@ -9,6 +10,7 @@ from ..conf import settings as django_front_settings
 from django.utils.html import strip_tags
 import hashlib
 import six
+import base64
 try:
     import simplejson as json
 except ImportError:
@@ -47,11 +49,19 @@ class FrontEditTag(Tag):
 
         user = context.get('request', None) and context.get('request').user
         if django_front_settings.DJANGO_FRONT_PERMISSION(user):
-            render = six.text_type(val).strip()
+            extra = ''
+            if django_front_settings.DJANGO_FRONT_RENDER_BLOCK_CONTENT:
+                try:
+                    render = Template(val).render(context).strip()
+                    extra = 'data-orig="%s"' % six.text_type((base64.encodestring(val.encode('utf8')).strip()).decode('utf8'))
+                except:
+                    render = six.text_type(val).strip()
+            else:
+                render = six.text_type(val).strip()
             if not strip_tags(render).strip():
                 classes.append('empty-editable')
 
-            return '<div class="%s" id="%s">%s</div>' % (' '.join(classes), hash_val, render)
+            return '<div %sclass="%s" id="%s">%s</div>' % (extra, ' '.join(classes), hash_val, render)
         return val or ''
 
 
