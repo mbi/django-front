@@ -14,6 +14,11 @@ USE_L10N = True
 SECRET_KEY = 'lol I dont even care'
 
 
+LANGUAGES = (
+    ('en', 'en'),
+    ('fr', 'fr'),
+)
+
 MIDDLEWARE_CLASSES = (
     'django.middleware.common.CommonMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',

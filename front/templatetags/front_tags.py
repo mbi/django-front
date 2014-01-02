@@ -1,16 +1,17 @@
-from django import template
-from classytags.core import Tag, Options
-from classytags.arguments import Argument, MultiValueArgument, KeywordArgument, Flag
-from django.template import Template
-from django.core.cache import cache
-from django.core.urlresolvers import reverse, NoReverseMatch
-from django.core.exceptions import ImproperlyConfigured
-from ..models import Placeholder
 from ..conf import settings as django_front_settings
+from ..models import Placeholder
+from classytags.arguments import Argument, MultiValueArgument, KeywordArgument
+from classytags.core import Tag, Options
+from django import template
+from django.conf import settings
+from django.core.cache import cache
+from django.core.exceptions import ImproperlyConfigured
+from django.core.urlresolvers import reverse, NoReverseMatch
+from django.template import Template
 from django.utils.html import strip_tags
+import base64
 import hashlib
 import six
-import base64
 try:
     import simplejson as json
 except ImportError:
@@ -53,8 +54,10 @@ class FrontEditTag(Tag):
             if django_front_settings.DJANGO_FRONT_RENDER_BLOCK_CONTENT:
                 try:
                     render = Template(val).render(context).strip()
-                    extra = 'data-orig="%s"' % six.text_type((base64.encodestring(val.encode('utf8')).strip()).decode('utf8'))
+                    extra = 'data-orig="%s" ' % six.text_type((base64.b64encode(val.encode('utf8')).strip()).decode('utf8')).replace('\n', '')
                 except:
+                    if settings.DEBUG:
+                        raise
                     render = six.text_type(val).strip()
             else:
                 render = six.text_type(val).strip()
