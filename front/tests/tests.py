@@ -187,5 +187,11 @@ class FrontTestCase(TestCase):
         self.assertTrue('data-orig="PHAgY2xhc3M9Imxlbmd0aCI+e3tMQU5HVUFHRV9DT0RFfGxlbmd0aH19PC9wPg=="' in six.text_type(resp.content))
         self.assertTrue('<p class="length">2</p>' in six.text_type(resp.content))
 
+        # something more complex
+        template_code = r'<ul>{% for item in "abc"|make_list %}<li>{{item|upper}}</li>{% endfor %}'
+        resp = self.client.post(reverse('front-placeholder-save'), {'key': key, 'val': template_code})
+        resp = self.client.get(reverse('front-test'))
+        self.assertTrue('<ul><li>A</li><li>B</li><li>C</li>' in six.text_type(resp.content))
+
         # reset override
         django_front_settings.DJANGO_FRONT_RENDER_BLOCK_CONTENT = DJANGO_FRONT_RENDER_BLOCK_CONTENT
