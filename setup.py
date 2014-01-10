@@ -24,7 +24,6 @@ setup(
     zip_safe=False,
     install_requires=[
         'django-classy-tags >= 0.4',
-        'django-sekizai',
         'Django >= 1.4',
         'six'
     ]
