@@ -117,6 +117,16 @@ Redactor being closed-source, it is not distributed with django-front: you'll ha
 
 (Replace ``redactor9xx`` with the build number you've downloaded)
 
+
+CKEditor
+========
+`CKEditor <http://ckeditor.com/>`_ is a ready-for-use HTML text editor designed to simplify web content creation.
+
+To use CKEditor editor, make sure that the ``ckeditor.js`` script is loaded in your base template, (or load it from a CDN: ``<script src="//cdnjs.cloudflare.com/ajax/libs/ckeditor/4.2/ckeditor.js"></script>``), then::
+
+    {% front_edit_scripts editor="ckeditor" %}
+
+
 EpicEditor
 ===========
 
@@ -126,6 +136,13 @@ To use EpicEditor::
 
     {% front_edit_scripts editor="epiceditor" %}
 
+The EpicEditor scripts are loaded from a CDN, no need to include anything else in your base template.
+
+*******************************
+Passing arguments to the editor
+*******************************
+
+You can pass extra initialization arguments to some of the editors, to e.g. handle file uploads or load plugins. See: ``DJANGO_FRONT_EDITOR_OPTIONS`` under :ref:`settings-section`
 
 ********************
 Add your own editor

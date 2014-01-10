@@ -1,4 +1,3 @@
-from django import forms
 from django.template import RequestContext, loader
 from django.http import HttpResponse
 

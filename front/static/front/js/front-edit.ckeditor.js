@@ -1,29 +1,33 @@
 var front_edit_plugin = {
 
-    target: null,
-    target_id: null,
+    element_id: null,
+    editor: null,
 
     // Returns the html that will contain the editor
     get_container_html: function(element_id, front_edit_options) {
-        this.element_id = element_id;
-        return '<textarea name="edit-'+ element_id +'" rows="10" cols="80" class="front-edit-container" id="edit-'+ element_id +'"></textarea>';
+        this.element_id = "edit-"+ element_id;
+        return '<textarea name="'+ this.element_id +'" rows="10" cols="80" class="front-edit-container" id="'+ this.element_id +'"></textarea>';
     },
 
     // initializes the editor on the target element, with the given html code
     set_html: function(target, html, front_edit_options) {
-        this.target = target;
-        $('#edit-'+ this.element_id).html(html);
-        CKEDITOR.replace('edit-'+ this.element_id);
+        try {
+            this.editor.setData(html);
+        } catch(err) {
+            $('#'+ this.element_id).html(html);
+            this.editor = CKEDITOR.replace(this.element_id, front_edit_options.editor_options);
+        }
     },
 
     // returns the edited html code
     get_html: function(front_edit_options) {
-        return this.target.find('.front-edit-container').val();
+        return this.editor.getData();
     },
 
     // destroy the editor
     destroy_editor: function() {
-        self.target = null;
+        this.editor.destroy();
+        this.editor = null;
+        this.element_id = null;
     }
-
 };
