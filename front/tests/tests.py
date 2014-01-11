@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 from django.contrib.auth.models import User
-from django.test.utils import override_settings
 from django.core.cache import cache
 from django.core.exceptions import ImproperlyConfigured
 from django.core.urlresolvers import reverse
@@ -34,7 +33,6 @@ class FrontTestCase(TestCase):
         resp = self.client.get(reverse('front-test'))
         self.assertTrue('document._front_edit' in six.text_type(resp.content))
         self.assertTrue(six.text_type("plugin: 'ace'") in six.text_type(resp.content.decode('utf8')))
-
 
     def test_03_anonymous_user_cant_post_either(self):
         resp = self.client.post(reverse('front-placeholder-save'), {'key': '123123', 'val': '<p>booh!</p>'})
