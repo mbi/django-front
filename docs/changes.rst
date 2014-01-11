@@ -1,6 +1,14 @@
 Version history
 ###############
 
+Version 0.3.4
+=============
+* Missing image in the EpicEditor static. (Issue #5, thanks @twined)
+
+Version 0.3.3
+=============
+* Support for CKEditor
+
 Version 0.3.2
 =============
 * Shipping with documentation

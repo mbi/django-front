@@ -35,6 +35,7 @@ class FrontTestCase(TestCase):
         self.assertTrue('document._front_edit' in six.text_type(resp.content))
         self.assertTrue(six.text_type("plugin: 'ace'") in six.text_type(resp.content.decode('utf8')))
 
+
     def test_03_anonymous_user_cant_post_either(self):
         resp = self.client.post(reverse('front-placeholder-save'), {'key': '123123', 'val': '<p>booh!</p>'})
         self.assertTrue('0' in six.text_type(resp.content))
