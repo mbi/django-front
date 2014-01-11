@@ -136,7 +136,7 @@ To use EpicEditor::
 
     {% front_edit_scripts editor="epiceditor" %}
 
-The EpicEditor scripts are loaded from a CDN, no need to include anything else in your base template.
+The EpicEditor scripts are served directly from django-front's static folders, no need to include anything else in your base template.
 
 *******************************
 Passing arguments to the editor
