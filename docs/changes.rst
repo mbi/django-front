@@ -1,7 +1,7 @@
 Version history
 ###############
 
-Version 0.3.4
+Version 0.3.5
 =============
 * Missing image in the EpicEditor static. (Issue #5, thanks @twined)
 
