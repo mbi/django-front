@@ -13,14 +13,14 @@ var front_edit_plugin = {
     // initializes the editor on the target element, with the given html code
     set_html: function(target, html, front_edit_options) {
         var this_ = this;
-        $.when(
-            $.getScript(front_edit_options.static_root+'epiceditor/js/epiceditor.min.js'),
-            $.getScript(front_edit_options.static_root+'to-markdown/to-markdown.js'),
-            $.Deferred(function(deferred) {
-                $(deferred.resolve);
+        jQuery.when(
+            jQuery.getScript(front_edit_options.static_root+'epiceditor/js/epiceditor.min.js'),
+            jQuery.getScript(front_edit_options.static_root+'to-markdown/to-markdown.js'),
+            jQuery.Deferred(function(deferred) {
+                jQuery(deferred.resolve);
             })
         ).done(function(){
-            var opts = $.extend({
+            var opts = jQuery.extend({
                 container: 'epiceditor',
                 textarea: null,
                 basePath: front_edit_options.static_root+'epiceditor',

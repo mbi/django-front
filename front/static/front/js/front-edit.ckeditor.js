@@ -14,7 +14,7 @@ var front_edit_plugin = {
         try {
             this.editor.setData(html);
         } catch(err) {
-            $('#'+ this.element_id).html(html);
+            jQuery('#'+ this.element_id).html(html);
             this.editor = CKEDITOR.replace(this.element_id, front_edit_options.editor_options);
         }
     },

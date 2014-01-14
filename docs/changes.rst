@@ -1,6 +1,10 @@
 Version history
 ###############
 
+Version 0.3.6
+=============
+* Refactored JavaScript files to use "jQuery" instead of the shortcut ("$")
+
 Version 0.3.5
 =============
 * Missing image in the EpicEditor static. (Issue #5, thanks @twined)

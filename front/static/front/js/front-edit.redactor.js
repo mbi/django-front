@@ -9,7 +9,7 @@ var front_edit_plugin = {
     __init_editor: function(target, html, front_edit_options) {
         this.target = target;
         this.target.addClass('front-edit-redactor');
-        var editor_options = $.extend({minHeight:400}, front_edit_options.editor_options);
+        var editor_options = jQuery.extend({minHeight:400}, front_edit_options.editor_options);
         this.target.find('.front-edit-container').html(html).redactor(editor_options);
         this.initialized = true;
     },
