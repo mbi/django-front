@@ -1,6 +1,9 @@
 Version history
 ###############
 
+* Test against Django 1.7 alpha 1
+
+
 Version 0.3.6
 =============
 * Refactored JavaScript files to use "jQuery" instead of the shortcut ("$")
