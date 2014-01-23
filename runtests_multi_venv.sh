@@ -36,6 +36,24 @@ then
     pip install Django==1.6.1 python3-memcached six flake8 django-classy-tags south django-wymeditor
     deactivate
 fi
+if [ ! -d .venv_17a ]
+then
+    virtualenv --no-site-packages --distribute --python=python2 .venv_17a
+    . .venv_17a/bin/activate
+    pip install https://github.com/django/django/archive/1.7a1.zip
+    pip install python-memcached six flake8 django-classy-tags south django-wymeditor
+    deactivate
+fi
+if [ ! -d .venv_17a_p3 ]
+then
+    virtualenv --no-site-packages --distribute --python=python3 .venv_17a_p3
+    . .venv_17a_p3/bin/activate
+    pip install https://github.com/django/django/archive/1.7a1.zip
+    pip install python3-memcached six flake8 django-classy-tags south django-wymeditor
+    deactivate
+fi
+
+
 
 
 . .venv_14/bin/activate
@@ -74,6 +92,23 @@ cd ..
 deactivate
 
 . .venv_16_p3/bin/activate
+cd test_project
+flake8 --ignore=E501 --exclude=migrations ../front
+python manage.py --version
+python --version
+python manage.py test front
+cd ..
+deactivate
+
+. .venv_17a/bin/activate
+cd test_project
+flake8 --ignore=E501 --exclude=migrations ../front
+python manage.py --version
+python manage.py test front
+cd ..
+deactivate
+
+. .venv_17a_p3/bin/activate
 cd test_project
 flake8 --ignore=E501 --exclude=migrations ../front
 python manage.py --version
