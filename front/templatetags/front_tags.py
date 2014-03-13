@@ -66,7 +66,7 @@ class FrontEditJS(Tag):
             save_url = reverse('front-placeholder-save')
             history_url = reverse('front-placeholder-history', args=('0000', ))
         except NoReverseMatch:
-            raise ImproperlyConfigured('You must add an urlconf entry for django-front to work, see: https://github.com/mbi/django-front#installation')
+            raise ImproperlyConfigured('You must add an urlconf entry for django-front to work, see: http://django-front.readthedocs.org/en/latest/installation.html')
 
         static_url = context.get('STATIC_URL', '/static/')
         user = context.get('request', None) and context.get('request').user
