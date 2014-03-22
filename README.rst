@@ -12,6 +12,9 @@ Please see the `online documentation <http://django-front.readthedocs.org/>`_ to
 .. image:: https://d2weczhvl823v0.cloudfront.net/mbi/django-front/trend.png
    :alt: Bitdeli badge
    :target: https://bitdeli.com/free
+.. image:: https://coveralls.io/repos/mbi/django-front/badge.png
+  :target: https://coveralls.io/r/mbi/django-front
+
 
 ----
 
