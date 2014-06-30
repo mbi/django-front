@@ -58,7 +58,7 @@ fi
 
 . .venv_14/bin/activate
 cd test_project
-flake8 --ignore=E501 --exclude=migrations ../front
+flake8 --ignore=E501 --exclude=migrations --exclude=south_migrations  ../front
 python manage.py --version
 python manage.py test front
 cd ..
@@ -67,7 +67,7 @@ deactivate
 . .venv_15/bin/activate
 cd test_project
 python manage.py --version
-flake8 --ignore=E501 --exclude=migrations ../front
+flake8 --ignore=E501 --exclude=migrations --exclude=south_migrations  ../front
 coverage run --rcfile=.coveragerc manage.py test --failfast front
 coverage xml
 coverage html
@@ -76,7 +76,7 @@ deactivate
 
 . .venv_15_p3/bin/activate
 cd test_project
-flake8 --ignore=E501 --exclude=migrations ../front
+flake8 --ignore=E501 --exclude=migrations --exclude=south_migrations  ../front
 python manage.py --version
 python --version
  python manage.py test front
@@ -85,7 +85,7 @@ deactivate
 
 . .venv_16/bin/activate
 cd test_project
-flake8 --ignore=E501 --exclude=migrations ../front
+flake8 --ignore=E501 --exclude=migrations --exclude=south_migrations  ../front
 python manage.py --version
 python manage.py test front
 cd ..
@@ -93,7 +93,7 @@ deactivate
 
 . .venv_16_p3/bin/activate
 cd test_project
-flake8 --ignore=E501 --exclude=migrations ../front
+flake8 --ignore=E501 --exclude=migrations --exclude=south_migrations  ../front
 python manage.py --version
 python --version
 python manage.py test front
@@ -102,7 +102,7 @@ deactivate
 
 . .venv_17c1/bin/activate
 cd test_project
-flake8 --ignore=E501 --exclude=migrations ../front
+flake8 --ignore=E501 --exclude=migrations --exclude=south_migrations  ../front
 python manage.py --version
 python manage.py test front
 cd ..
@@ -110,7 +110,7 @@ deactivate
 
 . .venv_17c1_p3/bin/activate
 cd test_project
-flake8 --ignore=E501 --exclude=migrations ../front
+flake8 --ignore=E501 --exclude=migrations --exclude=south_migrations  ../front
 python manage.py --version
 python --version
 python manage.py test front
