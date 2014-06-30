@@ -1,8 +1,10 @@
 Version history
 ###############
 
-* Test against Django 1.7 alpha 1
 
+Version 0.3.7
+=============
+* Test against Django 1.7RC1
 
 Version 0.3.6
 =============
