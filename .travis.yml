@@ -5,5 +5,5 @@ python:
 install:
   - pip install Django==1.6 flake8 python-memcached django-classy-tags south django-wymeditor six --use-mirrors
 script:
-   - flake8 --ignore=E501 --exclude=migrations front
+   - flake8 --ignore=E501 --exclude=migrations --exclude=south_migrations front
    - cd test_project && python manage.py test front
