@@ -1,5 +1,4 @@
-jQuery(document).ready(function() {
-
+(function(){
     var triggerEditor = function(el) {
         var body = jQuery('body'),
             front_edit_options = document._front_edit,
@@ -96,9 +95,9 @@ jQuery(document).ready(function() {
         });
     };
 
-    jQuery('.editable').on('dblclick', function(event) {
+    jQuery(document).on('dblclick', '.editable', function(event) {
         event.preventDefault();
         var el = jQuery(this);
         triggerEditor(el);
     });
-});
+})();

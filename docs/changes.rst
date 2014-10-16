@@ -1,6 +1,11 @@
 Version history
 ###############
 
+Version 0.3.9
+=============
+* Test against Django 1.7 final
+* Use event delegation instead of direct binding on .editable blocks
+
 Version 0.3.8
 =============
 * Support both South and Django 1.7 native migrations, inspired by https://github.com/SmileyChris/easy-thumbnails

@@ -36,19 +36,17 @@ then
     pip install Django==1.6.1 python3-memcached six flake8 django-classy-tags south django-wymeditor
     deactivate
 fi
-if [ ! -d .venv_17c1 ]
+if [ ! -d .venv_17 ]
 then
-    virtualenv --no-site-packages --distribute --python=python2.7 .venv_17c1
-    . .venv_17c1/bin/activate
-    pip install https://www.djangoproject.com/download/1.7c1/tarball/
-    pip install python-memcached six flake8 django-classy-tags south django-wymeditor
+    virtualenv --no-site-packages --distribute --python=python2.7 .venv_17
+    . .venv_17/bin/activate
+    pip install django==1.7 python-memcached six flake8 django-classy-tags south django-wymeditor
     deactivate
 fi
-if [ ! -d .venv_17c1_p3 ]
+if [ ! -d .venv_17_p3 ]
 then
-    virtualenv --no-site-packages --distribute --python=python3 .venv_17c1_p3
-    . .venv_17c1_p3/bin/activate
-    pip install https://www.djangoproject.com/download/1.7c1/tarball/
+    virtualenv --no-site-packages --distribute --python=python3 .venv_17_p3
+    . .venv_17_p3/bin/activate
     pip install python3-memcached six flake8 django-classy-tags south django-wymeditor
     deactivate
 fi
@@ -100,7 +98,7 @@ python manage.py test front
 cd ..
 deactivate
 
-. .venv_17c1/bin/activate
+. .venv_17/bin/activate
 cd test_project
 flake8 --ignore=E501 --exclude=migrations --exclude=south_migrations  ../front
 python manage.py --version
@@ -108,7 +106,7 @@ python manage.py test front
 cd ..
 deactivate
 
-. .venv_17c1_p3/bin/activate
+. .venv_17_p3/bin/activate
 cd test_project
 flake8 --ignore=E501 --exclude=migrations --exclude=south_migrations  ../front
 python manage.py --version
