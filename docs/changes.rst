@@ -1,6 +1,10 @@
 Version history
 ###############
 
+Version 0.4.0
+=============
+* Destroy editor before removing its container. Issue #6, thanks @syabro
+
 Version 0.3.9
 =============
 * Test against Django 1.7 final
