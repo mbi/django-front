@@ -36,8 +36,8 @@
         target.find('.cancel').on('click', function(event) {
             el.html(html);
             body.removeClass('front-editing');
-            jQuery('#front-edit-lightbox-container').remove();
             front_edit_plugin.destroy_editor();
+            jQuery('#front-edit-lightbox-container').remove();
         });
 
         target.find('.history').on('click', function(event) {
