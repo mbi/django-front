@@ -40,14 +40,14 @@ if [ ! -d .venv_17 ]
 then
     virtualenv --no-site-packages --distribute --python=python2.7 .venv_17
     . .venv_17/bin/activate
-    pip install django==1.7 python-memcached six flake8 django-classy-tags south django-wymeditor
+    pip install django==1.7.1 python-memcached six flake8 django-classy-tags south django-wymeditor
     deactivate
 fi
 if [ ! -d .venv_17_p3 ]
 then
     virtualenv --no-site-packages --distribute --python=python3 .venv_17_p3
     . .venv_17_p3/bin/activate
-    pip install python3-memcached six flake8 django-classy-tags south django-wymeditor
+    pip install django==1.7.1 python3-memcached six flake8 django-classy-tags south django-wymeditor
     deactivate
 fi
 
