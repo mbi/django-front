@@ -89,9 +89,9 @@
             });
             body.removeClass('front-editing');
             el.html(new_html);
-            jQuery('#front-edit-lightbox-container').remove();
             // cleanup callback
             front_edit_plugin.destroy_editor();
+            jQuery('#front-edit-lightbox-container').remove();
         });
     };
 
