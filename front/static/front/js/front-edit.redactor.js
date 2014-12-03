@@ -24,12 +24,21 @@ var front_edit_plugin = {
 
     get_html: function(front_edit_options) {
         var new_html = null;
+
+        // there doesn't seem to be a way of finding the
+        // version of the currently installed Redactor API
+        // fall down to trial and error
         try {
             // redactor 0.8+
             new_html = this.target.find('.front-edit-container').getCode();
         } catch(err) {
             // redactor 0.9+
-            new_html = this.target.find('.front-edit-container').redactor('get');
+            try {
+                new_html = this.target.find('.front-edit-container').redactor('get');
+            } catch(err) {
+                // redactor 10+
+                new_html = this.target.find('.front-edit-container').redactor('code.get');
+            }
         }
 
         return new_html;

@@ -1,8 +1,12 @@
 Version history
 ###############
 
-Version 0.4.0
+Version 0.4.2
+=============
+* Support for RedactorJS v10 API
+
 Version 0.4.1
+Version 0.4.0
 =============
 * Destroy editor before removing its container. Issues #6 and #7, thanks @syabro
 
