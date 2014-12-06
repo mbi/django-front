@@ -2,6 +2,8 @@ from django.db import models
 from django.core.cache import cache
 from django.dispatch import receiver
 from django.db.models.signals import post_save
+import hashlib
+import six
 
 
 class Placeholder(models.Model):
@@ -13,6 +15,20 @@ class Placeholder(models.Model):
 
     def cache_key(self):
         return "front-edit-%s" % self.key
+
+    @classmethod
+    def key_for(cls, name, *bits):
+        return hashlib.new('sha1', six.text_type(name + ''.join([six.text_type(token) for token in bits])).encode('utf8')).hexdigest()
+
+    @classmethod
+    def copy_content(cls, name, source_bits, target_bits):
+        source_key = cls.key_for(name, *source_bits)
+        target_key = cls.key_for(name, *target_bits)
+
+        source = cls.objects.filter(key=source_key)
+        if source.exists():
+            source = source.get()
+            cls.objects.create(key=target_key, value=source.value)
 
 
 class PlaceholderHistory(models.Model):

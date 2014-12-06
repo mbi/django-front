@@ -1,13 +1,12 @@
-from django import template
-from classytags.core import Tag, Options
-from classytags.arguments import Argument, MultiValueArgument, KeywordArgument
-from django.core.cache import cache
-from django.core.urlresolvers import reverse, NoReverseMatch
-from django.core.exceptions import ImproperlyConfigured
-from ..models import Placeholder
 from ..conf import settings as django_front_settings
+from ..models import Placeholder
+from classytags.arguments import Argument, MultiValueArgument, KeywordArgument
+from classytags.core import Tag, Options
+from django import template
+from django.core.cache import cache
+from django.core.exceptions import ImproperlyConfigured
+from django.core.urlresolvers import reverse, NoReverseMatch
 from django.utils.html import strip_tags
-import hashlib
 import six
 try:
     import simplejson as json
@@ -29,7 +28,7 @@ class FrontEditTag(Tag):
     )
 
     def render_tag(self, context, name, extra_bits, nodelist=None):
-        hash_val = hashlib.new('sha1', six.text_type(name + ''.join([six.text_type(token) for token in extra_bits])).encode('utf8')).hexdigest()
+        hash_val = Placeholder.key_for(name, *extra_bits)
         cache_key = "front-edit-%s" % hash_val
 
         val = cache.get(cache_key)

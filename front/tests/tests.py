@@ -167,3 +167,35 @@ class FrontTestCase(TestCase):
         self.client.login(username='admin_user', password='admin_user')
         resp = self.client.get(reverse('front-test_invalid_template_tag'))
         self.assertTrue(six.text_type(u"plugin: 'default'") in six.text_type(resp.content.decode('utf8')))
+
+    def test_12_calculate_keys(self):
+        self.client.login(username='admin_user', password='admin_user')
+        resp = self.client.get(reverse('front-test'))
+        self.assertFalse('empty-editable' in six.text_type(resp.content))
+        ids = re.findall(r'<div class="editable" id="([^"]+)">', six.text_type(resp.content))
+        self.assertEqual(six.text_type(ids[0]), six.text_type('d577f15230caa8d39fb651d5b1ea34743f56edff'))
+
+    def test_13_copy_content(self):
+        self.assertEqual(0, Placeholder.objects.count())
+        self.client.login(username='admin_user', password='admin_user')
+
+        resp = self.client.get(reverse('front-test'))
+        key = Placeholder.key_for('global-ph')
+        self.assertTrue(key in six.text_type(resp.content))
+        key = Placeholder.key_for('some-other-ph', 'hello')
+        self.assertTrue(key in six.text_type(resp.content))
+
+        resp = self.client.post(reverse('front-placeholder-save'), {'key': key, 'val': '<p>booh</p>'})
+        self.assertEqual(1, Placeholder.objects.count())
+
+        Placeholder.copy_content('some-other-ph', ['hello'], ['jello'])
+        self.assertEqual(2, Placeholder.objects.count())
+
+        jello_key = Placeholder.key_for('some-other-ph', 'jello')
+        hello_key = Placeholder.key_for('some-other-ph', 'hello')
+        self.assertTrue(Placeholder.objects.filter(key=jello_key).exists())
+        self.assertTrue(Placeholder.objects.filter(key=hello_key).exists())
+        self.assertEqual(
+            Placeholder.objects.get(key=jello_key).value,
+            Placeholder.objects.get(key=jello_key).value
+        )

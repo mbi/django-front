@@ -1,6 +1,10 @@
 Version history
 ###############
 
+Version 0.4.3
+=============
+* Added an API allowing copying content from one Placeholder instance to another (e.g. same name, different arguments)
+
 Version 0.4.2
 =============
 * Support for RedactorJS v10 API

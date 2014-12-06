@@ -32,7 +32,7 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     'django.contrib.messages.context_processors.messages',
     'django.core.context_processors.request'  # needed for tests
 )
-
+TEMPLATE_DIRS = (os.path.join(os.path.dirname(__file__), '..', 'templates'), )
 STATIC_URL = '/static/'
 
 ROOT_URLCONF = 'test_project.urls'
