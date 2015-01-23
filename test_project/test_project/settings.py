@@ -49,3 +49,5 @@ INSTALLED_APPS = (
 
     'front'
 )
+
+SITE_ID = 1

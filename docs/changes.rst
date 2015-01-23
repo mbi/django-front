@@ -1,6 +1,12 @@
 Version history
 ###############
 
+Version 0.4.4
+=============
+* Added a missing migration
+* Test against Django 1.8a
+* Switched to tox
+
 Version 0.4.3
 =============
 * Added an API allowing copying content from one Placeholder instance to another (e.g. same name, different arguments)

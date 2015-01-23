@@ -8,3 +8,4 @@ test_project/static/redactor*
 dist
 django_front.egg-info
 
+.tox

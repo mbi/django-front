@@ -26,3 +26,9 @@ Installing django-front
 * ``python manage.py migrate`` (or syncdb if that's your dope)
 
 * Note: the ``django.core.context_processors.request`` context processor must be enabled in your ``TEMPLATE_CONTEXT_PROCESSORS`` setting.
+
+
+Testing
+-------
+
+* ``pip install tox && tox``
