@@ -18,7 +18,11 @@ var front_edit_plugin = {
         try {
             this.target.find('.front-edit-container').redactor('set', html);
         } catch(err) {
-            this.__init_editor(target, html, front_edit_options);
+            try {
+                this.target.find('.front-edit-container').redactor('code.set', html);
+            } catch(err) {
+                this.__init_editor(target, html, front_edit_options);
+            }
         }
     },
 

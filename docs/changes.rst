@@ -1,6 +1,12 @@
 Version history
 ###############
 
+Version 0.4.5
+=============
+* Fixed editor history on RedactorJS > 10.0
+* Fixed documentation
+* Generate documentation during tox tests
+
 Version 0.4.4
 =============
 * Added a missing migration

@@ -20,7 +20,7 @@ First, load the `front_tags` module at the top of your base template::
     {% load front_tags %}
 
 
-Then include jQuery, followed by front-editing scripts somewhere towards the end of your ``<body>`, e.g.::
+Then include jQuery, followed by front-editing scripts somewhere towards the end of your ``<body>``, e.g.::
 
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
     {% front_edit_scripts %}
@@ -148,7 +148,7 @@ You can pass extra initialization arguments to some of the editors, to e.g. hand
 Add your own editor
 ********************
 
-To add support for a new editor type (say "foo")::
+To add support for a new editor type (say "foo"):
 
 1. Add ``['foo', ]`` to ``DJANGO_FRONT_ALLOWED_EDITORS`` in your settings. See: :ref:`settings-section`
 2. Add a ``/static/front/js/front-edit.foo.js`` file, you'll need to provide the following function prototype (here as an example for the default editor, see more examples in `static/front/js <https://github.com/mbi/django-front/tree/master/front/static/front/js>`_) ::
