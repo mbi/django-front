@@ -1,6 +1,10 @@
 Version history
 ###############
 
+Version 0.4.6
+=============
+* Test against Django 1.8
+
 Version 0.4.5
 =============
 * Fixed editor history on RedactorJS > 10.0
