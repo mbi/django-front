@@ -7,5 +7,5 @@ test_project/htmlcov/
 test_project/static/redactor*
 dist
 django_front.egg-info
-
+docs/_build/
 .tox
