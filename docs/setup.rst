@@ -122,7 +122,7 @@ CKEditor
 ========
 `CKEditor <http://ckeditor.com/>`_ is a ready-for-use HTML text editor designed to simplify web content creation.
 
-To use CKEditor editor, make sure that the ``ckeditor.js`` script is loaded in your base template, (or load it from a CDN: ``<script src="//cdnjs.cloudflare.com/ajax/libs/ckeditor/4.2/ckeditor.js"></script>``), then::
+To use CKEditor editor, make sure that the ``ckeditor.js`` script is loaded in your base template, (or load it from a CDN: ``<script src="//cdn.ckeditor.com/4.4.7/standard/ckeditor.js"></script>``), then::
 
     {% front_edit_scripts editor="ckeditor" %}
 
