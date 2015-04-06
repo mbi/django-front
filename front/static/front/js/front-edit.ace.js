@@ -16,10 +16,11 @@ var front_edit_plugin = {
     set_html: function(target, html, front_edit_options) {
         var this_ = this;
         this_.target = target;
-        jQuery.getScript('http://d1n0x3qji82z53.cloudfront.net/src-min-noconflict/ace.js', function(){
+        jQuery.getScript('https://cdnjs.cloudflare.com/ajax/libs/ace/1.1.9/ace.js', function(){
             this_.target.addClass('front-edit-ace');
             this_.editor = ace.edit("edit-" + this_.element_id);
             this_.editor.setTheme("ace/theme/monokai");
+            this_.editor.$blockScrolling = Infinity;
             this_.editor.setValue(html, -1);
             this_.editor.getSession().setMode("ace/mode/html");
             this_.editor.getSession().setUseWrapMode(true);
