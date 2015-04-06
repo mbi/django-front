@@ -1,32 +1,36 @@
 # -*- coding: utf-8 -*-
-import datetime
-from south.db import db
-from south.v2 import SchemaMigration
-from django.db import models
+from __future__ import unicode_literals
+
+from django.db import models, migrations
 
 
-class Migration(SchemaMigration):
+class Migration(migrations.Migration):
 
-    def forwards(self, orm):
-        # Adding model 'Placeholder'
-        db.create_table(u'front_placeholder', (
-            ('key', self.gf('django.db.models.fields.CharField')(max_length=40, primary_key=True, db_index=True)),
-            ('value', self.gf('django.db.models.fields.TextField')(blank=True)),
-        ))
-        db.send_create_signal(u'front', ['Placeholder'])
+    dependencies = [
+    ]
 
-
-    def backwards(self, orm):
-        # Deleting model 'Placeholder'
-        db.delete_table(u'front_placeholder')
-
-
-    models = {
-        u'front.placeholder': {
-            'Meta': {'object_name': 'Placeholder'},
-            'key': ('django.db.models.fields.CharField', [], {'max_length': '40', 'primary_key': 'True', 'db_index': 'True'}),
-            'value': ('django.db.models.fields.TextField', [], {'blank': 'True'})
-        }
-    }
-
-    complete_apps = ['front']
+    operations = [
+        migrations.CreateModel(
+            name='Placeholder',
+            fields=[
+                ('key', models.CharField(max_length=40, serialize=False, primary_key=True, db_index=True)),
+                ('value', models.TextField(blank=True)),
+            ],
+            options={
+            },
+            bases=(models.Model,),
+        ),
+        migrations.CreateModel(
+            name='PlaceholderHistory',
+            fields=[
+                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
+                ('value', models.TextField(blank=True)),
+                ('saved', models.DateTimeField(auto_now_add=True)),
+                ('placeholder', models.ForeignKey(to='front.Placeholder')),
+            ],
+            options={
+                'ordering': (b'-saved',),
+            },
+            bases=(models.Model,),
+        ),
+    ]

@@ -1,7 +1,6 @@
-jQuery(document).ready(function($) {
-
+(function(){
     var triggerEditor = function(el) {
-        var body = $('body'),
+        var body = jQuery('body'),
             front_edit_options = document._front_edit,
             html = el.html(),
             element_id = el.attr('id'),
@@ -9,10 +8,11 @@ jQuery(document).ready(function($) {
             container,
             target;
 
+
         if (orig_val) {
             html = decodeURIComponent(escape(atob(orig_val)));
         }
-        container = $(
+        container = jQuery(
             front_edit_plugin.get_container_html(element_id, front_edit_options) +
                 '<p class="front-edit-buttons"><button class="history">history</button><button class="cancel">cancel</button><button class="save">save</button></p>'
         );
@@ -29,8 +29,8 @@ jQuery(document).ready(function($) {
                 break;
 
             case 'lightbox':
-                $('<div id="front-edit-lightbox-container" class="active front-edit-dialog_layer front-edit-layer"><div id="front-edit-lightbox" class="front-edit-dialog"></div></div>').appendTo($('body'));
-                var lightbox = $('#front-edit-lightbox');
+                jQuery('<div id="front-edit-lightbox-container" class="active front-edit-dialog_layer front-edit-layer"><div id="front-edit-lightbox" class="front-edit-dialog"></div></div>').appendTo(jQuery('body'));
+                var lightbox = jQuery('#front-edit-lightbox');
                 lightbox.html(container);
                 target = lightbox;
                 break;
@@ -41,30 +41,30 @@ jQuery(document).ready(function($) {
         target.find('.cancel').on('click', function(event) {
             el.html(html);
             body.removeClass('front-editing');
-            $('#front-edit-lightbox-container').remove();
             front_edit_plugin.destroy_editor();
+            jQuery('#front-edit-lightbox-container').remove();
         });
 
         target.find('.history').on('click', function(event) {
-            var btn = $(this);
-            $.getJSON(front_edit_options.history_url_prefix + element_id + '/', {}, function(json, textStatus) {
+            var btn = jQuery(this);
+            jQuery.getJSON(front_edit_options.history_url_prefix + element_id + '/', {}, function(json, textStatus) {
                 if (json.history) {
                     var current_val = front_edit_plugin.get_html(front_edit_options);
 
-                    btn.replaceWith($('<select class="front-edit-history"></select>'));
-                    var select = $('.front-edit-history');
+                    btn.replaceWith(jQuery('<select class="front-edit-history"></select>'));
+                    var select = jQuery('.front-edit-history');
                     select.append(
-                            $('<option value="0">current edit</option>')
+                            jQuery('<option value="0">current edit</option>')
                         );
 
-                    $.each(json.history, function(index, val) {
+                    jQuery.each(json.history, function(index, val) {
                         select.append(
-                            $('<option value="'+ (index + 1) +'">' + new Date(1000 * parseInt(val.saved, 10)) + '</option>')
+                            jQuery('<option value="'+ (index + 1) +'">' + new Date(1000 * parseInt(val.saved, 10)) + '</option>')
                         );
                     });
 
                     select.on('change', function(event) {
-                        var idx = $(this).val();
+                        var idx = jQuery(this).val();
                         if (idx == 0) {
                             var html = current_val;
                         } else {
@@ -75,7 +75,7 @@ jQuery(document).ready(function($) {
 
 
                 } else {
-                    btn.replaceWith($('<span>No history</span>'));
+                    btn.replaceWith(jQuery('<span>No history</span>'));
                 }
             });
         });
@@ -85,7 +85,7 @@ jQuery(document).ready(function($) {
             var key = element_id
                 new_html = front_edit_plugin.get_html(front_edit_options);
 
-            $.post(front_edit_options.save_url, {
+            jQuery.post(front_edit_options.save_url, {
                 key: key,
                 val: new_html,
                 csrfmiddlewaretoken: front_edit_options.csrf_token
@@ -94,15 +94,15 @@ jQuery(document).ready(function($) {
             });
             body.removeClass('front-editing');
             el.html(new_html);
-            $('#front-edit-lightbox-container').remove();
             // cleanup callback
             front_edit_plugin.destroy_editor();
+            jQuery('#front-edit-lightbox-container').remove();
         });
     };
 
-    $('.editable').on('dblclick', function(event) {
+    jQuery(document).on('dblclick', '.editable', function(event) {
         event.preventDefault();
         var el = jQuery(this);
         triggerEditor(el);
     });
-});
+})();

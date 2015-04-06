@@ -10,12 +10,8 @@ from django.core.urlresolvers import reverse, NoReverseMatch
 from django.template import Template
 from django.utils.html import strip_tags
 import base64
-import hashlib
 import six
-try:
-    import simplejson as json
-except ImportError:
-    import json
+import json
 
 
 register = template.Library()
@@ -32,7 +28,7 @@ class FrontEditTag(Tag):
     )
 
     def render_tag(self, context, name, extra_bits, nodelist=None):
-        hash_val = hashlib.new('sha1', six.text_type(name + ''.join([six.text_type(token) for token in extra_bits])).encode('utf8')).hexdigest()
+        hash_val = Placeholder.key_for(name, *extra_bits)
         cache_key = "front-edit-%s" % hash_val
 
         val = cache.get(cache_key)
@@ -79,7 +75,7 @@ class FrontEditJS(Tag):
             save_url = reverse('front-placeholder-save')
             history_url = reverse('front-placeholder-history', args=('0000', ))
         except NoReverseMatch:
-            raise ImproperlyConfigured('You must add an urlconf entry for django-front to work, see: https://github.com/mbi/django-front#installation')
+            raise ImproperlyConfigured('You must add an urlconf entry for django-front to work, see: http://django-front.readthedocs.org/en/latest/installation.html')
 
         static_url = context.get('STATIC_URL', '/static/')
         user = context.get('request', None) and context.get('request').user

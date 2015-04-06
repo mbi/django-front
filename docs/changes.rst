@@ -1,6 +1,52 @@
 Version history
 ###############
 
+Version 0.4.6
+=============
+* Test against Django 1.8
+
+Version 0.4.5
+=============
+* Fixed editor history on RedactorJS > 10.0
+* Fixed documentation
+* Generate documentation during tox tests
+
+Version 0.4.4
+=============
+* Added a missing migration
+* Test against Django 1.8a
+* Switched to tox
+
+Version 0.4.3
+=============
+* Added an API allowing copying content from one Placeholder instance to another (e.g. same name, different arguments)
+
+Version 0.4.2
+=============
+* Support for RedactorJS v10 API
+
+Version 0.4.1
+Version 0.4.0
+=============
+* Destroy editor before removing its container. Issues #6 and #7, thanks @syabro
+
+Version 0.3.9
+=============
+* Test against Django 1.7 final
+* Use event delegation instead of direct binding on .editable blocks
+
+Version 0.3.8
+=============
+* Support both South and Django 1.7 native migrations, inspired by https://github.com/SmileyChris/easy-thumbnails
+
+Version 0.3.7
+=============
+* Test against Django 1.7RC1
+
+Version 0.3.6
+=============
+* Refactored JavaScript files to use "jQuery" instead of the shortcut ("$")
+
 Version 0.3.5
 =============
 * Missing image in the EpicEditor static. (Issue #5, thanks @twined)

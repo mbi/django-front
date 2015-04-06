@@ -1,9 +1,21 @@
 language: python
 services: memcached
-python:
-  - "2.7"
+python: 2.7
+env:
+  - TOX_ENV=py26-django14
+  - TOX_ENV=py27-django14
+  - TOX_ENV=py26-django15
+  - TOX_ENV=py27-django15
+  - TOX_ENV=py34-django15
+  - TOX_ENV=py26-django16
+  - TOX_ENV=py27-django16
+  - TOX_ENV=py34-django16
+  - TOX_ENV=py27-django17
+  - TOX_ENV=py34-django17
+  - TOX_ENV=py27-django18
+  - TOX_ENV=py34-django18
+  - TOX_ENV=flake8
 install:
-  - pip install Django==1.6.1 flake8 python-memcached django-classy-tags south django-wymeditor six --use-mirrors
+  - pip install tox
 script:
-   - flake8 --ignore=E501 --exclude=migrations front
-   - cd test_project && python manage.py test front
+  - tox -e $TOX_ENV

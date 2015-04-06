@@ -47,14 +47,14 @@ master_doc = 'index'
 
 # General information about the project.
 project = 'Django-Front'
-copyright = '2013, Marco Bonetti'
+copyright = '2013-2015, Marco Bonetti'
 
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the
 # built documents.
 #
 # The short X.Y version.
-version = '0.3.5'
+version = '0.4.6'
 # The full version, including alpha/beta/rc tags.
 release = version
 
@@ -101,7 +101,7 @@ pygments_style = 'sphinx'
 
 # The theme to use for HTML and HTML Help pages.  See the documentation for
 # a list of builtin themes.
-html_theme = 'default'
+html_theme = 'sphinx_rtd_theme'
 
 # Theme options are theme-specific and customize the look and feel of a theme
 # further.  For a list of options available for each theme, see the

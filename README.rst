@@ -13,6 +13,7 @@ Please see the `online documentation <http://django-front.readthedocs.org/>`_ to
    :alt: Bitdeli badge
    :target: https://bitdeli.com/free
 
+
 ----
 
 .. image:: http://django-front.readthedocs.org/en/latest/_images/front-edit-usage.gif

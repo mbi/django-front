@@ -19,7 +19,7 @@ Editing content
 Security considerations
 ************************
 
-By default, only authenticated users having `the staff flag <https://docs.djangoproject.com/en/1.6/ref/contrib/auth/#django.contrib.auth.models.User.is_staff>`_ can edit placeholder content.
+By default, only authenticated users having `the staff flag <https://docs.djangoproject.com/en/1.8/ref/contrib/auth/#django.contrib.auth.models.User.is_staff>`_ can edit placeholder content.
 
 You can specify who can edit content in the settings: see ``DJANGO_FRONT_PERMISSION`` under :ref:`settings-section`.
 
