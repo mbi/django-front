@@ -1,6 +1,11 @@
 Version history
 ###############
 
+Version 0.4.7
+=============
+* Upgraded the CDN and bundled versions of ACE, EPIC and CKEditor
+
+
 Version 0.4.6
 =============
 * Test against Django 1.8
