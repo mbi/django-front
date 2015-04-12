@@ -6,7 +6,7 @@ Requirements
 
 Python requirements are automatically installed when you install via pip.
 
-* Django 1.4+
+* Django 1.4+ (Django-front supports 1.4 through 1.8)
 * django-classy-tags
 * Python 2.6+ or Python 3.3+
 * jQuery is required in your template

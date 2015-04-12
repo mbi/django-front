@@ -1,6 +1,10 @@
 Version history
 ###############
 
+Version 0.4.8
+=============
+* Support for the Froala editor
+
 Version 0.4.7
 =============
 * Upgraded the CDN and bundled versions of ACE, EPIC and CKEditor

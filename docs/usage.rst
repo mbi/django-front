@@ -33,7 +33,7 @@ Performance
 * The first time a placeholder tag is rendered, its content fetched from the database and stored in Django's cache. Successive hits on that placeholder will get the content from the cache.
 * Each time a placeholder is saved, its cache key is invalidated. A ``PlaceholderHistory`` object is also saved (if the content was changed).
 
-.. warning:: To avoid hitting the database for each placeholder it is critical to use a proper cache back-end, such as `Memcached <https://docs.djangoproject.com/en/1.6/topics/cache/#memcached>`_.
+.. warning:: To avoid hitting the database for each placeholder it is critical to use a proper cache back-end, such as `Memcached <https://docs.djangoproject.com/en/1.8/topics/cache/#memcached>`_.
 
 ************************
 Caveats

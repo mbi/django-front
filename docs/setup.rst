@@ -7,7 +7,7 @@ Setting it up
 Template layout
 ***************
 
-We assume that your site uses a `basic template hierarchy <https://docs.djangoproject.com/en/1.6/topics/templates/#template-inheritance>`_, having a base template and multiple "content" templates inheriting from the base one.
+We assume that your site uses a `basic template hierarchy <https://docs.djangoproject.com/en/1.8/topics/templates/#template-inheritance>`_, having a base template and multiple "content" templates inheriting from the base one.
 
 To set up `django-front`, you will need to include a few lines in your base template, then add content placeholders in the child templates.
 
@@ -96,7 +96,7 @@ You'll have to install ``django-wymeditor``: ``pip install django-wymeditor``, t
     {% front_edit_scripts editor="wymeditor" %}
 
 Redactor
-===========
+========
 
 `Redactor <http://imperavi.com/redactor/>`_ is a commercial WYSIWYG html editor.
 
@@ -104,7 +104,7 @@ To use the Redactor editor::
 
     {% front_edit_scripts editor="redactor" %}
 
-Redactor being closed-source, it is not distributed with django-front: you'll have to `download <http://imperavi.com/redactor/download/>`_ and install it in your project:
+Redactor being closed-source, it is not distributed with django-front: you'll have to `download it <http://imperavi.com/redactor/download/>`_ and install it in your project:
 
 1. Copy ``redactor9xx`` into a directory being served as static file
 2. In the ``head`` of your master template, include the Redactor stylesheet::
@@ -137,6 +137,31 @@ To use EpicEditor::
     {% front_edit_scripts editor="epiceditor" %}
 
 The EpicEditor scripts are served directly from django-front's static folders, no need to include anything else in your base template.
+
+
+Froala
+======
+
+`Froala <https://editor.froala.com/>`_ is a commercial WYSIWYG html editor. It is free to use for personal and non-profit projects.
+
+Froala being closed-source, it is not distributed with django-front: you'll have to `download <https://editor.froala.com/pricing>`_ and install it in your project.
+Alternatively it can be served from a CDN.
+
+In your ``<head>``::
+
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/froala-editor/1.2.6/css/froala_editor.min.css">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/froala-editor/1.2.6/css/themes/gray.min.css">
+
+At the end of your ``<body>``::
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/froala-editor/1.2.6/js/froala_editor.min.js"></script>
+    {% front_edit_scripts editor="froala" %}
+
+
+Froala accepts `options <https://editor.froala.com/options>`_ that can be passed to the editor via the ``DJANGO_FRONT_EDITOR_OPTIONS`` settings (see the next section).
+
 
 *******************************
 Passing arguments to the editor
