@@ -1,4 +1,4 @@
-(function(){
+(function(jQuery){
     var triggerEditor = function(el) {
         var body = jQuery('body'),
             front_edit_options = document._front_edit,
@@ -100,4 +100,4 @@
         var el = jQuery(this);
         triggerEditor(el);
     });
-})();
+})(jQuery);

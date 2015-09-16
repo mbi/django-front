@@ -1,6 +1,10 @@
 Version history
 ###############
 
+Version 0.4.9
+=============
+* Wrap all JavaScript plugins in their distinct scope receiving a local jQuery
+
 Version 0.4.8
 =============
 * Support for the Froala editor
