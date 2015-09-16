@@ -9,9 +9,6 @@ Please see the `online documentation <http://django-front.readthedocs.org/>`_ to
 
 .. image:: https://travis-ci.org/mbi/django-front.png?branch=master
   :target: http://travis-ci.org/mbi/django-front
-.. image:: https://d2weczhvl823v0.cloudfront.net/mbi/django-front/trend.png
-   :alt: Bitdeli badge
-   :target: https://bitdeli.com/free
 
 
 ----
