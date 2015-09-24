@@ -4,20 +4,14 @@ sudo: false
 python:
   - 2.7
   - 3.5
-
-matrix:
-  include:
-  - python: "2.7"
-    env:
-      - TOX_ENV=py27-django17
-      - TOX_ENV=py27-django18
-      - TOX_ENV=py27-django19
-  - python: "3.5"
-    env:
-      - TOX_ENV=py35-django18
-      - TOX_ENV=py35-django19
-
+env:
+  - if [[ $TRAVIS_PYTHON_VERSION == 2.7 ]]; then TOX_ENV="py27-django17"; fi
+  - if [[ $TRAVIS_PYTHON_VERSION == 2.7 ]]; then TOX_ENV="py27-django18"; fi
+  - if [[ $TRAVIS_PYTHON_VERSION == 3.5 ]]; then TOX_ENV="py35-django18"; fi
+  - if [[ $TRAVIS_PYTHON_VERSION == 2.7 ]]; then TOX_ENV="py27-django19"; fi
+  - if [[ $TRAVIS_PYTHON_VERSION == 3.5 ]]; then TOX_ENV="py35-django19"; fi
+  - TOX_ENV=flake8
 install:
   - pip install tox
 script:
-  - tox -e $TOX_ENV
+  - if [[ -e $TOX_ENV ]]; then tox -e $TOX_ENV; fi
