@@ -14,4 +14,4 @@ env:
 install:
   - pip install tox
 script:
-  - if [[ -e $TOX_ENV ]]; then tox -e $TOX_ENV; fi
+  - if [[ -z "$TOX_ENV" ]]; then exit 1; else tox -e $TOX_ENV; fi
