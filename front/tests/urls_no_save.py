@@ -1,11 +1,7 @@
-try:
-    from django.conf.urls import url, patterns, include
-except ImportError:
-    from django.conf.urls.defaults import url, patterns, include
+from django.conf.urls import url, include
+from .views import test
 
-urlpatterns = patterns(
-    '',
-    url(r'^test/$', 'front.tests.views.test', name='front-test'),
+urlpatterns = [
+    url(r'^test/$', test, name='front-test'),
     url(r'^i18n/', include('django.conf.urls.i18n')),
-    # url(r'^front-edit/', include('front.urls'))
-)
+]

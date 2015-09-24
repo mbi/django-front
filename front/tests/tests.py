@@ -3,16 +3,15 @@ from django.contrib.auth.models import User
 from django.core.cache import cache
 from django.core.exceptions import ImproperlyConfigured
 from django.core.urlresolvers import reverse
-from django.test import TestCase
+from django.test import TestCase, override_settings
 from front.models import Placeholder, PlaceholderHistory
 import json
 import re
 import six
 
 
+@override_settings(ROOT_URLCONF='front.tests.urls')
 class FrontTestCase(TestCase):
-
-    urls = 'front.tests.urls'
 
     def setUp(self):
         self.admin_user = User.objects.create_user('admin_user', 'admin@admin.com', 'admin_user')
