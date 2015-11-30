@@ -1,6 +1,10 @@
 Version history
 ###############
 
+Version 0.5.0
+=============
+* Supported Django versions are now 1.7, 1.8 and 1.9
+
 Version 0.4.9
 =============
 * Wrap all JavaScript plugins in their distinct scope receiving a local jQuery
