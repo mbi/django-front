@@ -6,7 +6,6 @@ recursive-include front/static *
 recursive-include docs *
 exclude *.pyc
 exclude *.sh
-prune test_project
 prune test_project_2
 prune .tox
 prune docs/_build

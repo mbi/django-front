@@ -1,14 +1,13 @@
 from django.http import HttpResponse
 try:
-    from django.template import engines, RequestContext
+    from django.template import engines
     __is_18 = True
 except ImportError:
-    from django.template import RequestContext, loader
+    from django.template import loader, RequestContext
     __is_18 = False
 
 
 TEST_TEMPLATE = r'''
-{% load url from future %}
 {% load front_tags %}
 <!DOCTYPE html>
 <html lang="{{LANGUAGE_CODE}}">
@@ -28,22 +27,21 @@ TEST_TEMPLATE = r'''
 
 
 TEST_TEMPLATE_INVALID_EDITOR = r'''
-{% load url from future %}
 {% load front_tags %}
 {% front_edit_scripts editor="dummy" %}
 '''
 
 
-def _get_template(template_string):
+def _render(template_string, context, request):
     if __is_18:
-        return engines['django'].from_string(template_string)
+        return engines['django'].from_string(template_string).render(context=context, request=request)
     else:
-        return loader.get_template_from_string(template_string)
+        return loader.get_template_from_string(template_string).render(RequestContext(request, context))
 
 
 def test(request):
-    return HttpResponse(_get_template(TEST_TEMPLATE).render(RequestContext(request, dict(arg1='hello'))))
+    return HttpResponse(_render(TEST_TEMPLATE, context=dict(arg1='hello'), request=request))
 
 
 def test_invalid_template_tag(request):
-    return HttpResponse(_get_template(TEST_TEMPLATE_INVALID_EDITOR).render(RequestContext(request, dict())))
+    return HttpResponse(_render(TEST_TEMPLATE_INVALID_EDITOR, context={}, request=request))
