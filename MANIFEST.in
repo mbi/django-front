@@ -2,11 +2,17 @@ include MANIFEST.in
 include LICENSE
 include README.rst
 include CHANGES
-recursive-include front/static *
+include tox.ini
 recursive-include docs *
-exclude *.pyc
+recursive-include test_project *
 exclude *.sh
+exclude .DS_Store
+exclude test_project/.coverage
 prune test_project_2
 prune .tox
 prune docs/_build
-prune docs/_static
+prune test_project/test_project/__pycache__
+prune test_project/static/redactor*
+prune test_project/htmlcov
+global-exclude *pyc
+global-exclude coverage.xml

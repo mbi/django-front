@@ -1,6 +1,11 @@
 Version history
 ###############
 
+Version 0.5.1
+=============
+* Support for running tests via setuptools
+
+
 Version 0.5.0
 =============
 * Supported Django versions are now 1.7, 1.8 and 1.9
