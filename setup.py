@@ -33,7 +33,7 @@ setup(
     author_email='mbonetti@gmail.com',
     url='https://github.com/mbi/django-front',
     license='MIT',
-    packages=find_packages(),
+    packages=find_packages(exclude=['testproject', 'testproject.*']),
     classifiers=[
         'Development Status :: 4 - Beta',
         'Environment :: Web Environment',
