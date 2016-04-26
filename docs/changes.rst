@@ -1,6 +1,11 @@
 Version history
 ###############
 
+Version 0.5.2
+=============
+* Fixes a possible unicode decode error on funky input
+
+
 Version 0.5.1
 =============
 * Support for running tests via setuptools

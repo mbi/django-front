@@ -7,6 +7,7 @@ from django.core.cache import cache
 from django.core.exceptions import ImproperlyConfigured
 from django.core.urlresolvers import reverse, NoReverseMatch
 from django.utils.html import strip_tags
+from django.utils.encoding import smart_text
 import six
 try:
     import simplejson as json
@@ -46,7 +47,7 @@ class FrontEditTag(Tag):
 
         user = context.get('request', None) and context.get('request').user
         if django_front_settings.DJANGO_FRONT_PERMISSION(user):
-            render = six.text_type(val).strip()
+            render = six.text_type(smart_text(val)).strip()
             if not strip_tags(render).strip():
                 classes.append('empty-editable')
 
