@@ -1,6 +1,10 @@
 Version history
 ###############
 
+Version 0.5.4 (unreleased)
+==========================
+* Test against Django 1.11b1
+
 Version 0.5.3
 =============
 * Test against Django 1.10b1
