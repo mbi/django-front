@@ -19,7 +19,7 @@
 
 /*TRYING TO RESET STYLES THAT MAY INTERFERE WITH WYMEDITOR*/
         .wym_skin_django p, .wym_skin_django h2, .wym_skin_django h3,
-        .wym_skin_django ul, .wym_skin_django li { background: transparent url(); margin: 0; padding: 0; border-width:0; list-style: none; }
+        .wym_skin_django ul, .wym_skin_django li { background: transparent; margin: 0; padding: 0; border-width:0; list-style: none; }
 
 
 /*HIDDEN BY DEFAULT*/
@@ -28,7 +28,7 @@
 
 
 /*TYPO*/    
-        .wym_skin_django                { font-size: 62,5%; font-family: "Lucida Grande", "DejaVu Sans", "Bitstream Vera Sans", Verdana, Arial, sans-serif }
+        .wym_skin_django                { font-size: 62.5%; font-family: "Lucida Grande", "DejaVu Sans", "Bitstream Vera Sans", Verdana, Arial, sans-serif }
         .wym_skin_django h2             { font-size: 110%; /* = 11px */}
         .wym_skin_django h3             { font-size: 100%; /* = 10px */}
         .wym_skin_django li             { font-size: 100%; /* = 10px */}
