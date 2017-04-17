@@ -163,6 +163,26 @@ At the end of your ``<body>``::
 Froala accepts `options <https://editor.froala.com/options>`_ that can be passed to the editor via the ``DJANGO_FRONT_EDITOR_OPTIONS`` settings (see the next section).
 
 
+Medium-editor
+=============
+
+`Medium-editor <https://yabwe.github.io/medium-editor/>`_ is a Medium.com WYSIWYG editor clone. Uses contenteditable API to implement a rich text solution.
+
+In your ``<head>``::
+
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/medium-editor/latest/css/medium-editor.min.css">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/medium-editor/latest/css/themes/beagle.min.css">
+
+
+At the end of your ``<body>``::
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script src="//cdn.jsdelivr.net/medium-editor/latest/js/medium-editor.min.js"></script>
+    {% front_edit_scripts editor="medium" %}
+
+The Medium-editor accepts `setting options <https://github.com/yabwe/medium-editor#mediumeditor-options>`_ that can be passed to the editor via the ``DJANGO_FRONT_EDITOR_OPTIONS`` settings (see the next section).
+
+
 *******************************
 Passing arguments to the editor
 *******************************

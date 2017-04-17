@@ -19,9 +19,9 @@ Installing django-front
 * Add ``front`` to your ``INSTALLED_APPS``
 * Add a line to your ``urls.py``::
 
-    urlpatterns += patterns('',
+    urlpatterns += [
         url(r'^front-edit/', include('front.urls')),
-    )
+    ]
 
 * ``python manage.py migrate`` (or syncdb if that's your dope)
 
