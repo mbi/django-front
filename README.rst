@@ -9,7 +9,7 @@ Currently supported editors:
 * `CKEditor <http://ckeditor.com/>`_
 * `EpicEditor <http://epiceditor.com/>`_
 * `Froala <https://froala.com/wysiwyg-editor>`_
-* `Medium-editor <https://yabwe.github.io/medium-editor/>`_
+* `Medium Editor <https://yabwe.github.io/medium-editor/>`_
 * `Redactor <http://imperavi.com/redactor/>`_
 * `WYMeditor <http://www.wymeditor.org/>`_
 
