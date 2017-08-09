@@ -1,4 +1,5 @@
 from django.conf.urls import url
+
 from .views import do_save, get_history
 
 urlpatterns = [

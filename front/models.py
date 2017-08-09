@@ -1,9 +1,10 @@
-from django.db import models
-from django.core.cache import cache
-from django.dispatch import receiver
-from django.db.models.signals import post_save
 import hashlib
+
 import six
+from django.core.cache import cache
+from django.db import models
+from django.db.models.signals import post_save
+from django.dispatch import receiver
 
 
 class Placeholder(models.Model):
@@ -18,7 +19,8 @@ class Placeholder(models.Model):
 
     @classmethod
     def key_for(cls, name, *bits):
-        return hashlib.new('sha1', six.text_type(name + ''.join([six.text_type(token) for token in bits])).encode('utf8')).hexdigest()
+        return hashlib.new('sha1', six.text_type(name + ''.join([six.text_type(token) for token in bits])).encode(
+            'utf8')).hexdigest()
 
     @classmethod
     def copy_content(cls, name, source_bits, target_bits):
@@ -37,7 +39,7 @@ class PlaceholderHistory(models.Model):
     saved = models.DateTimeField(auto_now_add=True)
 
     class Meta:
-        ordering = ('-saved', )
+        ordering = ('-saved',)
 
     @property
     def _as_json(self):
