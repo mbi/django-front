@@ -76,11 +76,10 @@ class FrontEditJS(Tag):
         static_url = settings.STATIC_URL
         user = context.get('request', None) and context.get('request').user
         token = six.text_type(context.get('csrf_token'))
-        plugin = editor.get('editor').lower() if \
-            editor.get('editor') and editor.get('editor').lower() \
-                                     in django_front_settings.DJANGO_FRONT_ALLOWED_EDITORS else 'default'
-        edit_mode = django_front_settings.DJANGO_FRONT_EDIT_MODE if \
-            django_front_settings.DJANGO_FRONT_EDIT_MODE in ('lightbox', 'inline') else 'lightbox'
+        plugin = editor.get('editor').lower() if editor.get('editor') and editor.get(
+            'editor').lower() in django_front_settings.DJANGO_FRONT_ALLOWED_EDITORS else 'default'
+        edit_mode = django_front_settings.DJANGO_FRONT_EDIT_MODE if django_front_settings.DJANGO_FRONT_EDIT_MODE in (
+            'lightbox', 'inline') else 'lightbox'
 
         if django_front_settings.DJANGO_FRONT_PERMISSION(user):
             return """
@@ -178,11 +177,10 @@ class FrontEditModelJS(Tag):
         static_url = settings.STATIC_URL
         user = context.get('request', None) and context.get('request').user
         token = six.text_type(context.get('csrf_token'))
-        plugin = editor.get('editor').lower() if \
-            editor.get('editor') and editor.get('editor').lower() \
-                                     in django_front_settings.DJANGO_FRONT_ALLOWED_EDITORS else 'default'
-        edit_mode = django_front_settings.DJANGO_FRONT_EDIT_MODE if \
-            django_front_settings.DJANGO_FRONT_EDIT_MODE in ('lightbox', 'inline') else 'lightbox'
+        plugin = editor.get('editor').lower() if editor.get('editor') and editor.get(
+            'editor').lower() in django_front_settings.DJANGO_FRONT_ALLOWED_EDITORS else 'default'
+        edit_mode = django_front_settings.DJANGO_FRONT_EDIT_MODE if django_front_settings.DJANGO_FRONT_EDIT_MODE in (
+            'lightbox', 'inline') else 'lightbox'
 
         obj = context.get('object', None)
         user_can_change = False
