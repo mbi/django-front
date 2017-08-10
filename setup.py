@@ -1,6 +1,7 @@
+import sys
+
 from setuptools import setup, find_packages
 from setuptools.command.test import test as test_command
-import sys
 
 
 class Tox(test_command):
@@ -24,6 +25,7 @@ class Tox(test_command):
             args = shlex.split(self.tox_args)
         errno = tox.cmdline(args=args)
         sys.exit(errno)
+
 
 setup(
     name='django-front',
