@@ -1,4 +1,4 @@
-from uuid import uuid4
+from uuid import uuid4, UUID
 
 from django.core.exceptions import ObjectDoesNotExist
 from django.db import models
@@ -21,6 +21,8 @@ class PlaceholderField(models.UUIDField):
     def get_db_prep_save(self, value, connection):
         if value is None:
             value = uuid4()
+        else:
+            value = UUID(str(value.id))
         return super().get_db_prep_save(value, connection)
 
     def from_db_value(self, value, expression, connection, context):
