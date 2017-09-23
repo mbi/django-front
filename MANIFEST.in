@@ -5,6 +5,7 @@ include CHANGES
 include tox.ini
 recursive-include docs *
 recursive-include test_project *
+recursive-include front *
 exclude *.sh
 exclude .DS_Store
 exclude test_project/.coverage
