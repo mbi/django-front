@@ -1,8 +1,12 @@
 # -*- coding: utf-8 -*-
+import django
 from django.contrib.auth.models import User
 from django.core.cache import cache
 from django.core.exceptions import ImproperlyConfigured
-from django.core.urlresolvers import reverse
+if django.VERSION < (1, 10):  # NOQA
+    from django.core.urlresolvers import reverse  # NOQA
+else:  # NOQA
+    from django.urls import reverse  # NOQA
 from django.test import TestCase, override_settings
 from front.models import Placeholder, PlaceholderHistory
 import json

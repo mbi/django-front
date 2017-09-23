@@ -21,6 +21,7 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.locale.LocaleMiddleware'
 )
+MIDDLEWARE = MIDDLEWARE_CLASSES
 
 TEMPLATES = [{
     'BACKEND': 'django.template.backends.django.DjangoTemplates',

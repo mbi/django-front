@@ -32,7 +32,7 @@ class Placeholder(models.Model):
 
 
 class PlaceholderHistory(models.Model):
-    placeholder = models.ForeignKey(Placeholder, related_name='history')
+    placeholder = models.ForeignKey(Placeholder, related_name='history', on_delete=models.CASCADE)
     value = models.TextField(blank=True)
     saved = models.DateTimeField(auto_now_add=True)
 

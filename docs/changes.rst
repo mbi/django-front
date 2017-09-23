@@ -1,6 +1,10 @@
 Version history
 ###############
 
+Version 0.5.6 (unreleased)
+==========================
+* Test against Django 2.0a1
+
 Version 0.5.5
 =============
 * Added support for Medium Editor

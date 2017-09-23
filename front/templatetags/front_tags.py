@@ -1,11 +1,15 @@
 from ..conf import settings as django_front_settings
 from ..models import Placeholder
+import django
 from classytags.arguments import Argument, MultiValueArgument, KeywordArgument
 from classytags.core import Tag, Options
 from django import template
 from django.core.cache import cache
 from django.core.exceptions import ImproperlyConfigured
-from django.core.urlresolvers import reverse, NoReverseMatch
+if django.VERSION < (1, 10):  # NOQA
+    from django.core.urlresolvers import reverse, NoReverseMatch  # NOQA
+else:  # NOQA
+    from django.urls import reverse, NoReverseMatch  # NOQA
 from django.utils.html import strip_tags
 from django.utils.encoding import smart_text
 import six

@@ -14,7 +14,7 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='placeholderhistory',
             name='placeholder',
-            field=models.ForeignKey(related_name='history', to='front.Placeholder'),
+            field=models.ForeignKey(related_name='history', to='front.Placeholder', on_delete=models.CASCADE),
             preserve_default=True,
         ),
     ]

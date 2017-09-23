@@ -26,7 +26,7 @@ class Migration(migrations.Migration):
                 ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
                 ('value', models.TextField(blank=True)),
                 ('saved', models.DateTimeField(auto_now_add=True)),
-                ('placeholder', models.ForeignKey(to='front.Placeholder')),
+                ('placeholder', models.ForeignKey(to='front.Placeholder', on_delete=models.CASCADE)),
             ],
             options={
                 'ordering': (b'-saved',),
