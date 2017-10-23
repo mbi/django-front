@@ -3,7 +3,7 @@ Version history
 
 Version 0.5.7 (unreleased)
 ==========================
-* Test against Django 2.0a1
+* Test against Django 2.0b1
 
 Version 0.5.6
 =============
