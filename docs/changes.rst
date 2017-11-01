@@ -1,14 +1,14 @@
 Version history
 ###############
 
-Version 0.5.7 (unreleased)
-==========================
+Version 0.5.7
+=============
 * Test against Django 2.0b1
+* Add missing migration 0003
 
 Version 0.5.6
 =============
 * Missing static folder (Issue #14, thanks @sekiroh)
-
 
 Version 0.5.5
 =============
