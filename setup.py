@@ -27,7 +27,7 @@ class Tox(test_command):
 
 setup(
     name='django-front',
-    version='0.5.7',
+    version='0.5.8',
     description='A Django application to allow of front-end editing',
     author='Marco Bonetti',
     author_email='mbonetti@gmail.com',
@@ -50,7 +50,7 @@ setup(
     zip_safe=False,
     install_requires=[
         'django-classy-tags >= 0.4',
-        'Django >= 1.7',
+        'Django >= 1.8',
         'six'
     ],
     tests_require=['tox'],
