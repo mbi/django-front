@@ -1,10 +1,13 @@
 Version history
 ###############
 
+Version 0.5.9
+=============
+* Add support for the Summernote editor
+
 Version 0.5.8
 =============
 * Test against Django 2.0 final
-
 
 Version 0.5.7
 =============
@@ -34,7 +37,6 @@ Version 0.5.2
 Version 0.5.1
 =============
 * Support for running tests via setuptools
-
 
 Version 0.5.0
 =============

@@ -27,7 +27,7 @@ class Tox(test_command):
 
 setup(
     name='django-front',
-    version='0.5.8',
+    version='0.5.9',
     description='A Django application to allow of front-end editing',
     author='Marco Bonetti',
     author_email='mbonetti@gmail.com',

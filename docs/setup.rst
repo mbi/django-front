@@ -182,6 +182,24 @@ At the end of your ``<body>``::
 
 The Medium Editor accepts `setting options <https://github.com/yabwe/medium-editor#mediumeditor-options>`_ that can be passed to the editor via the ``DJANGO_FRONT_EDITOR_OPTIONS`` settings (see the next section).
 
+Summernote
+==========
+
+`Summernote <https://summernote.org/>`_ is an open-source WYSIWYG Editor based on Bootstrap.
+
+In your ``<head>``::
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote-lite.css" rel="stylesheet">
+
+
+At the end of your ``<body>``::
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote-lite.js"></script>
+    {% front_edit_scripts editor="summernote" %}
+
+The `Summernote editor accepts options <https://summernote.org/deep-dive/>`_ that can be passed to the editor via the ``DJANGO_FRONT_EDITOR_OPTIONS`` settings (see the next section).
+
 
 *******************************
 Passing arguments to the editor
