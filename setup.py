@@ -25,10 +25,14 @@ class Tox(test_command):
         errno = tox.cmdline(args=args)
         sys.exit(errno)
 
+with open('README.rst') as readme:
+    long_description = readme.read()
+
 setup(
     name='django-front',
     version='0.5.9',
     description='A Django application to allow of front-end editing',
+    long_description=long_description,
     author='Marco Bonetti',
     author_email='mbonetti@gmail.com',
     url='https://github.com/mbi/django-front',
