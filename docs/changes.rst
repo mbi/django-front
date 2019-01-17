@@ -1,6 +1,10 @@
 Version history
 ###############
 
+Version 0.5.11
+==============
+* Test against Django 2.2a
+
 Version 0.5.10
 ==============
 * Test against Django 2.1a
