@@ -1,17 +1,15 @@
 # -*- coding: utf-8 -*-
-import django
+import json
+import re
+
+import six
 from django.contrib.auth.models import User
 from django.core.cache import cache
 from django.core.exceptions import ImproperlyConfigured
-if django.VERSION < (1, 10):  # NOQA
-    from django.core.urlresolvers import reverse  # NOQA
-else:  # NOQA
-    from django.urls import reverse  # NOQA
 from django.test import TestCase, override_settings
+from django.urls import reverse
 from front.models import Placeholder, PlaceholderHistory
-import json
-import re
-import six
+from front.conf import settings as django_front_settings
 
 
 @override_settings(ROOT_URLCONF='front.tests.urls')
@@ -202,3 +200,13 @@ class FrontTestCase(TestCase):
             Placeholder.objects.get(key=jello_key).value,
             Placeholder.objects.get(key=jello_key).value
         )
+
+    def test_14_extra_container_classes(self):
+        _setting = getattr(django_front_settings, 'DJANGO_FRONT_EXTRA_CONTAINER_CLASSES', '')
+        django_front_settings.DJANGO_FRONT_EXTRA_CONTAINER_CLASSES = 'some extra classes'
+
+        self.client.login(username='admin_user', password='admin_user')
+        resp = self.client.get(reverse('front-test'))
+        self.assertTrue('some extra classes' in six.text_type(resp.content))
+
+        django_front_settings.DJANGO_FRONT_EXTRA_CONTAINER_CLASSES = _setting

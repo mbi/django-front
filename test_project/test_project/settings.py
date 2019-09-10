@@ -13,7 +13,7 @@ USE_L10N = True
 SECRET_KEY = 'lol I dont even care'
 
 
-MIDDLEWARE_CLASSES = (
+MIDDLEWARE = (
     'django.middleware.common.CommonMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -21,7 +21,6 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.locale.LocaleMiddleware'
 )
-MIDDLEWARE = MIDDLEWARE_CLASSES
 
 TEMPLATES = [{
     'BACKEND': 'django.template.backends.django.DjangoTemplates',

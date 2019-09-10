@@ -1,22 +1,17 @@
-from ..conf import settings as django_front_settings
-from ..models import Placeholder
-import django
-from classytags.arguments import Argument, MultiValueArgument, KeywordArgument
-from classytags.core import Tag, Options
+import json
+
+import six
+from classytags.arguments import Argument, KeywordArgument, MultiValueArgument
+from classytags.core import Options, Tag
 from django import template
 from django.core.cache import cache
 from django.core.exceptions import ImproperlyConfigured
-if django.VERSION < (1, 10):  # NOQA
-    from django.core.urlresolvers import reverse, NoReverseMatch  # NOQA
-else:  # NOQA
-    from django.urls import reverse, NoReverseMatch  # NOQA
-from django.utils.html import strip_tags
+from django.urls import NoReverseMatch, reverse  # NOQA
 from django.utils.encoding import smart_text
-import six
-try:
-    import simplejson as json
-except ImportError:
-    import json
+from django.utils.html import strip_tags
+
+from ..conf import settings as django_front_settings
+from ..models import Placeholder
 
 
 register = template.Library()
@@ -27,9 +22,7 @@ class FrontEditTag(Tag):
     options = Options(
         Argument('name', resolve=False, required=True),
         MultiValueArgument('extra_bits', required=False, resolve=True),
-        blocks=[
-            ('end_front_edit', 'nodelist'),
-        ]
+        blocks=[('end_front_edit', 'nodelist')],
     )
 
     def render_tag(self, context, name, extra_bits, nodelist=None):
@@ -49,13 +42,22 @@ class FrontEditTag(Tag):
 
         classes = ['editable']
 
+        if getattr(django_front_settings, 'DJANGO_FRONT_EXTRA_CONTAINER_CLASSES', None):
+            classes.append(
+                six.text_type(django_front_settings.DJANGO_FRONT_EXTRA_CONTAINER_CLASSES)
+            )
+
         user = context.get('request', None) and context.get('request').user
         if django_front_settings.DJANGO_FRONT_PERMISSION(user):
             render = six.text_type(smart_text(val)).strip()
             if not strip_tags(render).strip():
                 classes.append('empty-editable')
 
-            return '<div class="%s" id="%s">%s</div>' % (' '.join(classes), hash_val, render)
+            return '<div class="%s" id="%s">%s</div>' % (
+                ' '.join(classes),
+                hash_val,
+                render,
+            )
         return val or ''
 
 
@@ -68,18 +70,25 @@ class FrontEditJS(Tag):
     def render_tag(self, context, editor=''):
         try:
             save_url = reverse('front-placeholder-save')
-            history_url = reverse('front-placeholder-history', args=('0000', ))
+            history_url = reverse('front-placeholder-history', args=('0000',))
         except NoReverseMatch:
-            raise ImproperlyConfigured('You must add an urlconf entry for django-front to work, see: http://django-front.readthedocs.org/en/latest/installation.html')
+            raise ImproperlyConfigured(
+                'You must add an urlconf entry for django-front to work, see: http://django-front.readthedocs.org/en/latest/installation.html'
+            )
 
         static_url = context.get('STATIC_URL', '/static/')
         user = context.get('request', None) and context.get('request').user
         token = six.text_type(context.get('csrf_token'))
-        plugin = editor.get('editor').lower() if \
-            editor.get('editor') and editor.get('editor').lower() \
-            in django_front_settings.DJANGO_FRONT_ALLOWED_EDITORS else 'default'
-        edit_mode = django_front_settings.DJANGO_FRONT_EDIT_MODE if \
-            django_front_settings.DJANGO_FRONT_EDIT_MODE in ('lightbox', 'inline') else 'lightbox'
+        plugin = (
+            editor.get('editor').lower()
+            if editor.get('editor') and editor.get('editor').lower() in django_front_settings.DJANGO_FRONT_ALLOWED_EDITORS
+            else 'default'
+        )
+        edit_mode = (
+            django_front_settings.DJANGO_FRONT_EDIT_MODE
+            if django_front_settings.DJANGO_FRONT_EDIT_MODE in ('lightbox', 'inline')
+            else 'lightbox'
+        )
 
         if django_front_settings.DJANGO_FRONT_PERMISSION(user):
             return """

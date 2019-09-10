@@ -16,3 +16,4 @@ These settings are defined, and can be overridden in your project settings
     }
 
 * ``DJANGO_FRONT_ALLOWED_EDITORS``: list of allowed editor plugins. Add to this list if you plan on adding a new editor type. Defaults to ``['ace', 'ace-local', 'wymeditor', 'redactor', 'epiceditor', 'ckeditor', 'froala', 'medium', 'summernote', 'default']``
+* ``DJANGO_FRONT_EXTRA_CONTAINER_CLASSES``: string of extra classes that are appended to the div wrapper containing editable markup. Defaults to ``''``
