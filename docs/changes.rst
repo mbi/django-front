@@ -1,6 +1,10 @@
 Version history
 ###############
 
+Version 0.5.12
+==============
+* Dropped support for Django < 1.11
+
 Version 0.5.11
 ==============
 * Test against Django 2.2a

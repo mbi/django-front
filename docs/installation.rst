@@ -4,9 +4,7 @@ Installation
 Requirements
 ------------
 
-Python requirements are automatically installed when you install via pip.
-
-* Django-front supports Django 1.8 through 1.11
+* Django-front supports Django 1.11 through 2.2
 * django-classy-tags
 * Python 2.7+ or Python 3.5+
 * jQuery is required in your template
