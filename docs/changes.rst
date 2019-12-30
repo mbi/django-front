@@ -5,6 +5,7 @@ Version 0.5.12
 ==============
 * Dropped support for Django < 1.11
 * Added new `DJANGO_FRONT_EXTRA_CONTAINER_CLASSES` setting to inject extra classes on the div wrapping the editable code blocks
+* Update tesy_project with examples
 
 Version 0.5.11
 ==============
