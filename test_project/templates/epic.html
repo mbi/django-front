@@ -1,0 +1,18 @@
+<!doctype html>{% load i18n front_tags %}
+<html lang="en">
+  <head>
+      <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+      {% front_edit_scripts editor="epiceditor" %}
+
+  </head>
+<body>
+    <h1>Epic editor example</h1>
+    <div>
+    {% front_edit "global" LANGUAGE_CODE %}
+        <p>Double click to edit this text.</p>
+    {% end_front_edit  %}
+    {% front_edit_scripts editor="epiceditor" %}
+    </div>
+<li><a href="{% url 'index' %}">Back to editor examples</a></li>
+</body>
+</html>

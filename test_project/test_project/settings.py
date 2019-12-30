@@ -1,5 +1,7 @@
 # Django settings for test_project project.
 import os
+
+
 DEBUG = True
 DATABASES = {
     'default': {
@@ -24,6 +26,7 @@ MIDDLEWARE = (
 
 TEMPLATES = [{
     'BACKEND': 'django.template.backends.django.DjangoTemplates',
+    'DIRS': (os.path.join(os.path.realpath('.'), "templates"), ),
     'APP_DIRS': True,
     'OPTIONS': {
         'context_processors': (
@@ -41,6 +44,10 @@ TEMPLATES = [{
 }]
 STATIC_URL = '/static/'
 
+STATICFILES_DIRS = [
+os.path.join(os.path.join(os.path.realpath('.'), "..", "front", "static")),
+]
+
 ROOT_URLCONF = 'test_project.urls'
 
 # Python dotted path to the WSGI application used by Django's runserver.
@@ -52,8 +59,12 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.sites',
     'django.contrib.staticfiles',
-
+    'django_extensions',
     'front'
 )
 
 SITE_ID = 1
+
+# For testing purposes we allow everyone to have permission
+DJANGO_FRONT_PERMISSION = lambda u: True
+

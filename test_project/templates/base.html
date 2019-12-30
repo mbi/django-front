@@ -1,8 +1,18 @@
 <!doctype html>{% load i18n front_tags %}
 <html lang="en">
-  <head></head>
+  <head>
+      <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+      {% front_edit_scripts editor="epiceditor" %}
+
+  </head>
 <body>
-    {% front_edit "global" LANGUAGE_CODE %}aaa{% end_front_edit  %}
-    {% front_edit_scripts editor="ace" %}
+<h1>Editor examples</h1>
+<div>
+    <ul>
+        <li><a href="{% url 'epic' %}">Epic Editor</a></li>
+        <li><a href="{% url 'ace' %}">ACE</a></li>
+        <li><a href="{% url 'WYMeditor' %}">WYMeditor</a></li>
+    </ul>
+</div>
 </body>
 </html>
