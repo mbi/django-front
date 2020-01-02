@@ -1,6 +1,7 @@
-from setuptools import setup, find_packages
-from setuptools.command.test import test as test_command
 import sys
+
+from setuptools import find_packages, setup
+from setuptools.command.test import test as test_command
 
 
 class Tox(test_command):
@@ -19,11 +20,13 @@ class Tox(test_command):
         # import here, cause outside the eggs aren't loaded
         import tox
         import shlex
+
         args = self.tox_args
         if args:
             args = shlex.split(self.tox_args)
         errno = tox.cmdline(args=args)
         sys.exit(errno)
+
 
 with open('README.rst') as readme:
     long_description = readme.read()
@@ -52,11 +55,7 @@ setup(
     ],
     include_package_data=True,
     zip_safe=False,
-    install_requires=[
-        'django-classy-tags >= 0.4',
-        'Django >= 1.8',
-        'six'
-    ],
+    install_requires=['django-classy-tags >= 0.4', 'Django >= 1.11', 'six'],
     tests_require=['tox'],
     cmdclass={'test': Tox},
 )
