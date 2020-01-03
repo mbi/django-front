@@ -1,8 +1,10 @@
 # Django settings for test_project project.
 import os
-
+import sys
 
 DEBUG = True
+TESTING = sys.argv[1:2] == ['test']
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
@@ -59,11 +61,15 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.sites',
     'django.contrib.staticfiles',
-    'front'
+    'front',
 )
 
 SITE_ID = 1
 
 # For testing purposes we allow everyone to have permission
-DJANGO_FRONT_PERMISSION = lambda u: True
+if not TESTING:
+    # Don't use this permission in production unless you want everyone to have permissions
+    # event the anonoymous.
+    # this setting is for making more straigh forward the test_project usage.
+    DJANGO_FRONT_PERMISSION = lambda u: True
 
