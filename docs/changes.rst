@@ -2,9 +2,9 @@ Version history
 ###############
 
 
-Version 0.5.13 (unreleased)
-===========================
-* Initial Django 3.0 support
+Version 0.5.13
+==============
+* Django 3.0 support
 
 Version 0.5.12
 ==============

@@ -59,7 +59,7 @@ setup(
     ],
     include_package_data=True,
     zip_safe=False,
-    install_requires=['django-classy-tags >= 0.4', 'Django >= 1.11', 'six'],
+    install_requires=['django-classy-tags >= 1.0', 'Django >= 1.11', 'six'],
     tests_require=['tox'],
     cmdclass={'test': Tox},
 )
