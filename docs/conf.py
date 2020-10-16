@@ -46,14 +46,14 @@ master_doc = 'index'
 
 # General information about the project.
 project = 'Django-Front'
-copyright = '2013-2019, Marco Bonetti and contributors'
+copyright = '2013-2020, Marco Bonetti and contributors'
 
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the
 # built documents.
 #
 # The short X.Y version.
-version = '0.5.13'
+version = '0.5.14'
 # The full version, including alpha/beta/rc tags.
 release = version
 

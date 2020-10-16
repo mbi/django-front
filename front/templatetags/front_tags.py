@@ -1,14 +1,15 @@
 import json
 
-import six
-from classytags.arguments import Argument, KeywordArgument, MultiValueArgument
-from classytags.core import Options, Tag
 from django import template
 from django.core.cache import cache
 from django.core.exceptions import ImproperlyConfigured
 from django.urls import NoReverseMatch, reverse  # NOQA
-from django.utils.encoding import smart_text
+from django.utils.encoding import smart_str
 from django.utils.html import strip_tags
+
+import six
+from classytags.arguments import Argument, KeywordArgument, MultiValueArgument
+from classytags.core import Options, Tag
 
 from ..conf import settings as django_front_settings
 from ..models import Placeholder
@@ -49,7 +50,7 @@ class FrontEditTag(Tag):
 
         user = context.get('request', None) and context.get('request').user
         if django_front_settings.DJANGO_FRONT_PERMISSION(user):
-            render = six.text_type(smart_text(val)).strip()
+            render = six.text_type(smart_str(val)).strip()
             if not strip_tags(render).strip():
                 classes.append('empty-editable')
 
@@ -81,7 +82,9 @@ class FrontEditJS(Tag):
         token = six.text_type(context.get('csrf_token'))
         plugin = (
             editor.get('editor').lower()
-            if editor.get('editor') and editor.get('editor').lower() in django_front_settings.DJANGO_FRONT_ALLOWED_EDITORS
+            if editor.get('editor')
+            and editor.get('editor').lower()
+            in django_front_settings.DJANGO_FRONT_ALLOWED_EDITORS
             else 'default'
         )
         edit_mode = (

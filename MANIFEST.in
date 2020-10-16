@@ -3,6 +3,7 @@ include LICENSE
 include README.rst
 include CHANGES
 include tox.ini
+include .pep8
 recursive-include docs *
 recursive-include test_project *
 recursive-include front *

@@ -2,6 +2,11 @@ Version history
 ###############
 
 
+Version 0.5.14
+==============
+* Django 3.1 support
+* Dropped support for Django < 2.2 and Python2
+
 Version 0.5.13
 ==============
 * Django 3.0 support
