@@ -1,6 +1,18 @@
 Django-Front
 *********************
 
+
+.. image:: https://travis-ci.org/mbi/django-front.svg
+  :target: http://travis-ci.org/mbi/django-front
+  
+.. image:: https://img.shields.io/pypi/v/django-front
+  :target: https://pypi.org/project/django-front/
+
+.. image:: https://img.shields.io/pypi/l/django-front
+  :target: https://github.com/mbi/django-front/blob/master/LICENSE
+
+
+
 Django-front is a front-end editing application: placeholders can be defined in Django templates, which can then be edited on the front-end.
 
 Currently supported editors:
