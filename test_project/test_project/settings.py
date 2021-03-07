@@ -1,5 +1,6 @@
 # Django settings for test_project project.
 import os
+
 DEBUG = True
 DATABASES = {
     'default': {
@@ -12,6 +13,7 @@ USE_I18N = True
 USE_L10N = True
 SECRET_KEY = 'lol I dont even care'
 
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 MIDDLEWARE = (
     'django.middleware.common.CommonMiddleware',
@@ -19,26 +21,28 @@ MIDDLEWARE = (
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
-    'django.middleware.locale.LocaleMiddleware'
+    'django.middleware.locale.LocaleMiddleware',
 )
 
-TEMPLATES = [{
-    'BACKEND': 'django.template.backends.django.DjangoTemplates',
-    'APP_DIRS': True,
-    'OPTIONS': {
-        'context_processors': (
-            'django.contrib.auth.context_processors.auth',
-            'django.template.context_processors.debug',
-            'django.template.context_processors.i18n',
-            'django.template.context_processors.media',
-            'django.template.context_processors.static',
-            'django.template.context_processors.tz',
-            'django.contrib.messages.context_processors.messages',
-            'django.template.context_processors.request'
-        ),
-        'debug': False
+TEMPLATES = [
+    {
+        'BACKEND': 'django.template.backends.django.DjangoTemplates',
+        'APP_DIRS': True,
+        'OPTIONS': {
+            'context_processors': (
+                'django.contrib.auth.context_processors.auth',
+                'django.template.context_processors.debug',
+                'django.template.context_processors.i18n',
+                'django.template.context_processors.media',
+                'django.template.context_processors.static',
+                'django.template.context_processors.tz',
+                'django.contrib.messages.context_processors.messages',
+                'django.template.context_processors.request',
+            ),
+            'debug': False,
+        },
     }
-}]
+]
 STATIC_URL = '/static/'
 
 ROOT_URLCONF = 'test_project.urls'
@@ -52,8 +56,7 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.sites',
     'django.contrib.staticfiles',
-
-    'front'
+    'front',
 )
 
 SITE_ID = 1

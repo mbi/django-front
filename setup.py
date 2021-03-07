@@ -33,7 +33,7 @@ with open('README.rst') as readme:
 
 setup(
     name='django-front',
-    version='0.5.14',
+    version='0.5.15',
     description='A Django application to allow of front-end editing',
     long_description=long_description,
     author='Marco Bonetti',
