@@ -17,7 +17,7 @@ Django-front is a front-end editing application: placeholders can be defined in 
 
 Currently supported editors:
 
-* `Ace <http://ace.ajax.org/>`_
+* `Ace <https://ace.c9.io/>`_
 * `CKEditor <http://ckeditor.com/>`_
 * `EpicEditor <http://epiceditor.com/>`_
 * `Froala <https://froala.com/wysiwyg-editor>`_
