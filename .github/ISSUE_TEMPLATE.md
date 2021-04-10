@@ -1,0 +1,3 @@
+- Which version of Django are you using?: 
+- Which version of django-front are you using?:
+- Have you looked trough [recent issues](https://github.com/mbi/django-front/issues?utf8=%E2%9C%93&q=is%3Aissue) and checked this isn't a duplicate?
