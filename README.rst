@@ -2,8 +2,8 @@ Django-Front
 *********************
 
 
-.. image:: https://travis-ci.org/mbi/django-front.svg
-  :target: http://travis-ci.org/mbi/django-front
+.. image:: https://github.com/mbi/django-front/actions/workflows/test.yml/badge.svg
+  :target: https://github.com/mbi/django-front/actions/workflows/test.yml
   
 .. image:: https://img.shields.io/pypi/v/django-front
   :target: https://pypi.org/project/django-front/
