@@ -4,9 +4,9 @@ Installation
 Requirements
 ------------
 
-* Django-front supports Django 1.11 through 2.2
+* Django-front supports Django 4.2 and 5.0
 * django-classy-tags
-* Python 2.7+ or Python 3.5+
+* Python 3.9+
 * jQuery is required in your template
 
 
@@ -29,4 +29,4 @@ Installing django-front
 Testing
 -------
 
-* ``pip install tox && tox``
+* ``pip install --upgrade tox && tox``

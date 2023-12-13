@@ -4,7 +4,6 @@ source =
     front
 omit =
     ../*migrations*
-    ../*south_migrations*
     ../*tests*
 [report]
 precision = 2

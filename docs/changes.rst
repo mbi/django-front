@@ -2,6 +2,11 @@ Version history
 ###############
 
 
+Version 0.6.0
+==============
+* Django 4.2 and 5.0 support
+
+
 Version 0.5.15
 ==============
 * Django 3.2 support
