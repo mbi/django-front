@@ -27,10 +27,6 @@ Currently supported editors:
 
 Please see the `online documentation <http://django-front.readthedocs.org/>`_ to install and get started.
 
-.. image:: https://travis-ci.org/mbi/django-front.png?branch=master
-  :target: http://travis-ci.org/mbi/django-front
-
-
 ----
 
 .. image:: http://django-front.readthedocs.org/en/latest/_images/front-edit-usage.gif
