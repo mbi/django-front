@@ -10,3 +10,4 @@ django_front.egg-info
 docs/_build/
 .tox
 .eggs
+.idea
