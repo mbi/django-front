@@ -1,9 +1,9 @@
 Version history
 ###############
 
-Version 0.6.1 (unreleased)
-==========================
-* Django 5.2 support
+Version 0.6.1
+=============
+* Django 5.2 and 6.0 support
 
 
 Version 0.6.0
