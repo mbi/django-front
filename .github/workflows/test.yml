@@ -8,8 +8,8 @@ jobs:
     steps:
      - uses: actions/checkout@v5
      - name: Install uv
-       uses: astral-sh/setup-uv@v7
-     - uses: niden/actions-memcached@v7
+       uses: astral-sh/setup-uv
+     - uses: niden/actions-memcached@v8
      - name: Install tox-uv
        run: uv tool install tox --with tox-uv
      - name: Test with tox
